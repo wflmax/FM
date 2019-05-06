@@ -1,0 +1,160 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,address,cite,code,del,em,img,strong,sub,sup,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{
+    margin:0;padding:0;border:0;outline:0;-webkit-text-size-adjust : none ;-moz-text-size-adjust : none ;-ms-text-size-adjust : none ; text-size-adjust : none;  -webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+
+html, body,object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font,
+img, ins, kbd, q, s, samp, span, small, strike, strong,dl, dt, dd, ol, ul, li, fieldset, form, label, legend, button, table, caption,
+tbody, tfoot, thead, tr, th, td, section, nav, header, footer,input,textarea,select{margin:0;padding:0;border:0;outline:0;}
+
+html{width:100%;  overflow-x:hidden;}
+a{color:#333;outline: none;}
+a:hover,a:link,a:active,a:visited{outline:none;text-decoration:none;}
+input,textarea,button,select{appearance:none;-moz-appearance:none; -webkit-appearance:none;font-family:inherit;font-size:inherit;outline: none;}
+input:focus,textarea:focus{ outline:none;}
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+img {
+	border: 0;
+	vertical-align: top;
+}
+textarea{
+    resize:none;
+    outline:none;
+}
+textarea::placeholder {
+    color: #999;
+}
+li {list-style: none;}
+* {
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-yc {
+    align-items: center;
+}
+
+.flex-bl {
+    align-items: baseline;
+}
+
+.flex-xc {
+    justify-content: center;
+}
+
+.flex-sa {
+    justify-content: space-around;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.abs {
+    position: absolute;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.rel {
+    position: relative;
+}
+
+.bl {
+    display: block;
+}
+
+.txt-r {
+	text-align: right;
+}
+
+.txt-c {
+    text-align: center;
+}
+
+.fr {
+	float: right;
+}
+
+.ell, .ell-multiline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*单行截断*/
+.ell{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*2行截断*/
+.ell2{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/*多行截断*/
+.ell-multiline {
+    display: -webkit-box;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.rich-text {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.word-break {
+	word-break: break-all;
+}
+
+/*公共弹框*/
+.mask-wrap-common {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/*公共弹框*/
+.mask-wrap-common {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.row-line{
+    width: 100%;
+    height: 1px;
+    background: #eeeeee;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
