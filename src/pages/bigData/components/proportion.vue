@@ -1,45 +1,60 @@
 <template>
     <!-- 占比 -->
-    <div class="proportion-warp flex">
-        <div class="proportion-flight proportion-box">
-            <h4 class="title">机型占比</h4>
-            <!-- <div class="proportion-body flex">
-                <div class="proportion-tag">
-                    <p class="font-nun">
-                        <span class="a">A380</span> 20%
-                    </p>
-                    <p class="font-nun">
-                        <span class="d">A380</span> 20%
-                    </p>
+    <div class="proportion-warp">
+        <div class="flex flex-yc">
+            <div class="proportion-flight proportion-box">
+                <h4 class="title">机型占比</h4>
+                <div class="proportion-body flex flex-between">
+                    <div class="proportion-tag flex flex-yc">
+                        <p
+                            class="font-nun"
+                            v-for="(item,index) in flightData"
+                            :key="index"
+                            v-if="index<4"
+                        >
+                            <span :style="{background:flightColor[index]}">{{item[0]}}</span>{{item[1]}}%</p>
+                    </div>
+                    <div class="proportion-circle">
+                        <canvas id="flightCanvas"></canvas>
+                        <div id="canvas-box"></div>
+                    </div>
+                    <div class="proportion-tag flex flex-yc">
+                        <p
+                            class="font-nun"
+                            v-for="(item,index) in flightData"
+                            :key="index"
+                            v-if="index>=4"
+                        >
+                            <span :style="{background:flightColor[index]}">{{item[0]}}</span>
+                            {{item[1]}}%
+                        </p>
+                    </div>
                 </div>
-                <div class="proportion-circle"></div>
-                <div class="proportion-tag">
-                    <p class="font-nun">
-                        <span class="b">A380</span> 20%
-                    </p>
-                    <p class="font-nun">
-                        <span class="c">A380</span> 20%
-                    </p>
-                </div>
-            </div>-->
-            <v-chart :options="optionFlight" class="flight-chart"/>
-        </div>
-        <div class="proportion-subway proportion-box">
-            <h4 class="title">车型占比</h4>
-            <div class="proportion-body flex">
-                <div class="proportion-tag">
-                    <p class="font-nun">
-                        <span class="a">CRH380B</span> 20%
-                    </p>
-                    <p class="font-nun">
-                        <span class="b">CRH380B</span> 20%
-                    </p>
-                </div>
-                <div class="proportion-circle"></div>
-                <div class="proportion-tag">
-                    <p class="font-nun">
-                        <span class="c">CRH380B</span> 20%
-                    </p>
+            </div>
+            <div class="proportion-train proportion-box">
+                <h4 class="title">车型占比</h4>
+                <div class="proportion-body flex flex-between">
+                    <div class="proportion-tag flex flex-yc">
+                        <p
+                            class="font-nun"
+                            v-for="(item,index) in trianData"
+                            :key="index"
+                            v-if="index<4"
+                        >
+                            <span :style="{background:trianColor[index]}">{{item[0]}}</span>{{item[1]}}%</p>
+                    </div>
+                    <div class="proportion-circle">
+                        <canvas id="trainCanvas"></canvas>
+                    </div>
+                    <div class="proportion-tag flex flex-yc">
+                        <p
+                            class="font-nun"
+                            v-for="(item,index) in trianData"
+                            :key="index"
+                            v-if="index>=4"
+                        >
+                            <span :style="{background:trianColor[index]}">{{item[0]}}</span>{{item[1]}}%</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,90 +62,146 @@
 </template>
 
 <script>
-import Vue from "vue";
-import ECharts from "vue-echarts";
-import "echarts/lib/chart/pie";
+import data from "./../data";
 
+function Circle(radius, lineWidth, strokeStyle, fillStyleArray, capType) {
+    this.radius = radius; // 圆环半径
+    this.lineWidth = lineWidth; // 圆环边的宽度
+    this.strokeStyle = strokeStyle; //边的颜色
+    this.fillStyle = fillStyleArray; //填充色
+    this.lineCap = capType;
+}
+Circle.prototype.draw = function(ctx, criclex, cricley) {
+    ctx.beginPath();
+    ctx.arc(criclex, cricley, this.radius, 0, Math.PI * 2, true); // 坐标为90的圆，这里起始角度是0，结束角度是Math.PI*2
+    ctx.lineWidth = this.lineWidth;
+    ctx.strokeStyle = this.strokeStyle;
+    ctx.stroke(); // 这里用stroke画一个空心圆，想填充颜色的童鞋可以用fill方法
+};
+function Ring(radius, lineWidth, strokeStyle, fillStyleArray, capType) {
+    Circle.call(this, radius, lineWidth, strokeStyle, fillStyleArray, capType);
+}
+Ring.prototype = Object.create(Circle.prototype);
+
+Ring.prototype.drawRing = function(
+    ctx,
+    startAngle,
+    percentArray,
+    criclex,
+    cricley
+) {
+    startAngle = startAngle;
+    percentArray = percentArray || [];
+
+    this.draw(ctx, criclex, cricley); // 调用Circle的draw方法画圈圈
+    var _this = this;
+
+    // angle
+    percentArray.forEach(function(item, index) {
+        ctx.beginPath();
+        var anglePerSec = -(2 * Math.PI) / (100 / item);
+        ctx.arc(
+            criclex,
+            cricley,
+            _this.radius,
+            startAngle,
+            startAngle + anglePerSec,
+            true
+        );
+        let clen=_this.fillStyle.length-1;
+        startAngle = startAngle + anglePerSec;
+        ctx.strokeStyle = _this.fillStyle[clen-index];
+        ctx.lineCap = _this.lineCap;
+        ctx.stroke();
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "black";
+        ctx.closePath();
+    });
+    ctx.beginPath();
+    ctx.arc(criclex, cricley, _this.radius - 40, 0, 2 * Math.PI, true);
+    ctx.strokeStyle = "#000";
+    ctx.fillStyle = "#000";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+};
 export default {
-    components: {
-        "v-chart": ECharts
-    },
     data() {
         return {
-            optionFlight: {
-                tooltip: {
-                    trigger: "item",
-                    formatter: "{a} <br/>{b}: {c} ({d}%)"
-                },
-                legend: {
-                    orient: "vertical",
-                    x: "left",
-                    data: [
-                        "CHR1A统型",
-                        "CHR2A统型",
-                        "CHR2A1统型",
-                        "CHR22A统型",
-                        "CHR3A统型",
-                        "CHR4A统型",
-                        "CHR5A统型",
-                        "CHR6A统型",
-                        "其他"
-                    ]
-                },
-                series: [
-                    {
-                        name: "访问来源",
-                        type: "pie",
-                        radius: ["40%", "55%"],
-                        label: {
-                            normal: {
-                                // formatter:function(params){
-                                //   console.log(params)
-                                //   var html= '<p class="font-nun"><span class="b">'+params.name+'</span> 20%</p>';
-                                //   return html;
-                                // },
-                                formatter: "{b|{b}}\n {per|{d}%}  ",
-                                // shadowBlur:3,
-                                // shadowOffsetX: 2,
-                                // shadowOffsetY: 2,
-                                // shadowColor: '#999',
-                                // padding: [0, 7],
-                                rich: {
-                                    b: {
-                                        fontSize: 14,
-                                        lineHeight: 33,
-                                        color: "#fff",
-                                        borderRadius: 2,
-                                        padding: [2, 15],
-                                        backgroundColor: "#334455"
-                                    },
-                                    per: {
-                                        color: "#eee"
-                                    }
-                                }
-                            }
-                        },
-                        labelLine: {
-                            show: false
-                        },
-                        data: [
-                            { value: 535, name: "CHR1A统型" },
-                            { value: 310, name: "CHR2A统型" },
-                            { value: 234, name: "CHR2A1统型" },
-                            { value: 135, name: "CHR22A统型" },
-                            { value: 1048, name: "CHR3A统型" },
-                            { value: 251, name: "CHR4A统型" },
-                            { value: 147, name: "CHR5A统型" },
-                            { value: 147, name: "CHR6A统型" },
-                            { value: 102, name: "其他" }
-                        ]
-                    }
-                ]
-            }
+            flightData: data.proportion.flight,
+            trianData: data.proportion.train,
+            flightColor: [
+                "#F94A6F",
+                "#EE0082",
+                "#FF40C2",
+                "#FF47F8",
+                "#B608C8",
+                "#6200D8"
+            ],
+            trianColor: [
+                "#1900FF",
+                "#005AFF",
+                "#007FFF",
+                "#00C2FF",
+                "#00C2FF",
+                "#00F0FF",
+                "#00EFFE"
+            ],
         };
     },
     props: {},
-    mounted() {}
+    mounted() {
+        var flightHight = document.getElementById("canvas-box").offsetWidth;
+        var flightCanvas = document.getElementById("flightCanvas");
+        flightCanvas.width = flightHight;
+        flightCanvas.height = flightHight;
+        var fctx = flightCanvas.getContext("2d");
+        var ring = new Ring(
+            flightHight / 2 - 15,
+            "30",
+            "#934AE1",
+             this.flightColor,
+            "round"
+        );
+        ring.drawRing(
+            fctx,
+            0,
+            this.getValue(this.flightData),
+            flightHight / 2,
+            flightHight / 2
+        ); //
+
+        var trainCanvas = document.getElementById("trainCanvas");
+        var sctx = trainCanvas.getContext("2d");
+        trainCanvas.width = flightHight;
+        trainCanvas.height = flightHight;
+        var ring = new Ring(
+            flightHight / 2 - 15,
+            "30",
+             "#31FFF6",
+            this.trianColor,
+            "round"
+        );
+        ring.drawRing(
+            sctx,
+            1.5 * Math.PI,
+            this.getValue(this.trianData),
+            flightHight / 2,
+            flightHight / 2
+        ); //
+    },
+    methods: {
+        getValue(obj) {
+            let arr = [];
+            for (let i in obj) {
+              if(i<7){
+                arr.push(obj[i][1]);
+              }
+            }
+            console.log(arr)
+            return arr;
+        }
+    }
 };
 </script>
 

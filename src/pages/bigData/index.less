@@ -2,19 +2,23 @@
 html{
   overflow-x:scroll
 }
-body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中黑-简.ttf';overflow: scroll;width: px2rem(2376);}
-.big-data{margin: 0 6rem 7rem;position: relative;}
+body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中黑-简.ttf';overflow: scroll;}
+.big-data{margin: 0 6rem 7rem;position: relative;width: 196rem;height: 1080px;}
 *{margin: 0;padding: 0;}
 .font-nun{font-family: 'DIN-BoldAlternate.otf'}
 .title{font-size: 1.67rem;font-weight: normal;color: #fff;margin: 7rem 0 3rem 0;}
-
-.proportion-box{width: 41rem;position: relative;color: #fff;
+.proportion-warp{position: absolute;right: 0;bottom: 0;}
+.proportion-box{width:50rem;position: relative;color: #fff;
+  .proportion-body{position: relative;}
   .proportion-tag{
+    width: 36%;
     font-size:1.67rem;
-    p{margin: 3rem 0;}
+    flex-flow: row wrap;
+    p{margin:2rem 0 0;width: 50%;}
    span{width:6.67rem;
       height:1.42rem;
       background:rgba(147,74,225,1);
+      text-transform: uppercase;
       border-radius:0.17rem;line-height: 1.42rem;text-align: center;
       font-weight: bold;
       display: block;
@@ -31,22 +35,21 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
     margin: 0 3rem;
     border:.5rem solid rgba(147,75,225,0);
     border-radius: 100%;
-    background:  rgba(147,75,225,.1);
-    position: relative;
-    &:after{
-      content: '';
+    background:  rgba(147,75,225,.35);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -7.75rem 0 0 -7.75rem;
+    #canvas-box{
       position: absolute;
-      background: #000;
-      border:.5rem solid rgba(147,75,225,.0);
-      height:8rem;
-    width: 8rem;
-    border-radius: 100%;
-    left:1.5rem;
-    top:1.5rem;
-    // margin: -4rem 0 0 -2rem;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
     }
   }
-  &.proportion-subway{
+  &.proportion-train{
     .proportion-tag{
      span{width:6.67rem;
         background:#2C99FF;
@@ -55,9 +58,7 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
       }
     }
     .proportion-circle{
-      border-radius: 100%;
-      background:  rgba(44,153,255,.1);
-      position: relative;
+      background:  rgba(65,115,255,.35);
 
     }
   }
@@ -66,6 +67,7 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
 .time-warp{
   .time-chart{width:30%!important;height: 9rem!important;}
   color: #fff;
+  position: absolute;
   .lengs{
     margin-bottom: 3rem;
     p{position: relative;
@@ -112,7 +114,11 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
 .potential-warp{
   color: #fff;
   font-size:1.17rem;
+  position: absolute;
+  bottom: 0;
+  width: 40%;
 .potential-info{
+  flex-flow: row wrap;
   .potential-item{
     width: 17rem;
     margin: 0 6rem 2rem 0;

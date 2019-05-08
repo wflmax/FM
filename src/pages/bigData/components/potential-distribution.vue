@@ -3,57 +3,25 @@
     <div class="potential-warp">
         <h4 class="title">空铁联运潜力值分布</h4>
         <div class="potential-info flex flex-yc">
-          <div class="potential-item">
-            <div class="potential-text flex flex-yc flex-between">
-              <p>No.1 贵阳</p>
-              <p><span class="tag">潜力值</span> +59.26</p>
+          <div class="potential-item" v-for="(item,index) in data" :key="index">
+            <div class="potential-text flex flex-yc flex-between" >
+              <p>No.{{index+1}} {{item[0]}}</p>
+              <p><span class="tag">潜力值</span> +{{item[1]}}</p>
             </div>
              <p class="potential-line rel"><span></span></p>
           </div>
-            <div class="potential-item">
-            <div class="potential-text flex flex-yc flex-between">
-              <p>No.1 贵阳</p>
-              <p><span class="tag">潜力值</span> +59.26</p>
-            </div>
-             <p class="potential-line rel"><span></span></p>
-          </div>
-            <div class="potential-item">
-            <div class="potential-text flex flex-yc flex-between">
-              <p>No.1 贵阳</p>
-              <p><span class="tag">潜力值</span> +59.26</p>
-            </div>
-             <p class="potential-line rel"><span></span></p>
-          </div>
-        </div>
-        <div class="potential-info flex flex-yc">
-          <div class="potential-item">
-            <div class="potential-text flex flex-yc flex-between">
-              <p>No.1 贵阳</p>
-              <p><span class="tag">潜力值</span> +59.26</p>
-            </div>
-             <p class="potential-line rel"><span></span></p>
-          </div>
-            <div class="potential-item">
-            <div class="potential-text flex flex-yc flex-between">
-              <p>No.1 贵阳</p>
-              <p><span class="tag">潜力值</span> +59.26</p>
-            </div>
-             <p class="potential-line rel"><span></span></p>
-          </div>
-            <div class="potential-item">
-            <div class="potential-text flex flex-yc flex-between">
-              <p>No.1 贵阳</p>
-              <p><span class="tag">潜力值</span> +59.26</p>
-            </div>
-             <p class="potential-line rel"><span></span></p>
-          </div>
-        </div>
+      </div>
     </div>
 </template>
 
 <script>
+import data from "./../data";
 export default {
-
+ data() {
+        return {
+            data: data.potential,
+        };
+    },
     props: {},
     mounted() {},
     methods: {

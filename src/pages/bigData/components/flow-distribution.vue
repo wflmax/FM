@@ -8,7 +8,7 @@
         </div>
          <div class="subway">
            <p class="sub-title">进出站列车数量（班次）</p>
-            <v-chart :options="optionSubway" class="flight-chart"/>
+            <v-chart :options="optionTrain" class="flight-chart"/>
         </div>
     </div>
 </template>
@@ -17,6 +17,7 @@
 import Vue from "vue";
 import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
+import data from "./../data";
 var xAxisData = [];
 var data1 = [];
 var data2 = [];
@@ -106,29 +107,6 @@ export default {
                         },
                 },
 
-                visualMap: {
-                    type: "continuous",
-                    dimension: 1,
-                    text: ["High", "Low"],
-                    inverse: true,
-                    itemHeight: 200,
-                    calculable: true,
-                    min: -2,
-                    max: 6,
-                    top: 60,
-                    left: 10,
-                    inRange: {
-                        colorLightness: [0.4, 0.8]
-                    },
-                    outOfRange: {
-                        color: "#bbb"
-                    },
-                    controller: {
-                        inRange: {
-                            color: "#2f4554"
-                        }
-                    }
-                },
                 series: [
                     {
                         name: "bar",
@@ -224,7 +202,7 @@ export default {
                     }
                 ]
             },
-             optionSubway: {
+             optionTrain: {
               grid: {
                     left: "0",
                     right: "0",
@@ -405,7 +383,8 @@ export default {
 <style lang="less" scoped>
 @import '../../../assets/css/func.less';
 .flight-chart{
-  width: px2rem(2376);
+  width: 100%!important;
+  position: relative;
   height: 30vh!important;
 }
 </style>

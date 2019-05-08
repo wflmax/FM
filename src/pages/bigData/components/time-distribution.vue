@@ -42,7 +42,7 @@
 import Vue from "vue";
 import ECharts from "vue-echarts";
 import "echarts/lib/chart/bar";
-
+import data from "./../data";
 export default {
     components: {
         "v-chart": ECharts
