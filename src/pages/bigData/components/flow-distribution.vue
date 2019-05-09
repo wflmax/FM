@@ -1,14 +1,24 @@
 <template>
     <!-- 流量分布 -->
     <div class="flow-warp">
-        <h4 class="title">0-24点贵阳航班/列车流量分布</h4>
+        <h4 class="title"><span class="font-nun">0-24</span>点贵阳航班/列车流量分布</h4>
         <div class="flight">
            <p class="sub-title">进出港航班数量（架次）</p>
             <v-chart :options="optionflight" class="flight-chart"/>
+            <div class="lengs flex">
+              <p>计划进/出港航班数量（架次）</p>
+              <p>实际进港航班数量（架次）</p>
+              <p>实际出港航班数量（架次）</p>
+            </div>
         </div>
          <div class="subway">
-           <p class="sub-title">进出站列车数量（班次）</p>
+           <p class="sub-title train">进出站列车数量（班次）</p>
             <v-chart :options="optionTrain" class="flight-chart"/>
+            <div class="lengs flex train">
+              <p>计划进/出站列车数量（班次）</p>
+              <p>实际进站列车数量（班次）</p>
+              <p>实际出站列车数量（班次）</p>
+            </div>
         </div>
     </div>
 </template>
@@ -31,7 +41,19 @@ for (var i = 0; i < 24; i++) {
     data3.push((-Math.random() * 10).toFixed(2));
     data4.push((Math.random()  * 10).toFixed(2));
 }
+//  let flihtDepplan=data.flow.flight.depPlan,
+//  flihtArrplan=data.flow.flight.arrPlan,
+//   flihtDepAct=data.flow.flight.depAct,
+//   flihtArrAct=data.flow.flight.arrAct;
+let trainDepplan=data.flow.train.depPlan,
+ trainArrplan=data.flow.train.arrPlan,
+  trainDepAct=data.flow.train.depAct,
+  trainArrAct=data.flow.train.arrAct;
 
+  let flihtDepplan=data1,
+ flihtArrplan=data2,
+  flihtDepAct=data3,
+  flihtArrAct=data4;
 
 export default {
     components: {
@@ -43,7 +65,7 @@ export default {
               grid: {
                     left: "0",
                     right: "0",
-                    top:'2%',
+                    top:'4%',
                     bottom: "10%",
                     containLabel: true
                 },
@@ -118,7 +140,7 @@ export default {
                                 color: "#FF38C6" // 线条颜色
                             }
                         },
-                        data: data1,
+                        data: flihtArrAct,
                         areaStyle: {
                             //区域填充样式
                             normal: {
@@ -146,7 +168,7 @@ export default {
                         name: "bar2",
                         type: "line",
                         stack: "one",
-                        data: data2,
+                        data: flihtDepAct,
                          showSymbol:false,
                           lineStyle: {
                             normal: {
@@ -180,7 +202,7 @@ export default {
                         name: "bar3",
                         type: "line",
                         stack: "two",
-                        data: data3,
+                        data: flihtArrplan,
                          showSymbol:false,
                         lineStyle: {
                             normal: {
@@ -193,7 +215,7 @@ export default {
                         type: "line",
                         stack: "two",
                          showSymbol:false,
-                        data: data4,
+                        data: flihtDepplan,
                          lineStyle: {
                             normal: {
                                 color: "#fff" // 线条颜色
@@ -206,7 +228,7 @@ export default {
               grid: {
                     left: "0",
                     right: "0",
-                    top:'2%',
+                    top:'4%',
                     bottom: "10%",
                     containLabel: true
                 },
@@ -282,15 +304,15 @@ export default {
                                 color: "#40D1BD" // 线条颜色
                             }
                         },
-                        data: data1,
+                        data: trainArrAct,
                         areaStyle: {
                             //区域填充样式
                             normal: {
                                 color: new ECharts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
                                     1,
+                                    0,
+                                    0,
+                                    0,
                                     [
                                         {
                                             offset: 0,
@@ -311,7 +333,7 @@ export default {
                         name: "bar2",
                         type: "line",
                         stack: "one",
-                        data: data2,
+                        data: trainDepAct,
                          showSymbol:false,
                           lineStyle: {
                             normal: {
@@ -350,7 +372,7 @@ export default {
                         name: "bar3",
                         type: "line",
                         stack: "two",
-                        data: data3,
+                        data: trainArrplan,
                          showSymbol:false,
                         lineStyle: {
                             normal: {
@@ -363,7 +385,7 @@ export default {
                         type: "line",
                         stack: "two",
                          showSymbol:false,
-                        data: data4,
+                        data: trainDepplan,
                          lineStyle: {
                             normal: {
                                 color: "#fff" // 线条颜色

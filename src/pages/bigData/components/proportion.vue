@@ -18,9 +18,9 @@
                         <canvas id="flightCanvas"></canvas>
                         <div id="canvas-box"></div>
                     </div>
-                    <div class="proportion-tag flex flex-yc">
+                    <div class="proportion-tag flex flex-end">
                         <p
-                            class="font-nun"
+                            class="font-nun right"
                             v-for="(item,index) in flightData"
                             :key="index"
                             v-if="index>=4"
@@ -46,9 +46,9 @@
                     <div class="proportion-circle">
                         <canvas id="trainCanvas"></canvas>
                     </div>
-                    <div class="proportion-tag flex flex-yc">
+                    <div class="proportion-tag flex  flex-end">
                         <p
-                            class="font-nun"
+                            class="font-nun right"
                             v-for="(item,index) in trianData"
                             :key="index"
                             v-if="index>=4"
@@ -99,26 +99,27 @@ Ring.prototype.drawRing = function(
     // angle
     percentArray.forEach(function(item, index) {
         ctx.beginPath();
-        var anglePerSec = -(2 * Math.PI) / (100 / item);
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "black";
+        var anglePerSec = (2 * Math.PI) / (100 / item);
         ctx.arc(
             criclex,
             cricley,
             _this.radius,
             startAngle,
             startAngle + anglePerSec,
-            true
+            false
         );
         let clen=_this.fillStyle.length-1;
-        startAngle = startAngle + anglePerSec;
-        ctx.strokeStyle = _this.fillStyle[clen-index];
+        startAngle = startAngle+anglePerSec;
+        ctx.strokeStyle = _this.fillStyle[index];
         ctx.lineCap = _this.lineCap;
         ctx.stroke();
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = "black";
+
         ctx.closePath();
     });
     ctx.beginPath();
-    ctx.arc(criclex, cricley, _this.radius - 40, 0, 2 * Math.PI, true);
+    ctx.arc(criclex, cricley, _this.radius - 36, 0, 2 * Math.PI, true);
     ctx.strokeStyle = "#000";
     ctx.fillStyle = "#000";
     ctx.fill();
@@ -136,7 +137,9 @@ export default {
                 "#FF40C2",
                 "#FF47F8",
                 "#B608C8",
-                "#6200D8"
+                 "#934AE1",
+                "#6200D8",
+
             ],
             trianColor: [
                 "#1900FF",
@@ -145,7 +148,7 @@ export default {
                 "#00C2FF",
                 "#00C2FF",
                 "#00F0FF",
-                "#00EFFE"
+                "#31FFF6"
             ],
         };
     },
@@ -158,14 +161,14 @@ export default {
         var fctx = flightCanvas.getContext("2d");
         var ring = new Ring(
             flightHight / 2 - 15,
-            "30",
-            "#934AE1",
+            "25",
+            "#5A01BF",
              this.flightColor,
             "round"
         );
         ring.drawRing(
             fctx,
-            0,
+            1.5 * Math.PI,
             this.getValue(this.flightData),
             flightHight / 2,
             flightHight / 2
@@ -177,8 +180,8 @@ export default {
         trainCanvas.height = flightHight;
         var ring = new Ring(
             flightHight / 2 - 15,
-            "30",
-             "#31FFF6",
+            "25",
+             "#221EAC",
             this.trianColor,
             "round"
         );

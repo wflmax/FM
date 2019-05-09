@@ -1,13 +1,15 @@
 <!--首页-->
 <template>
     <div class="big-data">
-      <proportion></proportion>
+      <total></total>
       <timeDistribution></timeDistribution>
       <potentialDistribution></potentialDistribution>
       <flowDistribution></flowDistribution>
+      <proportion></proportion>
     </div>
 </template>
 <script>
+import total from "./components/total";
 import proportion from "./components/proportion";
 import timeDistribution from "./components/time-distribution";
 import potentialDistribution from "./components/potential-distribution";
@@ -17,7 +19,8 @@ export default {
         proportion,
         timeDistribution,
         potentialDistribution,
-        flowDistribution
+        flowDistribution,
+        total
       },
     data() {
         return {

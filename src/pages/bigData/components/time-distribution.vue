@@ -1,7 +1,7 @@
 <template>
     <!-- 出行时刻分布 -->
     <div class="time-warp">
-        <h4 class="title">0-24点出行时刻分布</h4>
+        <h4 class="title"><span class="font-nun">0-24</span>点出行时刻分布</h4>
         <v-chart :options="option" class="time-chart"/>
         <div class="lengs flex">
           <p>航班量（架次）</p>
@@ -9,30 +9,30 @@
         </div>
         <div class="other-info flex flex-yc">
           <div class="flex flex-yc">
-             <i class="iconfont iconhangban"></i>
-             <p>总体出港航班量<span><b>105</b>架次</span></p>
+             <i class="iconfont iconfeiji"></i>
+             <p>总体出港航班量<span><b>{{flightData.count}}</b>架次</span></p>
           </div>
           <div class="flex flex-yc">
-             <i class="iconfont iconhangban"></i>
-             <p>总体出港航班量<span><b>105</b>架次</span></p>
+             <i class="iconfont iconshijian"></i>
+             <p>总体出港航班量<span><b class="font-nun">{{flightData.depOntimeRate}}</b>架次</span></p>
           </div>
           <div class="flex flex-yc">
-             <i class="iconfont iconhangban"></i>
-             <p>总体出港航班量<span><b>105</b>架次</span></p>
+             <i class="iconfont icontingzhi"></i>
+             <p>总体出港航班量<span><b class="font-nun">{{flightData.avgDelayTime}}</b>架次</span></p>
           </div>
         </div>
-        <div class="other-info flex flex-yc">
+        <div class="other-info flex flex-yc train">
           <div class="flex flex-yc">
-             <i class="iconfont iconhangban"></i>
-             <p>总体出港航班量<span><b>105</b>架次</span></p>
+             <i class="iconfont icongaotie"></i>
+             <p>总体出港航班量<span><b class="font-nun">{{trainData.count}}</b>架次</span></p>
           </div>
           <div class="flex flex-yc">
-             <i class="iconfont iconhangban"></i>
-             <p>总体出港航班量<span><b>105</b>架次</span></p>
+             <i class="iconfont iconshijian"></i>
+             <p>总体出港航班量<span><b class="font-nun">{{trainData.depOntimeRate}}</b>架次</span></p>
           </div>
           <div class="flex flex-yc">
-             <i class="iconfont iconhangban"></i>
-             <p>总体出港航班量<span><b>105</b>架次</span></p>
+             <i class="iconfont icontingzhi"></i>
+             <p>总体出港航班量<span><b>{{trainData.avgDelayTime}}</b>架次</span></p>
           </div>
         </div>
     </div>
@@ -43,18 +43,33 @@ import Vue from "vue";
 import ECharts from "vue-echarts";
 import "echarts/lib/chart/bar";
 import data from "./../data";
+function timeX(){
+  let arr=[];
+  for(let i=0;i<24;i++){
+    arr.push(i)
+  }
+  return arr;
+}
+let flightData=data.time.flight;
+let trainData=data.time.train;
+let a=Math.max.apply(null, flightData.times);
+let b=Math.max.apply(null, trainData.times);
+let maxN=a>b?a:b;
+let dataMax=new Array(24).fill(maxN);
 export default {
     components: {
         "v-chart": ECharts
     },
     data() {
         return {
+          flightData:flightData,
+          trainData:trainData,
             option: {
                 grid: {
                     left: "0",
                     right: "0",
-                    top:'2%',
-                    bottom: "10%",
+                    top:'5%',
+                    bottom: "8%",
                     containLabel: true
                 },
 
@@ -104,7 +119,8 @@ export default {
                                 fontSize: "12"
                             }
                         },
-                        data: ["0-2", "2-4","4-6", "6-8","8-10", "10-12","12-14", "14-16","16-18", "18-20","20-22", "22-24"]
+                        data:timeX()
+
                     },
                     {
                         type: "category",
@@ -123,7 +139,7 @@ export default {
                         splitLine: {
                             show: false
                         },
-                        data: ["0-2", "2-4","4-6", "6-8","8-10", "10-12","12-14", "14-16","16-18", "18-20","20-22", "22-24"]
+                        data:timeX()
                     }
                 ],
                 series: [
@@ -139,13 +155,13 @@ export default {
                             }
                         },
                         barWidth: "8%",
-                        data: [100, 100,100,100,100,100,100,100,100,100,100,100]
+                        data:dataMax
                     },
                     {
                         type: "bar",
                         xAxisIndex: 1,
                         barGap: "100%",
-                        data: [100, 100,100,100,100,100,100,100,100,100,100,100],
+                       data:dataMax,
                         zlevel: 1,
                         barWidth: "8%",
                         itemStyle: {
@@ -184,7 +200,7 @@ export default {
                         },
                         zlevel: 2,
                         barWidth: "8%",
-                        data: [8, 15,8, 15,8, 15,8, 15, 8, 15,88, 45]
+                        data:trainData.times
                     },
                     {
                         name: "女",
@@ -215,7 +231,7 @@ export default {
                         },
                         zlevel: 2,
                         barGap: "100%",
-                        data: [8, 15,8, 15,8, 15,8, 15, 8, 15,88, 45]
+                        data:flightData.times
                     }
                 ]
             }

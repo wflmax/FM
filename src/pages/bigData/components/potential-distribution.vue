@@ -5,8 +5,8 @@
         <div class="potential-info flex flex-yc">
           <div class="potential-item" v-for="(item,index) in data" :key="index">
             <div class="potential-text flex flex-yc flex-between" >
-              <p>No.{{index+1}} {{item[0]}}</p>
-              <p><span class="tag">潜力值</span> +{{item[1]}}</p>
+              <p class="font-nun">No.{{index+1}} {{item[0]}}</p>
+              <p><span class="tag">潜力值</span><span class="num font-nun">+{{item[1]}}</span> </p>
             </div>
              <p class="potential-line rel"><span></span></p>
           </div>

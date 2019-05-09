@@ -1,32 +1,48 @@
 @import '../../assets/css/func.less';
-html{
-  overflow-x:scroll
+@font-face{
+  font-family:'numFont';
+  src:url('./fonts/DINAlternateBold.ttf');
 }
-body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中黑-简.ttf';overflow: scroll;}
-.big-data{margin: 0 6rem 7rem;position: relative;width: 196rem;height: 1080px;}
+@font-face{
+  font-family:'cn';
+  src:url('./fonts/cn.ttf');
+}
+body{background: #000;color: #fff;font-size: 12px;font-family: 'cn';overflow: scroll;}
+.big-data{position: relative;width: 196rem;height: 90rem;}
 *{margin: 0;padding: 0;}
-.font-nun{font-family: 'DIN-BoldAlternate.otf'}
-.title{font-size: 1.67rem;font-weight: normal;color: #fff;margin: 7rem 0 3rem 0;}
-.proportion-warp{position: absolute;right: 0;bottom: 0;}
-.proportion-box{width:50rem;position: relative;color: #fff;
+.font-nun{font-family:'numFont'}
+.title{font-size: 1.67rem;font-weight: normal;color: #fff;margin: 7rem 0 2rem 0;
+  .sub{
+    background: linear-gradient(left, #FFD74B , #F65951);display:inline-block;
+    height: 2rem;line-height: 2rem;padding: 0 1rem;font-size:1.17rem;box-shadow:0rem 0.17rem 0.83rem 0rem rgba(0,0,0,0.5);
+    border-radius:0.17rem;margin: 0 1rem 0 2rem;
+  }
+  .num{font-size:1.83rem;color:rgba(255,215,75,1);}
+  .iconfont{font-size:1.83rem;color:rgba(255,215,75,1);display: inline-block;padding-left: 1rem;}
+}
+
+
+.proportion-warp{position: absolute;right:6rem;bottom: 7rem;}
+.proportion-box{width:48rem;position: relative;color: #fff;
+  &:nth-child(1){margin-right: 6rem;}
   .proportion-body{position: relative;}
   .proportion-tag{
-    width: 36%;
+    width:38%;
     font-size:1.67rem;
     flex-flow: row wrap;
-    p{margin:2rem 0 0;width: 50%;}
-   span{width:6.67rem;
+    p{margin:2rem 2rem 0 0;width:7rem;
+      &.right{
+        margin: 2rem 0 0 2rem;
+      }
+    }
+   span{width:7rem;
       height:1.42rem;
       background:rgba(147,74,225,1);
       text-transform: uppercase;
       border-radius:0.17rem;line-height: 1.42rem;text-align: center;
-      font-weight: bold;
       display: block;
-      font-size:0.92rem;
+      font-size:0.85rem;
       margin-bottom: .2rem;
-      &.b{background: #F94A6F;}
-      &.c{background: #EC4B94;}
-      &.d{background: #D04CE2;}
     }
   }
   .proportion-circle{
@@ -39,7 +55,7 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
     position: absolute;
     left: 50%;
     top: 50%;
-    margin: -7.75rem 0 0 -7.75rem;
+    margin: -6rem 0 0 -6.5rem;
     #canvas-box{
       position: absolute;
       left: 0;
@@ -53,8 +69,6 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
     .proportion-tag{
      span{width:6.67rem;
         background:#2C99FF;
-        &.b{background: #30D5E8;}
-        &.c{background: #1767F2}
       }
     }
     .proportion-circle{
@@ -65,9 +79,12 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
 }
 
 .time-warp{
-  .time-chart{width:30%!important;height: 9rem!important;}
+  .time-chart{width:100%!important;height: 9rem!important;}
   color: #fff;
   position: absolute;
+  width: 48rem;
+  left: 6rem;
+  top:33%;
   .lengs{
     margin-bottom: 3rem;
     p{position: relative;
@@ -97,15 +114,22 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
     div{margin-right: 3rem;}
     .iconfont{
       display: block;
-      margin-right: 1rem;
-      font-size: 1.5rem;
+      font-size: 2.4rem;
+      width:3.6rem;
+      color: #F94A6F;
     }
+
     p{
       font-size:0.83rem;
 
       span{
         display: block;
-        b{font-size: 1.5rem;display: inline-block;font-weight: normal;}
+        b{font-size: 1.5rem;display: inline-block;font-weight: normal;display: inline-block;padding-right:.4rem;}
+      }
+    }
+    &.train{
+      .iconfont{
+        color: #1767F2;
       }
     }
   }
@@ -115,17 +139,18 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
   color: #fff;
   font-size:1.17rem;
   position: absolute;
-  bottom: 0;
+  bottom:5rem;
+  left: 6rem;
   width: 40%;
 .potential-info{
   flex-flow: row wrap;
   .potential-item{
     width: 17rem;
-    margin: 0 6rem 2rem 0;
+    margin: 0 5rem 2rem 0;
   }
 }
 .potential-text{
-  font-size:1.33rem;
+  font-size:1.17rem;
   p:nth-child(2){  color: #FFD74B;  }
   .tag{width:3rem;
     height:1.42rem;
@@ -135,6 +160,11 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
     font-size:0.83rem;
     padding: 0 .2rem;
     text-align: center;
+  }
+  .num{
+    display: inline-block;
+    width:4.4rem;
+    text-align: right;
   }
 }
 .potential-line{
@@ -151,6 +181,7 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
     background: linear-gradient(left, #FFD74B , #FF6E67);
     border-radius: .2rem;
   }
+
 }
 
 }
@@ -158,12 +189,65 @@ body{background: #000;color: #fff;font-size: 12px;font-family: '苹方黑体-中
 
 .flow-warp{
   position: absolute;
-  right: 0;
+  right: 6rem;
   top:0;
   width: 30%;
+  color: #fff;
   .sub-title{
-    font-size: 14px;
+    font-size: 1.17rem;
     margin-bottom:10px ;
     color: #F94A6F;
+    &.train{color: #1767F2;}
+  }
+  .lengs{
+    margin-bottom: 3rem;
+    p{position: relative;
+      padding-left:4rem;
+      font-size: 1rem;
+      margin-right: 3rem;
+    &:before{
+      content: '';
+      width:3rem;
+      height:0.2rem;
+      background:#fff;
+      border-radius: 1rem;
+      position: absolute;
+      left: 0;
+      top:50%;
+      margin-top: -.1rem;
+    }
+    &:nth-child(2){
+      &:before{
+        background: linear-gradient(left, #FF3C59 , #FF38C6);
+        border-radius: 1rem;
+      }
+    }
+    &:nth-child(3){
+      &:before{
+        background: linear-gradient(left, #9D1AF1 , #FF37E1);
+        border-radius: 1rem;
+      }
+    }
+  }
+  &.train{
+    p{
+      &:nth-child(2){
+        &:before{
+          background: linear-gradient(left, #40D1BD , #2D85E1);
+          border-radius: 1rem;
+        }
+      }
+      &:nth-child(3){
+        &:before{
+          background: linear-gradient(left, #3A3FDD , #1767F2);
+          border-radius: 1rem;
+        }
+      }
+    }
+
   }
 }
+
+}
+
+.total-warp{left: 6rem;top:0;position: absolute;}

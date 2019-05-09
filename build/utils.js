@@ -3,7 +3,7 @@ const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
-// const LessFunctionPlugin = require('less-plugin-functions');
+const LessFunctionPlugin = require('less-plugin-functions');
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'development'
     ? config.dev.assetsSubDirectory
@@ -59,9 +59,9 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less', {
-			// plugins: [
-			// 	new LessFunctionPlugin()
-			// ]
+			plugins: [
+				new LessFunctionPlugin()
+			]
 		}),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),

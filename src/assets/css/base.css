@@ -53,7 +53,9 @@ li {list-style: none;}
 .flex-sa {
     justify-content: space-around;
 }
-
+.flex-end{
+  justify-content: flex-end;
+}
 .flex-between {
     justify-content: space-between;
 }
