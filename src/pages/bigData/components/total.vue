@@ -83,7 +83,7 @@ export default {
             optionflight: {
                 color: ["#934BE1", "rgba(86,199,60, 1)"],
                 tooltip: {
-                    show: true,
+                    show: false,
                     trigger: "item"
                 },
 
@@ -108,13 +108,13 @@ export default {
                     axisLine: {
                         show: true,
                         lineStyle: {
-                            color: "#999"
+                            color: "rgba(206, 76, 229,.34)"
                         }
                     },
                     splitLine: {
                         show: true,
                         lineStyle: {
-                            color: "#999"
+                            color: "rgba(206, 76, 229,.34)"
                         }
                     },
                     // shape: 'circle',
@@ -262,15 +262,14 @@ export default {
                                 width: 1
                             }
                         },
-                        data: [[300, 20, 300, 200, 3]]
+                        data: [[300, 20, 300, 400, 3]]
                     }
                 ]
             },
             optiontrain: {
                 color: ["#934BE1", "rgba(86,199,60, 1)"],
                 tooltip: {
-                    show: true,
-                    trigger: "item"
+                    show: false,
                 },
 
                 radar: {
@@ -294,13 +293,13 @@ export default {
                     axisLine: {
                         show: true,
                         lineStyle: {
-                            color: "#999"
+                            color: "rgba(64, 195, 209, .4)"
                         }
                     },
                     splitLine: {
                         show: true,
                         lineStyle: {
-                            color: "#999"
+                            color: "rgba(4, 110, 252, .35)"
                         }
                     },
                     // shape: 'circle',
@@ -448,7 +447,7 @@ export default {
                                 width: 1
                             }
                         },
-                        data: [[300, 20, 300, 200, 3]]
+                        data: [[300, 20, 300, 400, 3]]
                     }
                 ]
             }

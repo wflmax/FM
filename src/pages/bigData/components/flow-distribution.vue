@@ -70,30 +70,6 @@ export default {
                     containLabel: true
                 },
                 backgroundColor: "transparent",
-                legend: {
-                    data: ["bar", "bar2", "bar3", "bar4"],
-                    align: "left",
-                    left: 0
-                },
-                brush: {
-                    toolbox: [
-                        "rect",
-                        "polygon",
-                        "lineX",
-                        "lineY",
-                        "keep",
-                        "clear"
-                    ],
-                    xAxisIndex: 0
-                },
-                toolbox: {
-                    feature: {
-                        magicType: {
-                            type: ["stack", "tiled"]
-                        },
-                        dataView: {}
-                    }
-                },
                 tooltip: {},
                 xAxis: {
                     data: xAxisData,
@@ -233,30 +209,8 @@ export default {
                     containLabel: true
                 },
                 backgroundColor: "transparent",
-                legend: {
-                    data: ["bar", "bar2", "bar3", "bar4"],
-                    align: "left",
-                    left: 0
-                },
-                brush: {
-                    toolbox: [
-                        "rect",
-                        "polygon",
-                        "lineX",
-                        "lineY",
-                        "keep",
-                        "clear"
-                    ],
-                    xAxisIndex: 0
-                },
-                toolbox: {
-                    feature: {
-                        magicType: {
-                            type: ["stack", "tiled"]
-                        },
-                        dataView: {}
-                    }
-                },
+
+
                 tooltip: {},
                 xAxis: {
                     data: xAxisData,
