@@ -18,7 +18,7 @@ body{background: #000;color: #fff;font-size: 12px;font-family: 'cn';overflow: sc
     border-radius:0.17rem;margin: 0 1rem 0 2rem;
   }
   .num{font-size:1.83rem;color:rgba(255,215,75,1);}
-  .iconfont{font-size:1.83rem;color:rgba(255,215,75,1);display: inline-block;padding-left: 1rem;}
+  .iconfont{font-size:1.83rem;color:rgba(255,215,75,1);display: inline-block;}
 }
 
 
@@ -250,4 +250,62 @@ body{background: #000;color: #fff;font-size: 12px;font-family: 'cn';overflow: sc
 
 }
 
-.total-warp{left: 6rem;top:0;position: absolute;}
+.total-warp{left: 6rem;top:0;position: absolute;color:#fff;
+  .chart-box{
+    width: 40rem;
+    margin-right: 6rem;
+    position: relative;
+    .chart{position: absolute;width: 16rem;height:16rem;left: 50%; margin-left: -8rem;top:2rem;
+    .charts{
+      position: absolute;
+      left: 0;
+      width: 100%!important;
+      height: 100%!important;
+    }
+
+    }
+    .list{
+      position: relative;z-index: 2;
+
+      .name{ background: linear-gradient(left, rgba(206, 76, 229, 1) ,#F94A6F);width: 8rem;height: 2rem;line-height: 2rem;font-size:1.17rem;border-radius:0.17rem;display: inline-block;text-align: center;margin-right:.5rem;box-shadow:0rem 0.17rem 0.83rem 0rem rgba(0,0,0,0.5);
+      &.train{
+        background:linear-gradient(223deg,rgba(62,204,232,1) 0%,rgba(4,110,252,1) 100%,rgba(249,74,111,1) 100%);
+      }
+      }
+      .fun{font-family:'numFont';font-size: 1.67rem;display: inline-block;min-width: 2rem;}
+      p{border-bottom: 1px solid #fff;padding-bottom: .2rem;display: inline-block;position: absolute;
+          &:nth-child(1){
+            left: 0;
+            width:19.5rem;
+            top:2.1rem;
+          }
+          &:nth-child(2){
+            left: 0;
+            width:14.6rem;
+            top:6.1rem;
+          }
+          &:nth-child(3){
+            left: 0;
+            width:17.6rem;
+            top:9.5rem;
+          }
+          &:nth-child(4){
+            text-align: right;
+            right: 0;
+            width:17rem;
+            top:7.1rem;
+          }
+          &:nth-child(5){
+            text-align: right;
+            right: 0;
+            width:18.6rem;
+            top:8.8rem;
+          }
+
+      }
+      &.train{
+
+      }
+    }
+  }
+}

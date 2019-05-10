@@ -4,171 +4,492 @@
         <h4 class="title">
             空铁联运总体信息
             <span class="sub">空铁联运可达城市</span>
-            <span class="num font-nun">3456</span>
+            <span class="num font-nun">{{data.citysCount}}</span>
             <i class="iconfont iconqushi"></i>
         </h4>
-        <v-chart :options="optionflight" class="flight-chart"/>
+        <div class="flex flex-yc">
+            <div class="flight-box chart-box">
+                <div class="chart" id="chartDom">
+                    <v-chart :options="optionflight" class="flight-chart charts"/>
+                    <canvas id="myCanvasf"></canvas>
+                </div>
+                <div class="list">
+                    <p class="flex flex-yc">
+                        <span class="name">互通航班城市</span>
+                        <span class="fun">{{data.flightCitysCount}}</span>
+                    </p>
+                    <p class="flex flex-yc">
+                        <span class="name">承运航司量</span>
+                        <span class="fun">{{data.airlinesCount}}</span>
+                    </p>
+                    <p class="flex flex-yc">
+                        <span class="name">航班线路总量</span>
+                        <span class="fun">{{data.flightRoutesCount}}</span>
+                    </p>
+                    <p class="flex flex-yc flex-end">
+                        <span class="name">承运航班总量</span>
+                        <span class="fun">{{data.flightsCount}}</span>
+                    </p>
+                    <p class="flex flex-yc flex-end">
+                        <span class="name">飞机制造商</span>
+                        <span class="fun">{{data.planeMarkersCount}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="train-box chart-box">
+                <div class="chart">
+                    <v-chart :options="optiontrain" class="flight-chart charts"/>
+                    <canvas id="myCanvast"></canvas>
+                </div>
+                <div class="list train">
+                    <p class="flex flex-yc">
+                        <span class="name train">互通高铁城市</span>
+                        <span class="fun">{{data.trainCitysCount}}</span>
+                    </p>
+                    <p class="flex flex-yc">
+                        <span class="name train">承运铁路局</span>
+                        <span class="fun">{{data.railwaysCount}}</span>
+                    </p>
+                    <p class="flex flex-yc">
+                        <span class="name train">高铁线路总量</span>
+                        <span class="fun">{{data.trainRoutesCount}}</span>
+                    </p>
+                    <p class="flex flex-yc flex-end">
+                        <span class="name train">高铁车次总量</span>
+                        <span class="fun">{{data.trainsCount}}</span>
+                    </p>
+                    <p class="flex flex-yc flex-end">
+                        <span class="name train">动车组制造商</span>
+                        <span class="fun">{{data.emuMarkersCount}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import data from "./../data";
 import Vue from "vue";
-import ECharts from "vue-echarts";
-import "echarts/lib/chart/radar";
+import ECharts from "vue-ECharts";
+import "ECharts/lib/chart/radar";
 export default {
     components: {
         "v-chart": ECharts
     },
     data() {
         return {
+            data: data.total,
             optionflight: {
-                color: ["#DB4BC1"],
-                radar: [
-                    {
-                        indicator: [
-                            {
-                                text: "互通航班城市",
-                                max: 300
-                            },
-                            {
-                                text: "承运航司量",
-                                max: 300
-                            },
-                            {
-                                text: "航班线路总量",
-                                max: 300
-                            },
-                            {
-                                text: "承运航班总量",
-                                max: 100
-                            },
-                            {
-                                text: "飞机制造商",
-                                max: 300
-                            }
-                        ],
-                        textStyle: {
-                            color: "red"
-                        },
-                        center: ["50%", "50%"],
-                        radius: "65%",
-                        startAngle: 90,
-                        splitNumber: 2,
-                        shape: "polygon",
-                        name: {
-                            formatter: "{value}",
-                            textStyle: {
-                                fontSize: 14,
-                                color: "#ffffff",
-                                backgroundColor:'rgba(206, 76, 229, 1)',
-                                padding: [6, 8, 5, 8],
-                                borderRadius:3
-                            }
-                        },
-                        splitArea: {
-                            areaStyle: {
-                                color: [
-                                    "transparent",
-                                    "transparent)",
-                                    "rgba(114, 172, 209, 0)",
-                                    "transparent",
-                                    "rgba(114, 172, 209, 0)"
-                                ]
-                            }
-                        },
-                        axisLine: {
-                            lineStyle: {
-                                color: "rgba(249,74,111,.34)"
-                            }
-                        },
-                        splitLine: {
-                            lineStyle: {
-                                color: "rgba(249,74,111,.34)"
-                            }
+                color: ["#934BE1", "rgba(86,199,60, 1)"],
+                tooltip: {
+                    show: true,
+                    trigger: "item"
+                },
+
+                radar: {
+                    center: ["50%", "50%"],
+                    radius: "99.5%",
+                    startAngle: 90,
+                    splitNumber: 2,
+
+                    splitArea: {
+                        areaStyle: {
+                            color: ["transparent"]
                         }
-                    }
-                ],
+                    },
+                    axisLabel: {
+                        show: false,
+                        fontSize: 20,
+                        color: "#000",
+                        fontStyle: "normal",
+                        fontWeight: "normal"
+                    },
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#999"
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#999"
+                        }
+                    },
+                    // shape: 'circle',
+                    name: {
+                        show: false
+                    },
+                    indicator: [
+                        {
+                            name: "互通航班城市",
+                            max: 400,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "承运航司量",
+                            max: 30,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "航班线路总量",
+                            max: 1000,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "承运航班总量",
+                            max: 1000,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "飞机制造商",
+                            max: 10,
+                            aaa: "assdfasdf"
+                        }
+                    ]
+                },
+
                 series: [
                     {
-                        name: "雷达图",
+                        name: "预算分配（Allocated Budget）",
                         type: "radar",
-                        itemStyle: {
-                            emphasis: {
-                                lineStyle: {
-                                    width: 4
-                                }
+                        symbol: "circle",
+                        symbolSize: 0,
+                        areaStyle: {
+                            normal: {
+                                color: "transparent"
                             }
                         },
-                        data: [
-                            {
-                                name: "飞机",
-                                value: [234, 30, 120, 50, 150],
-                                areaStyle: {
-                                    normal: {
-                                        color: new ECharts.graphic.LinearGradient(
-                                            0,
-                                            0,
-                                            1,
-                                            0,
-                                            [
-                                                {
-                                                    offset: 0,
-                                                    color:
-                                                        "rgba(249, 74, 111, 1)"
-                                                },
-                                                {
-                                                    offset: 1,
-                                                    color:
-                                                        "rgba(206, 76, 229, 1)"
-                                                }
-                                            ],
-                                            false
-                                        )
-                                    }
-                                },
-                                symbolSize: 2.5,
-                                itemStyle: {
-                                    normal: {
-                                        borderColor: new ECharts.graphic.LinearGradient(
-                                            0,
-                                            0,
-                                            1,
-                                            0,
-                                            [
-                                                {
-                                                    offset: 0,
-                                                    color:
-                                                        "rgba(249, 74, 111, 1)"
-                                                },
-                                                {
-                                                    offset: 1,
-                                                    color:
-                                                        "rgba(206, 76, 229, 1)"
-                                                }
-                                            ],
-                                            false
-                                        ),
-                                        borderWidth: 2.5,
-                                        shadowBlur:20,
-                                        shadowColor: "rgba(206, 76, 229, .3)"
-                                    }
-                                },
-                                lineStyle: {
-                                    normal: {
-                                        opacity: 0.5
-                                    }
-                                }
+                        itemStyle: {
+                            color: "rgba(86,199,60, 1)",
+                            borderColor: "rgba(86,199,60, 0.3)",
+                            borderWidth: 10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#F94A6F"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#CE4CE5"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                width: 3,
                             }
-                        ]
+                        },
+                        data: [[400, 30, 1000, 1000, 10]]
+                    },
+                    {
+                        name: "实际开销（Actual Spending）",
+                        type: "radar",
+                        symbol: "circle",
+                        symbolSize: 8,
+                        itemStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#F94A6F"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#CE4CE5"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                borderColor: "rgba(206, 76, 229, .4)",
+                                borderWidth: 8
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#F94A6F"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#CE4CE5"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                opacity: 0.34
+                            }
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#F94A6F"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#CE4CE5"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                width: 1
+                            }
+                        },
+                        data: [[300, 20, 300, 200, 3]]
+                    }
+                ]
+            },
+            optiontrain: {
+                color: ["#934BE1", "rgba(86,199,60, 1)"],
+                tooltip: {
+                    show: true,
+                    trigger: "item"
+                },
+
+                radar: {
+                    center: ["50%", "50%"],
+                    radius: "99.5%",
+                    startAngle: 90,
+                    splitNumber: 2,
+
+                    splitArea: {
+                        areaStyle: {
+                            color: ["transparent"]
+                        }
+                    },
+                    axisLabel: {
+                        show: false,
+                        fontSize: 20,
+                        color: "#000",
+                        fontStyle: "normal",
+                        fontWeight: "normal"
+                    },
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#999"
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#999"
+                        }
+                    },
+                    // shape: 'circle',
+                    name: {
+                        show: false
+                    },
+                    indicator: [
+                        {
+                            name: "互通高铁城市",
+                            max: 400,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "承运铁路局",
+                            max: 30,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "高铁线路总量",
+                            max: 1000,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "高铁车次总量",
+                            max: 1000,
+                            aaa: "assdfasdf"
+                        },
+                        {
+                            name: "动车组制造商",
+                            max: 10,
+                            aaa: "assdfasdf"
+                        }
+                    ]
+                },
+
+                series: [
+                    {
+                        name: "预算分配（Allocated Budget）",
+                        type: "radar",
+                        symbol: "circle",
+                        symbolSize: 0,
+                        areaStyle: {
+                            normal: {
+                                color: "transparent"
+                            }
+                        },
+                        itemStyle: {
+                            color: "rgba(86,199,60, 1)",
+                            borderColor: "rgba(86,199,60, 0.3)",
+                            borderWidth: 8
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#40C3D1"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#1767F2"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                width: 3,
+                            }
+                        },
+                        data: [[400, 30, 1000, 1000, 10]]
+                    },
+                    {
+                        name: "实际开销（Actual Spending）",
+                        type: "radar",
+                        symbol: "circle",
+                        symbolSize: 8,
+                        itemStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#40C3D1"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#1767F2"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                borderColor: "rgba(64, 195, 209, .4)",
+                                borderWidth: 8
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#40C3D1"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#1767F2"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                opacity: 0.34
+                            }
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    [
+                                        {
+                                            offset: 0,
+                                            color: "#40C3D1"
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "#1767F2"
+                                        }
+                                    ],
+                                    false
+                                ),
+                                width: 1
+                            }
+                        },
+                        data: [[300, 20, 300, 200, 3]]
                     }
                 ]
             }
         };
     },
     props: {},
-    mounted() {},
-    methods: {}
+    mounted() {
+      var chartW = document.getElementById("chartDom").offsetWidth;
+       var canvasf = document.getElementById("myCanvasf");
+       canvasf.width = chartW;
+        canvasf.height = chartW;
+      var ctxf = canvasf.getContext('2d');
+      this.draw(ctxf,'rgba(147, 75, 225,.35)',chartW/2,chartW/2,chartW/2,5);
+      var canvast = document.getElementById("myCanvast");
+       canvast.width = chartW;
+        canvast.height = chartW;
+      var ctxt = canvast.getContext('2d');
+      this.draw(ctxt,'rgba(31, 121, 235, .35)',chartW/2,chartW/2,chartW/2,5);
+    },
+    methods: {
+        draw(ctx,c,x, y, r, n) {
+            var i, ang;
+            ang = (Math.PI * 2) / n;
+            ctx.save();
+            ctx.fillStyle = "000";
+            ctx.strokeStyle = c;
+            ctx.lineWidth = 13;
+            ctx.translate(x, y);
+            ctx.moveTo(0, -r);
+            ctx.beginPath();
+            for (i = 0; i < n; i++) {
+                ctx.rotate(ang);
+
+                ctx.lineTo(0, -r);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
 };
 </script>
 

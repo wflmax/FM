@@ -6,12 +6,14 @@
       <potentialDistribution></potentialDistribution>
       <flowDistribution></flowDistribution>
       <proportion></proportion>
+      <earth></earth>
     </div>
 </template>
 <script>
 import total from "./components/total";
 import proportion from "./components/proportion";
 import timeDistribution from "./components/time-distribution";
+import earth from "./components/earth";
 import potentialDistribution from "./components/potential-distribution";
 import flowDistribution from "./components/flow-distribution";
 export default {
@@ -20,7 +22,8 @@ export default {
         timeDistribution,
         potentialDistribution,
         flowDistribution,
-        total
+        total,
+        earth
       },
     data() {
         return {
