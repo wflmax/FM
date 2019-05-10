@@ -95,7 +95,21 @@ Ring.prototype.drawRing = function(
 
     this.draw(ctx, criclex, cricley); // 调用Circle的draw方法画圈圈
     var _this = this;
+    ctx.beginPath();
+    ctx.arc(criclex, cricley, _this.radius +13, 0, 2 * Math.PI, true);
+    ctx.strokeStyle = _this.strokeStyle=="#5A01BF"? "rgba(147,75,225,.35)":'rgba(65,115,255,.35)';
+    ctx.fillStyle = "transparent";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
 
+    ctx.beginPath();
+    ctx.arc(criclex, cricley, _this.radius -12, 0, 2 * Math.PI, true);
+    ctx.strokeStyle =  _this.strokeStyle=="#5A01BF"? "rgba(147,75,225,.35)":'rgba(65,115,255,.35)';
+    ctx.fillStyle = "transparent";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
     // angle
     percentArray.forEach(function(item, index) {
         ctx.beginPath();
@@ -118,13 +132,7 @@ Ring.prototype.drawRing = function(
 
         ctx.closePath();
     });
-    ctx.beginPath();
-    ctx.arc(criclex, cricley, _this.radius - 36, 0, 2 * Math.PI, true);
-    ctx.strokeStyle = "#000";
-    ctx.fillStyle = "#000";
-    ctx.fill();
-    ctx.stroke();
-    ctx.closePath();
+
 };
 export default {
     data() {
@@ -160,7 +168,7 @@ export default {
         flightCanvas.height = flightHight;
         var fctx = flightCanvas.getContext("2d");
         var ring = new Ring(
-            flightHight / 2 - 15,
+            flightHight / 2 - 25,
             "25",
             "#5A01BF",
              this.flightColor,
@@ -179,7 +187,7 @@ export default {
         trainCanvas.width = flightHight;
         trainCanvas.height = flightHight;
         var ring = new Ring(
-            flightHight / 2 - 15,
+            flightHight / 2 - 25,
             "25",
              "#221EAC",
             this.trianColor,
@@ -201,7 +209,6 @@ export default {
                 arr.push(obj[i][1]);
               }
             }
-            console.log(arr)
             return arr;
         }
     }

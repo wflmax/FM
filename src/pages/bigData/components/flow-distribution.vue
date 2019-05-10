@@ -88,7 +88,6 @@ export default {
                         },
                 },
                 yAxis: {
-                    inverse: true,
                     splitArea: { show: false },
                     splitLine:{
                       lineStyle:{
@@ -127,11 +126,11 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "#FF38C6"
                                         },
                                         {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "transparent"
                                         }
                                     ],
@@ -161,11 +160,11 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "#FF3C59"
                                         },
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "transparent"
                                         }
                                     ],
@@ -229,7 +228,6 @@ export default {
                         },
                 },
                 yAxis: {
-                    inverse: true,
                     splitArea: { show: false },
                     splitLine:{
                       lineStyle:{
@@ -304,7 +302,7 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "#1767F2"
                                         },
 
@@ -313,7 +311,7 @@ export default {
                                             color: "#0073FF"
                                         },
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "transparent"
                                         }
                                     ],

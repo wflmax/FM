@@ -472,7 +472,7 @@ export default {
             var i, ang;
             ang = (Math.PI * 2) / n;
             ctx.save();
-            ctx.fillStyle = "000";
+            ctx.fillStyle = "transparent";
             ctx.strokeStyle = c;
             ctx.lineWidth = 13;
             ctx.translate(x, y);
