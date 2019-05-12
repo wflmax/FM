@@ -23,7 +23,7 @@ export default {
         potentialDistribution,
         flowDistribution,
         total,
-        earth
+         earth
       },
     data() {
         return {

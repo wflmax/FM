@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { stationCoord} from "@/config/utils";
+import {stationCoord} from "@/config/utils";
 export default {
     data() {
         return {

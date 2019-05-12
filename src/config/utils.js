@@ -122,6 +122,10 @@ export const stationCoord = {
       return stationGps[type][code];
     }
   },
+  coords: function (type, code) {
+    let cood=this.coord(type, code);
+    return [cood[1],cood[2]];
+  },
   lng: function (type, code) {
     return this.coord(type, code)[1];
   },

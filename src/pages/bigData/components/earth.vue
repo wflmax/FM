@@ -2,85 +2,161 @@
     <!-- Map -->
 
     <div class="map-warp">
-        <v-chart class="map" id="container" :options="option" style="width: 100%;height:100%;"/>
+        <v-chart class="map" id="container" :options="option"/>
     </div>
 </template>
 
 <script>
 import flights from "./gl/flights";
+import routes from "./gl/routes";
+import { stationCoord } from "@/config/utils";
 import Vue from "vue";
 import ECharts from "vue-echarts";
 import "echarts-gl";
-var airports = flights.airports.map(function(item) {
-    return {
-        coord: [item[3], item[4]]
-    };
-});
-var routesGroupByAirline = {};
-flights.routes.forEach(function(route) {
-    var airline = flights.airlines[route[0]];
-    var airlineName = airline[0];
-    if (!routesGroupByAirline[airlineName]) {
-        routesGroupByAirline[airlineName] = [];
-    }
-    routesGroupByAirline[airlineName].push(route);
-});
-function getAirportCoord(idx) {
-    return [flights.airports[idx][3], flights.airports[idx][4]];
-}
-var pointsData = [];
-flights.routes.forEach(function(airline) {
-    pointsData.push(getAirportCoord(airline[1]));
-    pointsData.push(getAirportCoord(airline[2]));
-});
-var series = flights.airlines
-    .map(function(airline) {
-        var airlineName = airline[0];
-        var routes = routesGroupByAirline[airlineName];
+import { debuglog } from 'util';
+let flightPoints = [],
+    trainPoints = [],
+    flightRoutes = [],
+    trainRoutes = [],
+    f_points=[],
+    t_points=[],
+    f_line = [],
+    t_line = [],
+    series = [];
 
-        if (!routes) {
-            return null;
+for (let key in routes) {
+    let datas = routes[key];
+    let keyArr = key.split("_");
+    for (let d in datas) {
+        let item = datas[d];
+        let line1 = item[0] + "" + item[1];
+        let line2 = item[2] + "" + item[3];
+        if (keyArr[0] == "f") {
+            let a = stationCoord.coords("f", item[0]);
+            let b = stationCoord.coords("f", item[1]);
+            let c = stationCoord.coords("t", item[2]);
+            let d = stationCoord.coords("t", item[3]);
+            if (!f_points.includes(item[0])) {
+                flightPoints.push(a);
+                f_points.push(item[0])
+            }
+            if (!f_points.includes(item[1])) {
+                flightPoints.push(b);
+                 f_points.push(item[1])
+            }
+            if (!f_line.includes(line1)) {
+                flightRoutes.push([a, b]);
+                f_line.push(line1);
+            }
+            if (!t_points.includes(item[2])) {
+                trainPoints.push(c);
+                 t_points.push(item[2])
+            }
+            if (!t_points.includes(item[3])) {
+                trainPoints.push(d);
+                t_points.push(item[3])
+            }
+            if (!t_line.includes(line1)) {
+                trainRoutes.push([c,d]);
+                t_line.push(line1);
+            }
+            a=null;b=null;c=null;d=null;
+        } else {
+           let a = stationCoord.coords("t", item[0]);
+            let b = stationCoord.coords("t", item[1]);
+            let c = stationCoord.coords("f", item[2]);
+            let d = stationCoord.coords("f", item[3]);
+            if (!t_points.includes(item[0])) {
+                trainPoints.push(a);
+                t_points.push(item[0]);
+            }
+            if (!t_points.includes(item[1])) {
+                trainPoints.push(b);
+                t_points.push(item[1]);
+            }
+            if (!t_line.includes(line2)) {
+                trainRoutes.push([a,b]);
+                t_line.push(line2);
+            }
+            if (!f_points.includes(item[2])) {
+                flightPoints.push(c);
+                f_points.push(item[2]);
+            }
+            if (!f_points.includes(item[3])) {
+                flightPoints.push(d);
+                f_points.push(item[3]);
+            }
+            if (!f_line.includes(line2)) {
+                flightRoutes.push([c,d]);
+                f_line.push(line2);
+            }
+            a=null;b=null;c=null;d=null;
         }
-        return {
-            type: "lines3D",
-            name: airlineName,
-
-            effect: {
-                show: true,
-                trailWidth: 3,
-                trailLength: 0.15,
-                trailOpacity: 1,
-                trailColor: "rgb(30, 30, 60)"
-            },
-
-            lineStyle: {
-                width: 1,
-                 color: "rgba(147, 75, 225,.35)",
-                // color: 'rgb(118, 233, 241)',
-                opacity:.1
-            },
-            blendMode: "lighter",
-
-            data: routes.map(function(item) {
-                return [airports[item[1]].coord, airports[item[2]].coord];
-            })
-        };
-    })
-    .filter(function(series) {
-        return !!series;
-    });
+    }
+}
+console.log(flightRoutes);
+series.push(
+    {
+        type: "scatter3D",
+        coordinateSystem: "globe",
+        blendMode: "lighter",
+        symbolSize: 4,
+        itemStyle: {
+            color: "#ff0",
+            opacity: 1
+        },
+        data: trainPoints
+    },
+    {
+        type: "scatter3D",
+        coordinateSystem: "globe",
+        blendMode: "lighter",
+        symbolSize: 4,
+        itemStyle: {
+            color: "#f00",
+            opacity: 1
+        },
+        data: flightPoints
+    }
+);
 series.push({
-    type: "scatter3D",
-    coordinateSystem: "globe",
-    blendMode: "lighter",
-    symbolSize: 2,
-    itemStyle: {
-        color: "rgb(50, 50, 150)",
+    type: "lines3D",
+
+    effect: {
+        show: true,
+        trailWidth: 3,
+        trailLength: 0.15,
+        trailOpacity: 1,
+        trailColor: "rgb(30, 30, 60)"
+    },
+
+    lineStyle: {
+        width: 1,
+        color: "#ff0",
         opacity: 1
     },
-    data: pointsData
-});
+    blendMode: "lighter",
 
+    data: trainRoutes
+},{
+    type: "lines3D",
+    effect: {
+        show: true,
+        trailWidth: 3,
+        trailLength: 0.15,
+        trailOpacity: 1,
+        trailColor: "rgb(30, 30, 60)"
+    },
+
+    lineStyle: {
+        width: 1,
+        color: "rgba(147, 75, 225,.35)",
+        opacity: 1
+    },
+    blendMode: "lighter",
+
+    data: flightRoutes
+});
 export default {
     components: {
         "v-chart": ECharts
@@ -114,9 +190,9 @@ export default {
                             shadow: false
                         }
                     },
-                    viewControl: {
-                        autoRotate: true
-                    }
+                    // viewControl: {
+                    //     autoRotate: true
+                    // }
                 },
                 series: series
             }
