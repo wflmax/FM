@@ -8,7 +8,7 @@
               <p class="font-nun">No.{{index+1}} {{item[0]}}</p>
               <p><span class="tag">潜力值</span><span class="num font-nun">+{{item[1]}}</span> </p>
             </div>
-             <p class="potential-line rel"><span></span></p>
+             <p class="potential-line rel"><span :style="{width:item[1]+'%'}"></span></p>
           </div>
       </div>
     </div>

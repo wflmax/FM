@@ -11,14 +11,7 @@
                 查询
             </div>
             <div class="main-box">
-                <vue-autosuggest
-                    :suggestions="[{data:['Frodo', 'Samwise', 'Gandalf', 'Galadriel', 'Faramir', 'Éowyn']}]"
-                    :input-props="{id:'autosuggest__input', placeholder:'Do you feel lucky, punk?'}"
-                >
-                    <template slot-scope="{suggestion}">
-                        <span class="my-suggestion-item">{{suggestion.item}}</span>
-                    </template>
-                </vue-autosuggest>
+                <autocomplete anchor="title" label="writer" :on-select="getData"></autocomplete>
 
                 <div class="main-type flex flex-yc">
                     <label>查询类型</label>
@@ -79,10 +72,7 @@ import dataRoute from "./data";
 import { HappyScroll } from "vue-happy-scroll";
 import cityGps from "@/service/cityDict";
 import "vue-happy-scroll/docs/happy-scroll.css";
-import VueAutosuggest from "vue-autosuggest";
-import Vue from "vue";
-Vue.use(VueAutosuggest);
-
+import Autocomplete from "vue2-autocomplete-js";
 export default {
     components: {
         Header,
@@ -90,7 +80,7 @@ export default {
         all,
         HappyScroll,
         Map,
-        VueAutosuggest
+        Autocomplete
     },
     data() {
         return {
@@ -104,10 +94,19 @@ export default {
         };
     },
 
-    mounted() {}
+    mounted() {},
+    methods: {
+        getData(obj) {
+            console.log('dsdsd');
+        }
+    }
 };
 </script>
 <style lang="less" scoped>
+ .autocomplete-input{
+   border: 1px solid #000;
+   height: 30px;
+ }
 .search-panel {
     position: fixed;
     width: 360px;
