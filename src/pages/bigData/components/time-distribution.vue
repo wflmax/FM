@@ -10,7 +10,7 @@
         <div class="other-info flex flex-yc">
           <div class="flex flex-yc">
              <i class="iconfont iconfeiji"></i>
-             <p>总体出港航班量<span><b>{{flightData.count}}</b>架次</span></p>
+             <p>总体出港航班量<span><b class="font-nun">{{flightData.count}}</b>架次</span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont iconshijian"></i>
