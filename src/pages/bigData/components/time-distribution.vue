@@ -18,7 +18,7 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>航班平均延误时长<span><b class="font-nun">{{flightData.avgDelayTime}}</b>架次</span></p>
+             <p>航班平均延误时长<span><b class="font-nun">{{flightData.avgDelayTime}}%</b></span></p>
           </div>
         </div>
         <div class="other-info flex flex-yc train">
@@ -32,7 +32,7 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}</b>架次</span></p>
+             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}%</b></span></p>
           </div>
         </div>
     </div>
