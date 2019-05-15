@@ -14,25 +14,25 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont iconshijian"></i>
-             <p>总体出港航班量<span><b class="font-nun">{{flightData.depOntimeRate}}</b>架次</span></p>
+             <p>出港准点率<span><b class="font-nun">{{flightData.depOntimeRate}}%</b></span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>总体出港航班量<span><b class="font-nun">{{flightData.avgDelayTime}}</b>架次</span></p>
+             <p>航班平均延误时长<span><b class="font-nun">{{flightData.avgDelayTime}}</b>架次</span></p>
           </div>
         </div>
         <div class="other-info flex flex-yc train">
           <div class="flex flex-yc">
              <i class="iconfont icongaotie"></i>
-             <p>总体出港航班量<span><b class="font-nun">{{trainData.count}}</b>架次</span></p>
+             <p>总体出站高铁量<span><b class="font-nun">{{trainData.count}}</b>架次</span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont iconshijian"></i>
-             <p>总体出港航班量<span><b class="font-nun">{{trainData.depOntimeRate}}</b>架次</span></p>
+             <p>出站准点率<span><b class="font-nun">{{trainData.depOntimeRate}}%</b></span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>总体出港航班量<span><b>{{trainData.avgDelayTime}}</b>架次</span></p>
+             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}</b>架次</span></p>
           </div>
         </div>
     </div>

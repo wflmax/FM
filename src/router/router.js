@@ -13,12 +13,12 @@ export default new Router({
       component: bigData,
       // meta: { keepAlive: true }
     },
-    // {
-    //   path: '/bigData',
-    //   name: 'bigData',
-    //   component: bigData,
-    //   // meta: { keepAlive: true }
-    // }
+    {
+      path: '/bigData',
+      name: 'bigData',
+      component: bigData,
+      // meta: { keepAlive: true }
+    }
   ],
   mode: routerMode,
   strict: process.env.NODE_ENV !== 'production',

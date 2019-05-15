@@ -94,7 +94,6 @@ for (let key in routes) {
         }
     }
 }
-console.log(flightRoutes);
 series.push(
     {
         type: "scatter3D",
@@ -103,7 +102,7 @@ series.push(
         symbolSize: 4,
         itemStyle: {
             color: "#ff0",
-            opacity: 1
+            opacity: 0.4
         },
         data: trainPoints
     },
@@ -113,7 +112,7 @@ series.push(
         blendMode: "lighter",
         symbolSize: 4,
         itemStyle: {
-            color: "#f00",
+            color: "rgba(206, 76, 229, .4)",
             opacity: 1
         },
         data: flightPoints
@@ -132,7 +131,7 @@ series.push({
 
     lineStyle: {
         width: 1,
-        color: "#ff0",
+        color: "rgba(206, 76, 229, .4)",
         opacity: 1
     },
     blendMode: "lighter",
@@ -186,7 +185,7 @@ export default {
                     },
                     light: {
                         main: {
-                            intensity: 5,
+                            intensity:1,
                             shadow: false
                         }
                     },

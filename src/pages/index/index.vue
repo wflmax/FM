@@ -3,7 +3,7 @@
     <div class="pages">
         <Header></Header>
 
-        <!-- <Map></Map> -->
+        <Map></Map>
         <!-- 搜索面板 -->
         <div class="search-panel" :class="{'hide':showSearch}">
             <div class="panel-contorl abs" @click="showSearch=!showSearch">
@@ -11,7 +11,7 @@
                 查询
             </div>
             <div class="main-box">
-                <autocomplete anchor="title" label="writer" :on-select="getData"></autocomplete>
+                <!-- <autocomplete anchor="title" label="writer" :on-select="getData"></autocomplete> -->
 
                 <div class="main-type flex flex-yc">
                     <label>查询类型</label>

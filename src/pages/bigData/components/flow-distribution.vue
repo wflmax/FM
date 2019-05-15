@@ -261,10 +261,10 @@ export default {
                             //区域填充样式
                             normal: {
                                 color: new ECharts.graphic.LinearGradient(
+                                    0,
+                                    0,
+                                    0,
                                     1,
-                                    0,
-                                    0,
-                                    0,
                                     [
                                         {
                                             offset: 0,
@@ -302,16 +302,12 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "#1767F2"
                                         },
 
                                         {
-                                            offset: 0.3,
-                                            color: "#0073FF"
-                                        },
-                                        {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "transparent"
                                         }
                                     ],
@@ -359,7 +355,7 @@ export default {
 .flight-chart{
   width: 100%!important;
   position: relative;
-  height: 30vh!important;
+  height: 25vh!important;
 }
 </style>
 
