@@ -5,7 +5,7 @@
         <v-chart :options="option" class="time-chart"/>
         <div class="lengs flex">
           <p>航班量（架次）</p>
-          <p>高铁量（班次）</p>
+          <p>高铁量（车次）</p>
         </div>
         <div class="other-info flex flex-yc">
           <div class="flex flex-yc">
@@ -18,13 +18,13 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>航班平均延误时长<span><b class="font-nun">{{flightData.avgDelayTime}}%</b></span></p>
+             <p>航班平均延误时长<span><b class="font-nun">{{flightData.avgDelayTime}}</b>分钟</span></p>
           </div>
         </div>
         <div class="other-info flex flex-yc train">
           <div class="flex flex-yc">
              <i class="iconfont icongaotie"></i>
-             <p>总体出站高铁量<span><b class="font-nun">{{trainData.count}}</b>架次</span></p>
+             <p>总体出站高铁量<span><b class="font-nun">{{trainData.count}}</b>车次</span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont iconshijian"></i>
@@ -32,7 +32,7 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}%</b></span></p>
+             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}</b>分钟</span></p>
           </div>
         </div>
     </div>

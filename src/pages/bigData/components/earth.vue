@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import flights from "./gl/flights";
 import routes from "./gl/routes";
 import { stationCoord } from "@/config/utils";
 import Vue from "vue";
