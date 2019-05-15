@@ -93,6 +93,7 @@ export default {
                         name: "bar3",
                         type: "line",
                         stack: "two",
+                        smooth:true,
                         data: flihtArrplan,
                          showSymbol:false,
                         lineStyle: {
@@ -105,6 +106,7 @@ export default {
                         name: "bar4",
                         type: "line",
                         stack: "two",
+                        smooth:true,
                          showSymbol:false,
                         data: flihtDepplan,
                          lineStyle: {
@@ -117,6 +119,7 @@ export default {
                         name: "bar",
                         type: "line",
                         stack: "one",
+                        smooth:true,
                          showSymbol:false,
                         lineStyle: {
                             normal: {
@@ -151,6 +154,7 @@ export default {
                         name: "bar2",
                         type: "line",
                         stack: "one",
+                        smooth:true,
                         data: flihtDepAct,
                          showSymbol:false,
                           lineStyle: {
@@ -236,6 +240,7 @@ export default {
                         type: "line",
                         stack: "two",
                         data: trainArrplan,
+                        smooth:true,
                          showSymbol:false,
                         lineStyle: {
                             normal: {
@@ -247,6 +252,7 @@ export default {
                         name: "bar4",
                         type: "line",
                         stack: "two",
+                        smooth:true,
                          showSymbol:false,
                         data: trainDepplan,
                          lineStyle: {
@@ -259,6 +265,7 @@ export default {
                         name: "bar",
                         type: "line",
                         stack: "one",
+                        smooth:true,
                         showSymbol:false,
                         lineStyle: {
                             normal: {
@@ -294,6 +301,7 @@ export default {
                         name: "bar2",
                         type: "line",
                         stack: "one",
+                        smooth:true,
                         data: trainDepAct,
                          showSymbol:false,
                           lineStyle: {

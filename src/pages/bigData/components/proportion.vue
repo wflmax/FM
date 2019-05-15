@@ -155,8 +155,8 @@ export default {
                 "#007FFF",
                 "#00C2FF",
                 "#00C2FF",
-                "#00F0FF",
-                "#31FFF6"
+                "#45E3DC",
+                "#0DE2EF"
             ],
         };
     },
