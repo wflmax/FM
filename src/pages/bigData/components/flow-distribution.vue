@@ -89,6 +89,30 @@ export default {
                 },
 
                 series: [
+                  {
+                        name: "bar3",
+                        type: "line",
+                        stack: "two",
+                        data: flihtArrplan,
+                         showSymbol:false,
+                        lineStyle: {
+                            normal: {
+                                color: "#fff" // 线条颜色
+                            }
+                        },
+                    },
+                    {
+                        name: "bar4",
+                        type: "line",
+                        stack: "two",
+                         showSymbol:false,
+                        data: flihtDepplan,
+                         lineStyle: {
+                            normal: {
+                                color: "#fff" // 线条颜色
+                            }
+                        },
+                    },
                     {
                         name: "bar",
                         type: "line",
@@ -156,31 +180,8 @@ export default {
                                 )
                             }
                         }
-                    },
-                    {
-                        name: "bar3",
-                        type: "line",
-                        stack: "two",
-                        data: flihtArrplan,
-                         showSymbol:false,
-                        lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
-                    },
-                    {
-                        name: "bar4",
-                        type: "line",
-                        stack: "two",
-                         showSymbol:false,
-                        data: flihtDepplan,
-                         lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
                     }
+
                 ]
             },
              optionTrain: {
@@ -230,6 +231,30 @@ export default {
 
 
                 series: [
+                  {
+                        name: "bar3",
+                        type: "line",
+                        stack: "two",
+                        data: trainArrplan,
+                         showSymbol:false,
+                        lineStyle: {
+                            normal: {
+                                color: "#fff" // 线条颜色
+                            }
+                        },
+                    },
+                    {
+                        name: "bar4",
+                        type: "line",
+                        stack: "two",
+                         showSymbol:false,
+                        data: trainDepplan,
+                         lineStyle: {
+                            normal: {
+                                color: "#fff" // 线条颜色
+                            }
+                        },
+                    },
                     {
                         name: "bar",
                         type: "line",
@@ -299,31 +324,8 @@ export default {
                                 )
                             }
                         }
-                    },
-                    {
-                        name: "bar3",
-                        type: "line",
-                        stack: "two",
-                        data: trainArrplan,
-                         showSymbol:false,
-                        lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
-                    },
-                    {
-                        name: "bar4",
-                        type: "line",
-                        stack: "two",
-                         showSymbol:false,
-                        data: trainDepplan,
-                         lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
                     }
+
                 ]
             }
         };
