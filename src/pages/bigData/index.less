@@ -20,7 +20,7 @@ body{background: #000 url('~@/assets/img/starfield.jpg') no-repeat center ;backg
 
 
 .proportion-warp{position: absolute;right:6rem;bottom: 7rem;z-index: 20;}
-.proportion-box{width:48rem;position: relative;color: #fff;
+.proportion-box{width:49rem;position: relative;color: #fff;
   &:nth-child(1){margin-right: 6rem;}
   .proportion-body{position: relative;}
   .proportion-tag{
@@ -32,14 +32,16 @@ body{background: #000 url('~@/assets/img/starfield.jpg') no-repeat center ;backg
         margin: 2rem 0 0 2rem;
       }
     }
-   span{width:7rem;
+   span{
+     width:7.5rem;
       height:1.42rem;
       background:rgba(147,74,225,1);
       text-transform: uppercase;
       border-radius:0.17rem;line-height: 1.42rem;text-align: center;
       display: block;
-      font-size:0.85rem;
+      font-size:0.8rem;
       margin-bottom: .2rem;
+      overflow: hidden;
     }
   }
   .proportion-circle{
@@ -163,7 +165,7 @@ body{background: #000 url('~@/assets/img/starfield.jpg') no-repeat center ;backg
   }
   .num{
     display: inline-block;
-    width:4.4rem;
+    width:4rem;
     text-align: right;
   }
 }
@@ -277,34 +279,65 @@ body{background: #000 url('~@/assets/img/starfield.jpg') no-repeat center ;backg
       p{border-bottom: 1px solid #fff;padding-bottom: .2rem;display: inline-block;position: absolute;
           &:nth-child(1){
             left: 0;
-            width:19.5rem;
-            top:2.1rem;
+            width:19.2rem;
+            top:1.9rem;
           }
           &:nth-child(2){
             left: 0;
-            width:14.6rem;
-            top:6.1rem;
+            width:12.2rem;
+            top:5.2rem;
           }
           &:nth-child(3){
             left: 0;
             width:17.6rem;
-            top:9.5rem;
+            top:9.6rem;
           }
           &:nth-child(4){
             text-align: right;
             right: 0;
-            width:17rem;
-            top:7.1rem;
+            width:15.5rem;
+            top:6.5rem;
           }
           &:nth-child(5){
             text-align: right;
             right: 0;
-            width:17.6rem;
-            top:10rem;
+            width:15.2rem;
+            top:13rem;
           }
 
       }
+      &.train{
+        p{
+          &:nth-child(1){
+            left: 0;
+            width:19.2rem;
+            top:1.2rem;
+          }
+          &:nth-child(2){
+            left: 0;
+            width:18.4rem;
+            top:7.2rem;
+          }
+          &:nth-child(3){
+            left: 0;
+            width:14.2rem;
+            top:13.8rem;
+          }
+          &:nth-child(4){
+            text-align: right;
+            right: 0;
+            width:15.5rem;
+            top:6.5rem;
+          }
+          &:nth-child(5){
+            text-align: right;
+            right: 0;
+            width:16.8rem;
+            top:11rem;
+          }
 
+        }
+      }
     }
   }
 }

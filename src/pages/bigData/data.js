@@ -1,16 +1,16 @@
 export default{
   total:{
-    "citysCount": "3432",
-    "flightCitysCount": "343",
-    "airlinesCount": "34",
-    "flightRoutesCount": "34",
-    "flightsCount": "343",
-    "planeMarkersCount": "3",
-    "trainCitysCount": "343",
-    "railwaysCount": "34",
-    "trainRoutesCount": "232",
-    "trainsCount": "3422",
-    "emuMarkersCount": "3"
+    "citysCount": 543,
+    "flightCitysCount": 109,
+    "airlinesCount": 45,
+    "flightRoutesCount": 222,
+    "flightsCount": 16732,
+    "planeMarkersCount": 5,
+    "trainCitysCount": 125,
+    "railwaysCount": 5,
+    "trainRoutesCount": 670,
+    "trainsCount": 9978,
+    "emuMarkersCount": 5
   },
   proportion:{
     "flight": [
@@ -48,16 +48,16 @@ export default{
   ],
   time:{
     "flight": {
-      "count": "3256",
-      "depOntimeRate": "84.3",
-      "avgDelayTime": "36",
-      "times": ["35", "42", "50", "110", "108", "126", "124", "232", "256", "287", "346", "332", "344", "324", "380", "320", "241", "216", "175", "188", "102", "156", "56", "42"]
+      "count": 10748,
+      "depOntimeRate": 75.57,
+      "avgDelayTime": 28.8,
+      "times": [93, 5, 14, 0, 0, 0, 180, 1086, 940, 300, 646, 786, 560, 771, 558, 701, 741, 589, 506, 608, 566, 590, 334, 174]
     },
     "train": {
-      "count": "4382",
-      "depOntimeRate": "96",
-      "avgDelayTime": "13",
-      "times": ["35", "42", "50", "110", "108", "126", "124", "232", "256", "287", "346", "332", "344", "324", "380", "320", "359", "367", "354", "253", "205", "172", "148", "88"]
+      "count": 37498,
+      "depOntimeRate": 97.91,
+      "avgDelayTime": 61,
+      "times": [2062, 0, 0, 0, 0, 0, 308, 1760, 2792, 3669, 3304, 5023, 3044, 2835, 2942, 1329, 2488, 2204, 1684, 1029, 885, 140, 0, 0]
     }
   },
   flow:{

@@ -73,13 +73,14 @@ import data from "./../data";
 import Vue from "vue";
 import ECharts from "vue-ECharts";
 import "ECharts/lib/chart/radar";
+let total=data.total;
 export default {
     components: {
         "v-chart": ECharts
     },
     data() {
         return {
-            data: data.total,
+            data: total,
             optionflight: {
                 color: ["#934BE1", "rgba(86,199,60, 1)"],
                 tooltip: {
@@ -124,22 +125,22 @@ export default {
                     indicator: [
                         {
                             name: "互通航班城市",
-                            max: 400,
+                            max: 150,
                             aaa: "assdfasdf"
                         },
                         {
                             name: "承运航司量",
-                            max: 30,
+                            max: 50,
                             aaa: "assdfasdf"
                         },
                         {
                             name: "航班线路总量",
-                            max: 1000,
+                            max: 700,
                             aaa: "assdfasdf"
                         },
                         {
                             name: "承运航班总量",
-                            max: 1000,
+                            max: 20000,
                             aaa: "assdfasdf"
                         },
                         {
@@ -152,7 +153,6 @@ export default {
 
                 series: [
                     {
-                        name: "预算分配（Allocated Budget）",
                         type: "radar",
                         symbol: "circle",
                         symbolSize: 0,
@@ -188,10 +188,9 @@ export default {
                                 width: 3,
                             }
                         },
-                        data: [[400, 30, 1000, 1000, 10]]
+                        data: [[150,50,700,20000,10]]
                     },
                     {
-                        name: "实际开销（Actual Spending）",
                         type: "radar",
                         symbol: "circle",
                         symbolSize: 8,
@@ -262,7 +261,7 @@ export default {
                                 width: 1
                             }
                         },
-                        data: [[300, 20, 300, 400, 3]]
+                        data: [[109, 45, 222, 16732, 5]]
                     }
                 ]
             },
@@ -309,22 +308,22 @@ export default {
                     indicator: [
                         {
                             name: "互通高铁城市",
-                            max: 400,
+                            max: 150,
                             aaa: "assdfasdf"
                         },
                         {
                             name: "承运铁路局",
-                            max: 30,
+                            max: 50,
                             aaa: "assdfasdf"
                         },
                         {
                             name: "高铁线路总量",
-                            max: 1000,
+                            max: 700,
                             aaa: "assdfasdf"
                         },
                         {
                             name: "高铁车次总量",
-                            max: 1000,
+                            max: 20000,
                             aaa: "assdfasdf"
                         },
                         {
@@ -337,7 +336,6 @@ export default {
 
                 series: [
                     {
-                        name: "预算分配（Allocated Budget）",
                         type: "radar",
                         symbol: "circle",
                         symbolSize: 0,
@@ -373,10 +371,9 @@ export default {
                                 width: 3,
                             }
                         },
-                        data: [[400, 30, 1000, 1000, 10]]
+                      data: [[150,50,700,20000,10]]
                     },
                     {
-                        name: "实际开销（Actual Spending）",
                         type: "radar",
                         symbol: "circle",
                         symbolSize: 8,
@@ -447,7 +444,7 @@ export default {
                                 width: 1
                             }
                         },
-                        data: [[300, 20, 300, 400, 3]]
+                        data: [[125, 5, 670, 9978, 5]]
                     }
                 ]
             }
@@ -474,7 +471,7 @@ export default {
             ctx.save();
             ctx.fillStyle = "transparent";
             ctx.strokeStyle = c;
-            ctx.lineWidth = 13;
+            ctx.lineWidth = 16;
             ctx.translate(x, y);
             ctx.moveTo(0, -r);
             ctx.beginPath();
