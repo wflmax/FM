@@ -29,31 +29,15 @@ import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
 import data from "./../data";
 var xAxisData = [];
-var data1 = [];
-var data2 = [];
-var data3 = [];
-var data4 = [];
 
-for (var i = 0; i < 24; i++) {
-    xAxisData.push(i);
-    data1.push((Math.random() * 10).toFixed(2));
-    data2.push((-Math.random() *10).toFixed(2));
-    data3.push((-Math.random() * 10).toFixed(2));
-    data4.push((Math.random()  * 10).toFixed(2));
-}
-//  let flihtDepplan=data.flow.flight.depPlan,
-//  flihtArrplan=data.flow.flight.arrPlan,
-//   flihtDepAct=data.flow.flight.depAct,
-//   flihtArrAct=data.flow.flight.arrAct;
+ let flihtDepplan=data.flow.flight.depPlan,
+ flihtArrplan=data.flow.flight.arrPlan,
+  flihtDepAct=data.flow.flight.depAct,
+  flihtArrAct=data.flow.flight.arrAct;
 let trainDepplan=data.flow.train.depPlan,
  trainArrplan=data.flow.train.arrPlan,
   trainDepAct=data.flow.train.depAct,
   trainArrAct=data.flow.train.arrAct;
-
-  let flihtDepplan=data1,
- flihtArrplan=data2,
-  flihtDepAct=data3,
-  flihtArrAct=data4;
 
 export default {
     components: {
@@ -126,11 +110,11 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "#FF38C6"
                                         },
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "transparent"
                                         }
                                     ],
@@ -160,11 +144,11 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 1,
+                                            offset:0,
                                             color: "#FF3C59"
                                         },
                                         {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "transparent"
                                         }
                                     ],
