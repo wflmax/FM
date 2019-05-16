@@ -3,9 +3,9 @@
   font-family:'numFont';
   src:url('~@/fonts/DINAlternateBold.ttf');
 }
-
-body{background: #000;background-size: cover; color: #fff;font-size: 12px;overflow: scroll;}
-.big-data{position: relative;width: 196rem;height: 90rem;}
+html{font-size: 12px;}
+body{background: #000;background-size: cover; color: #fff;font-size: 12px;}
+.big-data{position: relative;width:100vw;height:100vh;}
 *{margin: 0;padding: 0;}
 .font-nun{font-family:'numFont'}
 .title{font-size: 1.67rem;font-weight: normal;color: #fff;margin: 7rem 0 2rem 0;
@@ -19,21 +19,20 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
 }
 
 
-.proportion-warp{position: absolute;right:6rem;bottom: 7rem;z-index: 20;}
-.proportion-box{width:49rem;position: relative;color: #fff;
-  &:nth-child(1){margin-right: 6rem;}
+.proportion-warp{position: absolute;right:2vw;bottom:4vh;z-index: 20;}
+.proportion-box{width:25.5vw;position: relative;color: #fff;
+  &:nth-child(1){margin-right:2.5vw;}
   .proportion-body{position: relative;}
   .proportion-tag{
     width:38%;
     font-size:1.67rem;
     flex-flow: row wrap;
-    p{margin:2rem 2rem 0 0;width:7rem;
+    p{margin:1vw 1vw 0 0;width:3.5vw;
       &.right{
-        margin: 2rem 0 0 2rem;
+        margin: 1vw 0 0 1vw;
       }
     }
    span{
-     width:7.5rem;
       height:1.42rem;
       background:rgba(147,74,225,1);
       text-transform: uppercase;
@@ -45,15 +44,15 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
     }
   }
   .proportion-circle{
-    height: 15rem;
-    width: 15rem;
+    height: 8vw;
+    width:  8vw;
     border:.5rem solid rgba(147,75,225,0);
     border-radius: 100%;
     // background:  rgba(147,75,225,.35);
     position: absolute;
     left: 50%;
     top: 50%;
-    margin: -6rem 0 0 -7.5rem;
+    margin: -14% 0 0 -4vw;
     #canvas-box{
       position: absolute;
       left: 0;
@@ -77,13 +76,13 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
 }
 
 .time-warp{
-  .time-chart{width:100%!important;height: 9rem!important;}
+  /deep/.time-chart{width:100%;height:15vh;}
   color: #fff;
   position: absolute;
-  width: 48rem;
-  left: 6rem;
+  width:30vw;
+  left:2vw;
   z-index: 20;
-  top:33%;
+  top:27%;
   .lengs{
     margin-bottom: 3rem;
     p{position: relative;
@@ -109,7 +108,7 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
     }
   }}
   .other-info{
-    margin-top: 2rem;
+    margin-top:2rem;
     div{margin-right: 3rem;}
     .iconfont{
       display: block;
@@ -138,15 +137,15 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
   color: #fff;
   font-size:1.17rem;
   position: absolute;
-  bottom:5rem;
-  left: 6rem;
-  width: 40%;
+  bottom:3vh;
+  left:2vw;
+  width: 40vw;
   z-index: 20;
 .potential-info{
   flex-flow: row wrap;
   .potential-item{
-    width: 17rem;
-    margin: 0 5rem 2rem 0;
+    width:9vw;
+    margin: 0 2vw 1vh 0;
   }
 }
 .potential-text{
@@ -192,9 +191,9 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
 
 .flow-warp{
   position: absolute;
-  right: 6rem;
+  right: 2vw;
   top:0;
-  width: 30%;
+  width:30vw;
   color: #fff;
   z-index: 20;
   .sub-title{
@@ -254,7 +253,7 @@ body{background: #000;background-size: cover; color: #fff;font-size: 12px;overfl
 
 }
 
-.total-warp{left: 6rem;top:0;position: absolute;color:#fff;z-index: 20;
+.total-warp{left:2vw;top:0;position: absolute;color:#fff;z-index: 20;
   .chart-box{
     width: 40rem;
     margin-right: 6rem;

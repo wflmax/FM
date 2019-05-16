@@ -29,6 +29,9 @@ import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
 import data from "./../data";
 var xAxisData = [];
+for(let i=0;i<24;i++){
+  xAxisData.push(i);
+}
 
  let flihtDepplan=data.flow.flight.depPlan,
  flihtArrplan=data.flow.flight.arrPlan,
@@ -95,7 +98,7 @@ export default {
                         stack: "two",
                         smooth:true,
                         data: flihtArrplan,
-                         showSymbol:false,
+                        showSymbol:false,
                         lineStyle: {
                             normal: {
                                 color: "#fff" // 线条颜色
