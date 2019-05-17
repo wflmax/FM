@@ -352,7 +352,7 @@ export default {
 .flight-chart{
   width: 100%!important;
   position: relative;
-  height: 25vh!important;
+  height: 24vh!important;
 }
 </style>
 
