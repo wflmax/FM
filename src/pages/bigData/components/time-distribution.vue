@@ -14,7 +14,7 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont iconshijian"></i>
-             <p>出港准点率<span><b class="font-nun">{{flightData.depOntimeRate}}%</b></span></p>
+             <p>出港准点率<span><b class="font-nun">{{flightData.depOntimeRate}}</b>%</span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
@@ -28,7 +28,7 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont iconshijian"></i>
-             <p>出站准点率<span><b class="font-nun">{{trainData.depOntimeRate}}%</b></span></p>
+             <p>出站正点率<span><b class="font-nun">{{trainData.depOntimeRate}}</b>%</span></p>
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
