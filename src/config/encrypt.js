@@ -72,16 +72,3 @@ export const getSign = (send_data) => {
   return encodeURIComponent(sencrypted)
 }
 
-if (!window.localStorage.tv_keyID) {
-  window.localStorage.tv_keyID = tv_keyID;
-}
-let tv_bID;
-if (window.localStorage.tv_bID==null) {
-  tv_bID = getNum();
-  window.localStorage.tv_bID = tv_bID;
-} else {
-  tv_bID = window.localStorage.tv_bID;
-}
-export {
-  tv_bID
-};

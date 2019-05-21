@@ -71,7 +71,7 @@
 <script>
 import data from "./../data";
 import Vue from "vue";
-import ECharts from "vue-ECharts";
+import ECharts from "vue-echarts";
 import "ECharts/lib/chart/radar";
 let total=data.total;
 export default {

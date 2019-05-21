@@ -17,29 +17,7 @@ import {
 
 let useDebug=window.localStorage.getItem('tv_useDebug');
 
-//机票操作提醒
-const ticketWarn = () => {
-  Dialog.alert({
-    message: '由于您长时间未操作，机票可能发生变化',
-    confirmButtonText: '返回首页',
-  }).then(() => {
-    window.location.href = webUrl
-    return false;
-  })
 
-}
-//登录过期提醒
-const commonWarn = () => {
-  Dialog.alert({
-    message: '由于您长时间未操作，登录已过期',
-    confirmButtonText: '重新登录',
-  }).then(() => {
-    loginClear();
-    loginToken('expire');
-    return false;
-  })
-
-}
 export default async (url = '', option = {}, type = 'POST', method = 'fetch') => {
   type = type.toUpperCase();
   url = baseUrl + url;
@@ -49,15 +27,6 @@ export default async (url = '', option = {}, type = 'POST', method = 'fetch') =>
   data['timestamp'] = Date.parse(new Date()) / 1000 - timeDiff;
   //前置判断过期时间
   if (getSessionStore('tv_preTime') != null && url.indexOf('token') == -1) {
-    let tv_preTime = getSessionStore('tv_preTime');
-    if (data['timestamp'] - tv_preTime > 300 && option.needCheck) {
-      ticketWarn();
-      return false;
-    } else if (data['timestamp'] - tv_preTime > 890) {
-      commonWarn();
-      return false;
-    }
-
   }
   if (option.noSign === undefined) {
     data['token'] = getStore('tv_token');

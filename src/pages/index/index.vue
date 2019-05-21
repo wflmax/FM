@@ -11,8 +11,6 @@
                 查询
             </div>
             <div class="main-box">
-                <autocomplete :files="cityGps" anchor="title" label="writer" :on-select="getData" :min="3"></autocomplete>
-
                 <div class="main-type flex flex-yc">
                     <label>查询类型</label>
                     <span class="active">Air-Rail</span>
@@ -70,9 +68,7 @@ import Map from "./components/map";
 import all from "./components/all";
 import dataRoute from "./data";
 import { HappyScroll } from "vue-happy-scroll";
-import cityGps from "@/service/cityDict";
 import "vue-happy-scroll/docs/happy-scroll.css";
-import Autocomplete from "vue2-autocomplete-js";
 export default {
     components: {
         Header,
@@ -80,7 +76,6 @@ export default {
         all,
         HappyScroll,
         Map,
-        Autocomplete
     },
     data() {
         return {

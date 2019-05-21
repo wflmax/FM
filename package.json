@@ -13,11 +13,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "echarts": "^4.2.1",
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.7.2",
     "mescroll.js": "^1.3.6",
     "vue": "^2.5.2",
-    "vue-resize": "^0.4.5",
+    "vue-echarts": "^4.0.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
