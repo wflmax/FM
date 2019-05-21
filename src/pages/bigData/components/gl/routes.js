@@ -23577,7 +23577,7 @@ export default {
 		["KQW", "XRN", "WUH", "FCO"],
 		["KEW", "IZQ", "CAN", "RUH"],
 		["KQW", "IZQ", "CAN", "RUH"],
-		["KQW", "BXP", "PEK", "GRU"],
+		["KQW", "BXP", "KEW", "GRU"],
 		["KEW", "ICW", "CTU", "ICN"],
 		["KQW", "CNW", "CTU", "ICN"],
 		["KQW", "ICW", "CTU", "ICN"],
