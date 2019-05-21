@@ -30,6 +30,7 @@ for (let key in routes) {
         let item = datas[d];
         let line1 = item[0] + "" + item[1];
         let line2 = item[2] + "" + item[3];
+        let r=Math.ceil(Math.random()*10);
         if (keyArr[0] == "f") {
             let a = stationCoord.coords("f", item[0]);
             let b = stationCoord.coords("f", item[1]);
@@ -44,7 +45,7 @@ for (let key in routes) {
                  f_points.push(item[1])
             }
             if (!f_line.includes(line1)) {
-                flightRoutes.push([a, b]);
+              r>5?flightRoutes.push([a, b]):flightRoutes.push([b, a]);
                 f_line.push(line1);
             }
             if (!t_points.includes(item[2])) {
@@ -86,7 +87,7 @@ for (let key in routes) {
                 f_points.push(item[3]);
             }
             if (!f_line.includes(line2)) {
-                flightRoutes.push([c,d]);
+                r>5?flightRoutes.push([c,d]):flightRoutes.push([d,c]);
                 f_line.push(line2);
             }
             a=null;b=null;c=null;d=null;

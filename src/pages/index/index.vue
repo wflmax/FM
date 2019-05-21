@@ -11,7 +11,7 @@
                 查询
             </div>
             <div class="main-box">
-                <!-- <autocomplete anchor="title" label="writer" :on-select="getData"></autocomplete> -->
+                <autocomplete :files="cityGps" anchor="title" label="writer" :on-select="getData" :min="3"></autocomplete>
 
                 <div class="main-type flex flex-yc">
                     <label>查询类型</label>
