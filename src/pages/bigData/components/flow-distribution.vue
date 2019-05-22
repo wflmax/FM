@@ -1,7 +1,7 @@
 <template>
     <!-- 流量分布 -->
     <div class="flow-warp">
-        <h4 class="title"><span class="font-nun">0-24</span>点贵阳航班/列车流量分布</h4>
+        <h4 class="title"><span class="font-nun">0-24</span>点航班/列车流量分布</h4>
         <div class="flight">
            <p class="sub-title">进出港航班数量（架次）</p>
             <v-chart :options="optionflight" class="flight-chart"/>
