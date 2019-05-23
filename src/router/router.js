@@ -3,12 +3,18 @@ import Router from 'vue-router'
 import {routerMode} from '../config/env'
 Vue.use(Router)
 
-
- const bigData = r => require.ensure([], () => r(require('@/pages/bigData/index')), 'index')
+const index = r => require.ensure([], () => r(require('@/pages/index/index')), 'index')
+const bigData = r => require.ensure([], () => r(require('@/pages/bigData/index')), 'index')
 export default new Router({
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'index',
+      component: bigData,
+      // meta: { keepAlive: true }
+    },{
+      path: '/bigdata',
+      name: 'bigdata',
       component: bigData,
       // meta: { keepAlive: true }
     }

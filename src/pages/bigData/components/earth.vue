@@ -131,7 +131,7 @@ series.push({
 
     lineStyle: {
         width: 1,
-        color: "rgba(206, 76, 229, .4)",
+        color: "#00D9EF",
         opacity: 1
     },
     blendMode: "lighter",

@@ -84,7 +84,7 @@ export default {
             optionflight: {
                 color: ["#934BE1", "rgba(86,199,60, 1)"],
                 tooltip: {
-                    show: false,
+                    show: true,
                     trigger: "item"
                 },
 
@@ -126,27 +126,27 @@ export default {
                         {
                             name: "互通航班城市",
                             max: 150,
-                            aaa: "assdfasdf"
+
                         },
                         {
                             name: "承运航司量",
                             max: 50,
-                            aaa: "assdfasdf"
+
                         },
                         {
                             name: "航班线路总量",
-                            max: 700,
-                            aaa: "assdfasdf"
+                            max: 1000,
+
                         },
                         {
                             name: "承运航班总量",
-                            max: 20000,
-                            aaa: "assdfasdf"
+                            max: 50000,
+
                         },
                         {
                             name: "飞机制造商",
                             max: 10,
-                            aaa: "assdfasdf"
+
                         }
                     ]
                 },
@@ -188,7 +188,7 @@ export default {
                                 width: 3,
                             }
                         },
-                        data: [[150,50,700,20000,10]]
+                        data: [[150,50,1000,50000,10]]
                     },
                     {
                         type: "radar",
@@ -261,7 +261,7 @@ export default {
                                 width: 1
                             }
                         },
-                        data: [[109, 45, 222, 16732, 5]]
+                        data: [[109, 45, 222, 25000,7]]
                     }
                 ]
             },
@@ -309,27 +309,27 @@ export default {
                         {
                             name: "互通高铁城市",
                             max: 150,
-                            aaa: "assdfasdf"
+
                         },
                         {
                             name: "承运铁路局",
                             max: 50,
-                            aaa: "assdfasdf"
+
                         },
                         {
                             name: "高铁线路总量",
-                            max: 700,
-                            aaa: "assdfasdf"
+                            max: 1000,
+
                         },
                         {
                             name: "高铁车次总量",
                             max: 20000,
-                            aaa: "assdfasdf"
+
                         },
                         {
                             name: "动车组制造商",
                             max: 10,
-                            aaa: "assdfasdf"
+
                         }
                     ]
                 },
@@ -371,7 +371,7 @@ export default {
                                 width: 3,
                             }
                         },
-                      data: [[150,50,700,20000,10]]
+                      data: [[150,50,1000,20000,10]]
                     },
                     {
                         type: "radar",
@@ -444,7 +444,7 @@ export default {
                                 width: 1
                             }
                         },
-                        data: [[125, 5, 670, 9978, 5]]
+                        data: [[125, 11, 670, 9978, 5]]
                     }
                 ]
             }
