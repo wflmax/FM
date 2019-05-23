@@ -63,7 +63,7 @@
 
 <script>
 import data from "./../data";
-
+var cWidth;
 function Circle(radius, lineWidth, strokeStyle, fillStyleArray, capType) {
     this.radius = radius; // 圆环半径
     this.lineWidth = lineWidth; // 圆环边的宽度
@@ -96,7 +96,7 @@ Ring.prototype.drawRing = function(
     this.draw(ctx, criclex, cricley); // 调用Circle的draw方法画圈圈
     var _this = this;
     ctx.beginPath();
-    ctx.arc(criclex, cricley, _this.radius +13, 0, 2 * Math.PI, true);
+    ctx.arc(criclex, cricley, _this.radius +cWidth/2, 0, 2 * Math.PI, true);
     ctx.strokeStyle = _this.strokeStyle=="#5A01BF"? "rgba(147,75,225,.35)":'rgba(65,115,255,.35)';
     ctx.fillStyle = "transparent";
     ctx.fill();
@@ -104,7 +104,7 @@ Ring.prototype.drawRing = function(
     ctx.closePath();
 
     ctx.beginPath();
-    ctx.arc(criclex, cricley, _this.radius -12, 0, 2 * Math.PI, true);
+    ctx.arc(criclex, cricley, _this.radius -cWidth/2, 0, 2 * Math.PI, true);
     ctx.strokeStyle =  _this.strokeStyle=="#5A01BF"? "rgba(147,75,225,.35)":'rgba(65,115,255,.35)';
     ctx.fillStyle = "transparent";
     ctx.fill();
@@ -163,13 +163,14 @@ export default {
     props: {},
     mounted() {
         var flightHight = document.getElementById("canvas-box").offsetWidth;
+        cWidth=flightHight*0.15;
         var flightCanvas = document.getElementById("flightCanvas");
         flightCanvas.width = flightHight;
         flightCanvas.height = flightHight;
         var fctx = flightCanvas.getContext("2d");
         var ring = new Ring(
-            flightHight / 2 - 25,
-            "25",
+            flightHight / 2 - cWidth,
+            cWidth,
             "#5A01BF",
              this.flightColor,
             "round"
@@ -187,8 +188,8 @@ export default {
         trainCanvas.width = flightHight;
         trainCanvas.height = flightHight;
         var ring = new Ring(
-            flightHight / 2 - 25,
-            "25",
+            flightHight / 2 - cWidth,
+            cWidth,
              "#221EAC",
             this.trianColor,
             "round"
