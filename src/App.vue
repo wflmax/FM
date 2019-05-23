@@ -15,7 +15,8 @@ export default {
 <style lang="less">
 @import './assets/css/base.css';
 @import './assets/css/func.less';
-@import 'http://at.alicdn.com/t/font_1141052_4pjcab4gyp.css';
+@import './assets/css/iconfont.css';
+// @import 'http://at.alicdn.com/t/font_1141052_4pjcab4gyp.css';
 
 
 body {
