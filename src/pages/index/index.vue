@@ -2,8 +2,7 @@
 <template>
     <div class="pages">
         <Header></Header>
-
-        <Map></Map>
+        <Map :data="dataRoute.datas"></Map>
         <!-- 搜索面板 -->
         <div class="search-panel" :class="{'hide':showSearch}">
             <div class="panel-contorl abs" @click="showSearch=!showSearch">
@@ -67,6 +66,7 @@ import topRoute from "./components/top-route";
 import Map from "./components/map";
 import all from "./components/all";
 import dataRoute from "./data";
+import cityGps from '@/service/cityDict'
 import { HappyScroll } from "vue-happy-scroll";
 import "vue-happy-scroll/docs/happy-scroll.css";
 export default {
