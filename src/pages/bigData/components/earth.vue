@@ -56,9 +56,9 @@ for (let key in routes) {
                 trainPoints.push(d);
                 t_points.push(item[3])
             }
-            if (!t_line.includes(line1)) {
+            if (!t_line.includes(line2)) {
                 trainRoutes.push([c,d]);
-                t_line.push(line1);
+                t_line.push(line2);
             }
             a=null;b=null;c=null;d=null;
         } else {
@@ -74,9 +74,9 @@ for (let key in routes) {
                 trainPoints.push(b);
                 t_points.push(item[1]);
             }
-            if (!t_line.includes(line2)) {
+            if (!t_line.includes(line1)) {
                 trainRoutes.push([a,b]);
-                t_line.push(line2);
+                t_line.push(line1);
             }
             if (!f_points.includes(item[2])) {
                 flightPoints.push(c);
