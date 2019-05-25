@@ -3,21 +3,21 @@
     <div class="flow-warp">
         <h4 class="title"><span class="font-nun">0-24</span>点航班/列车流量分布</h4>
         <div class="flight">
-           <p class="sub-title">进出港航班数量（架次）</p>
+           <p class="sub-title">进出港航班量(架次)</p>
             <v-chart :options="optionflight" class="flight-chart"/>
             <div class="lengs flex">
-              <p>计划进/出港航班数量（架次）</p>
-              <p>实际进港航班数量（架次）</p>
-              <p>实际出港航班数量（架次）</p>
+              <p>计划进/出港航班量(架次)</p>
+              <p>实际进港航班量(架次)</p>
+              <p>实际出港航班量(架次)</p>
             </div>
         </div>
          <div class="subway">
-           <p class="sub-title train">进出站列车数量（车次）</p>
+           <p class="sub-title train">进出站列车量(车次)</p>
             <v-chart :options="optionTrain" class="flight-chart"/>
             <div class="lengs flex train">
-              <p>计划进/出站列车数量（车次）</p>
-              <p>实际进站列车数量（车次）</p>
-              <p>实际出站列车数量（车次）</p>
+              <p>计划进/出站列车量(车次)</p>
+              <p>实际进站列车量(车次)</p>
+              <p>实际出站列车量(车次)</p>
             </div>
         </div>
     </div>
@@ -352,7 +352,7 @@ export default {
 .flight-chart{
   width: 100%!important;
   position: relative;
-  height: 24vh!important;
+  height: 135px!important;
 }
 </style>
 

@@ -123,7 +123,7 @@ series.push({
 
     effect: {
         show: true,
-        trailWidth: 3,
+        trailWidth: 1,
         trailLength: 0.15,
         trailOpacity: 1,
         trailColor: "rgb(30, 30, 60)"
@@ -132,7 +132,7 @@ series.push({
     lineStyle: {
         width: 1,
         color: "#00D9EF",
-        opacity: 1
+        opacity: .3
     },
     blendMode: "lighter",
 

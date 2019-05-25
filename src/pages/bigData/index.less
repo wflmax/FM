@@ -3,16 +3,16 @@
   font-family:'numFont';
   src:url('~@/fonts/DINAlternateBold.ttf');
 }
-html{font-size: .5vw;}
+html{font-size: 12px;}
 body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
-.big-data{position: relative;width:100vw;height:100vh;}
-.logo{ width: 20vw;
+.big-data{position: relative;width:1408px;height:600px;}
+.logo{ width: 280px;
   position: absolute;
-  top: 2vw;
-  left: 2vw;}
+  top: 15px;
+  left: 15px;}
 *{margin: 0;padding: 0;}
 .font-nun{font-family:'numFont'}
-.title{font-size: 1.67rem;font-weight: normal;color: #fff;margin: 4vh 0 2.5vh 0;
+.title{font-size: 1.67rem;font-weight: normal;color: #fff;margin:20px 0 15px 0;
   .sub{
     background: linear-gradient(223deg, #FFD74B , #F65951);display:inline-block;
     height: 2rem;line-height: 2rem;padding: 0 1rem;font-size:1.17rem;box-shadow:0rem 0.17rem 0.83rem 0rem rgba(0,0,0,0.5);
@@ -23,17 +23,17 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
 }
 
 
-.proportion-warp{position: absolute;right:2vw;bottom:6vh;z-index: 20;}
+.proportion-warp{position: absolute;right:15px;bottom:-6px;z-index: 20;}
 .proportion-box{width:25.5vw;position: relative;color: #fff;
-  &:nth-child(1){margin-right:2.5vw;}
+  &:nth-child(1){margin-right:2vw;}
   .proportion-body{position: relative;}
   .proportion-tag{
-    width:38%;
-    font-size:1.67rem;
+    width:45%;
+    font-size:1.4rem;
     flex-flow: row wrap;
-    p{margin:1vw 1vw 0 0;width:3.5vw;
+    p{margin:0 1vw 0 0;width:4vw;
       &.right{
-        margin: 1vw 0 0 1vw;
+        margin: 0 0 0 1vw;
       }
     }
    span{
@@ -42,21 +42,21 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
       text-transform: uppercase;
       border-radius:0.17rem;line-height: 1.42rem;text-align: center;
       display: block;
-      font-size:0.8rem;
+      font-size:9px;
       margin-bottom: .2rem;
       overflow: hidden;
     }
   }
   .proportion-circle{
-    height: 8vw;
-    width:  8vw;
+    height:7vw;
+    width: 7vw;
     border:.5rem solid rgba(147,75,225,0);
     border-radius: 100%;
     // background:  rgba(147,75,225,.35);
     position: absolute;
     left: 50%;
     top: 50%;
-    margin: -14% 0 0 -4vw;
+    margin: -14% 0 0 -3.5vw;
     #canvas-box{
       position: absolute;
       left: 0;
@@ -68,7 +68,7 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
   }
   &.proportion-train{
     .proportion-tag{
-     span{width:6.67rem;
+     span{width:100%;
         background:#2C99FF;
       }
     }
@@ -76,15 +76,15 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
 }
 
 .time-warp{
- .time-chart{width:100%!important;height:16vh!important;}
+ .time-chart{width:80%!important;height:14vh!important;}
   color: #fff;
   position: absolute;
-  width:30vw;
-  left:2vw;
+  width:40%;
+  left:15px;
   z-index: 20;
-  top:33vh;
+  top:32%;
   .lengs{
-    margin-bottom: 3rem;
+    margin-bottom:10px;
     p{position: relative;
       padding-left:4rem;
       font-size: 1rem;
@@ -108,12 +108,12 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
     }
   }}
   .other-info{
-    margin-top:2rem;
+    margin-top:10px;
     div{margin-right: 3rem;}
     .iconfont{
       display: block;
-      font-size: 2.4rem;
-      width:3.6rem;
+      font-size:20px;
+      width:32px;
       color: #F94A6F;
     }
 
@@ -122,7 +122,7 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
 
       span{
         display: block;
-        b{font-size: 1.5rem;display: inline-block;font-weight: normal;display: inline-block;padding-right:.4rem;}
+        b{font-size:16px;display: inline-block;font-weight: normal;display: inline-block;padding-right:.4rem;}
       }
     }
     &.train{
@@ -137,9 +137,9 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
   color: #fff;
   font-size:1.17rem;
   position: absolute;
-  bottom:5vh;
-  left:2vw;
-  width: 40vw;
+  bottom:0;
+  left:15px;
+  width: 40%;
   z-index: 20;
 .potential-info{
   flex-flow: row wrap;
@@ -149,9 +149,9 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
   }
 }
 .potential-text{
-  font-size:1.17rem;
+  font-size:12px;
   p:nth-child(2){  color: #FFD74B;  }
-  .tag{width:4rem;
+  .tag{width:40px;
     height:1.42rem;
     display: inline-block;
     background:rgba(255,215,75,1);
@@ -164,7 +164,7 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
   }
   .num{
     display: inline-block;
-    width:4rem;
+    width:40px;
     text-align: right;
   }
 }
@@ -191,23 +191,23 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
 
 .flow-warp{
   position: absolute;
-  right: 2vw;
+  right:15px;
   top:0;
-  width:30vw;
+  width:40%;
   color: #fff;
   z-index: 20;
   .sub-title{
     font-size: 1.17rem;
-    margin-bottom:10px ;
+    margin-bottom:10px;
     color: #F94A6F;
     &.train{color: #1767F2;}
   }
   .lengs{
-    margin-bottom: 3rem;
+    margin-bottom:15px;
     p{position: relative;
       padding-left:4rem;
-      font-size: 1rem;
-      margin-right: 3rem;
+      font-size: 11px;
+      margin-right:15px;
     &:before{
       content: '';
       width:3rem;
@@ -253,12 +253,12 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
 
 }
 
-.total-warp{left:2vw;top:9vh;position: absolute;color:#fff;z-index: 20;
+.total-warp{left:15px;top:6%;position: absolute;color:#fff;z-index: 20;
   .chart-box{
-    width: 20vw;
+    width:340px;
     margin-right:3vw;
     position: relative;
-    .chart{position: absolute;width:8vw;height:8vw;left: 50%; margin-left: -4vw;top:1vh;
+    .chart{position: absolute;width:100px;height:100px;left: 50%; margin-left: -4vw;top:1vh;
     .charts{
       position: absolute;
       left: 0;
@@ -270,21 +270,21 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
     .list{
       position: relative;z-index: 2;height: 100%;height:8vw;
 
-      .name{ background: linear-gradient(223deg, rgba(206, 76, 229, 1) ,#F94A6F);width:4vw;height: 2rem;line-height: 2rem;font-size:1.17rem;border-radius:0.17rem;display: inline-block;text-align: center;margin-right:.5rem;box-shadow:0rem 0.17rem 0.83rem 0rem rgba(0,0,0,0.5);overflow: hidden;
+      .name{ background: linear-gradient(223deg, rgba(206, 76, 229, 1) ,#F94A6F);width:75px;height:20px;line-height: 20px;font-size:11px;border-radius:0.17rem;display: inline-block;text-align: center;margin-right:.5rem;box-shadow:0rem 0.17rem 0.83rem 0rem rgba(0,0,0,0.5);overflow: hidden;
       &.train{
         background:linear-gradient(223deg,rgba(62,204,232,1) 0%,rgba(4,110,252,1) 100%,rgba(249,74,111,1) 100%);
       }
       }
-      .fun{font-family:'numFont';font-size: 1.67rem;display: inline-block;min-width: 2rem;}
-      p{border-bottom: 1px solid #fff;padding-bottom: .2rem;display: inline-block;position: absolute;
+      .fun{font-family:'numFont';font-size:14px;display: inline-block;min-width:20px;}
+      p{border-bottom: 1px solid #fff;padding-bottom: 2px;display: inline-block;position: absolute;
           &:nth-child(1){
             left: 0;
-            width:47%;
-            top:1.5%;
+            width:45%;
+            top:0;
           }
           &:nth-child(2){
             left: 0;
-            width:30%;
+            width:35%;
             top:23%;
           }
           &:nth-child(3){
@@ -295,14 +295,14 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
           &:nth-child(4){
             text-align: right;
             right: 0;
-            width:34%;
-            top:27%;
+            width:38%;
+            top:24%;
           }
           &:nth-child(5){
             text-align: right;
             right: 0;
-            width:41%;
-            top:58%;
+            width:45%;
+            top:52%;
           }
 
       }
@@ -310,30 +310,30 @@ body{background: #000;background-size: cover; color: #fff;overflow: hidden;}
         p{
           &:nth-child(1){
             left: 0;
-            width:48%;
-            top:0;
+            width:46%;
+            top:-7%;
           }
           &:nth-child(2){
             left: 0;
             width:43%;
-            top:36%;
+            top:29%;
           }
           &:nth-child(3){
             left: 0;
-            width:39%;
-            top:67%;
+            width:41%;
+            top:57%;
           }
           &:nth-child(4){
             text-align: right;
             right: 0;
-            width:38%;
-            top:31%;
+            width:42%;
+            top:23%;
           }
           &:nth-child(5){
             text-align: right;
             right: 0;
-            width:41%;
-            top:58%;
+            width:44%;
+            top:50%;
           }
 
         }

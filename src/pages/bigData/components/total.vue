@@ -164,7 +164,7 @@ export default {
                         itemStyle: {
                             color: "rgba(86,199,60, 1)",
                             borderColor: "rgba(86,199,60, 0.3)",
-                            borderWidth: 10
+                            borderWidth: 8
                         },
                         lineStyle: {
                             normal: {
@@ -193,7 +193,7 @@ export default {
                     {
                         type: "radar",
                         symbol: "circle",
-                        symbolSize: 8,
+                        symbolSize: 4,
                         itemStyle: {
                             normal: {
                                 color: new ECharts.graphic.LinearGradient(
@@ -376,7 +376,7 @@ export default {
                     {
                         type: "radar",
                         symbol: "circle",
-                        symbolSize: 8,
+                        symbolSize: 4,
                         itemStyle: {
                             normal: {
                                 color: new ECharts.graphic.LinearGradient(
@@ -471,7 +471,7 @@ export default {
             ctx.save();
             ctx.fillStyle = "transparent";
             ctx.strokeStyle = c;
-            ctx.lineWidth = 16;
+            ctx.lineWidth =12;
             ctx.translate(x, y);
             ctx.moveTo(0, -r);
             ctx.beginPath();
