@@ -7,7 +7,7 @@
         <div class="search-panel" :class="{'hide':showSearch}">
             <div class="panel-contorl abs" @click="showSearch=!showSearch">
                 <i class="iconfont" :class="{'iconsousuo':showSearch,'iconleft':!showSearch}"></i>
-                查询
+                查询1
             </div>
             <div class="main-box">
                 <div class="main-type flex flex-yc">
