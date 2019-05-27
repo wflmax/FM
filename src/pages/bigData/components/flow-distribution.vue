@@ -25,7 +25,7 @@
 
 <script>
 import Vue from "vue";
-import ECharts from "vue-echarts";
+import echarts from "vue-echarts";
 import "echarts/lib/chart/line";
 import data from "./../data";
 var xAxisData = [];
@@ -44,7 +44,7 @@ let trainDepplan=data.flow.train.depPlan,
 
 export default {
     components: {
-        "v-chart": ECharts
+        "v-chart": echarts
     },
     data() {
         return {
@@ -133,7 +133,7 @@ export default {
                         areaStyle: {
                             //区域填充样式
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     0,
@@ -168,7 +168,7 @@ export default {
                         areaStyle: {
                             //区域填充样式
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     0,
@@ -279,7 +279,7 @@ export default {
                         areaStyle: {
                             //区域填充样式
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     0,
@@ -315,7 +315,7 @@ export default {
                         areaStyle: {
                             //区域填充样式
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     0,

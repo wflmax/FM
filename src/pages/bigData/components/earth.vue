@@ -10,7 +10,7 @@
 import routes from "./gl/routes";
 import { stationCoord } from "@/config/utils";
 import Vue from "vue";
-import ECharts from "vue-echarts";
+import echarts from "vue-echarts";
 import "echarts-gl";
 import { debuglog } from 'util';
 let flightPoints = [],
@@ -158,7 +158,7 @@ series.push({
 });
 export default {
     components: {
-        "v-chart": ECharts
+        "v-chart": echarts
     },
     data() {
         return {

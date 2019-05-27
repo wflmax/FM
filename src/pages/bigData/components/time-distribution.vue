@@ -40,7 +40,7 @@
 
 <script>
 import Vue from "vue";
-import ECharts from "vue-echarts";
+import echarts from "vue-echarts";
 import "echarts/lib/chart/bar";
 import data from "./../data";
 function timeX(){
@@ -58,7 +58,7 @@ let maxN=a>b?a:b;
 let dataMax=new Array(24).fill(maxN);
 export default {
     components: {
-        "v-chart": ECharts
+        "v-chart": echarts
     },
     data() {
         return {
@@ -178,7 +178,7 @@ export default {
                         itemStyle: {
                             normal: {
                                 show: true,
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     0,
@@ -209,7 +209,7 @@ export default {
                         itemStyle: {
                             normal: {
                                 show: true,
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     0,

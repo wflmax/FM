@@ -71,12 +71,12 @@
 <script>
 import data from "./../data";
 import Vue from "vue";
-import ECharts from "vue-echarts";
-import "ECharts/lib/chart/radar";
+import echarts from "vue-echarts";
+import "echarts/lib/chart/radar";
 let total=data.total;
 export default {
     components: {
-        "v-chart": ECharts
+        "v-chart": echarts
     },
     data() {
         return {
@@ -168,7 +168,7 @@ export default {
                         },
                         lineStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -196,7 +196,7 @@ export default {
                         symbolSize: 8,
                         itemStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -219,7 +219,7 @@ export default {
                         },
                         areaStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -241,7 +241,7 @@ export default {
                         },
                         lineStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -351,7 +351,7 @@ export default {
                         },
                         lineStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -379,7 +379,7 @@ export default {
                         symbolSize: 8,
                         itemStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -402,7 +402,7 @@ export default {
                         },
                         areaStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
@@ -424,7 +424,7 @@ export default {
                         },
                         lineStyle: {
                             normal: {
-                                color: new ECharts.graphic.LinearGradient(
+                                color: new echarts.graphic.LinearGradient(
                                     0,
                                     0,
                                     1,
