@@ -1,7 +1,9 @@
 <!--首页-->
 <template>
     <div class="big-data">
-      <img src="@/assets/img/hb-logo.png" class="logo"/>
+      <div class="logo-container">
+        <img src="@/assets/img/hb-logo.png" class="logo"/>
+      </div>
       <total></total>
       <timeDistribution></timeDistribution>
       <potentialDistribution></potentialDistribution>

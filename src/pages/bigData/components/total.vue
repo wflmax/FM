@@ -27,12 +27,12 @@
                         <span class="fun">{{data.flightRoutesCount}}</span>
                     </p>
                     <p class="flex flex-yc flex-end">
-                        <span class="name">承运航班总量</span>
                         <span class="fun">{{data.flightsCount}}</span>
+                        <span class="name">承运航班总量</span>
                     </p>
                     <p class="flex flex-yc flex-end">
-                        <span class="name">飞机制造商</span>
                         <span class="fun">{{data.planeMarkersCount}}</span>
+                        <span class="name">飞机制造商</span>
                     </p>
                 </div>
             </div>
@@ -55,12 +55,12 @@
                         <span class="fun">{{data.trainRoutesCount}}</span>
                     </p>
                     <p class="flex flex-yc flex-end">
-                        <span class="name train">高铁车次总量</span>
                         <span class="fun">{{data.trainsCount}}</span>
+                        <span class="name train">高铁车次总量</span>
                     </p>
                     <p class="flex flex-yc flex-end">
-                        <span class="name train">动车组制造商</span>
                         <span class="fun">{{data.emuMarkersCount}}</span>
+                        <span class="name train">动车组制造商</span>
                     </p>
                 </div>
             </div>
