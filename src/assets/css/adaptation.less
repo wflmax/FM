@@ -1,0 +1,93 @@
+/*
+ * @Author: yuqibin 
+ * @Date: 2019-05-28 10:04:11 
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2019-05-28 10:37:42
+ */
+
+// 变量区域
+@base-size-x: 1920 / 100vw;
+@base-size-y: 1080 / 100vh;
+
+/**
+ * 基础方法px转相对单位vwvh
+ * @param @art 属性名称
+ * @param @val 属性px值，不带单位
+ */
+.px2vw(@art, @val) {
+    @{art}: @val / @base-size-x;
+}
+
+.px2vh(@art, @val) {
+    @{art}: @val / @base-size-y;
+}
+
+/**
+ * 业务方法 常用带宽高第css属性 值均不带单位
+ */
+.width(@val) {
+    .px2vw(width, @val);
+}
+
+.height(@val) {
+    .px2vh(width, @val);
+}
+
+.left(@width) {
+    .px2vw(left, @width);
+}
+
+.right(@width) {
+    .px2vw(right, @width);
+}
+
+.line-height(@height) {
+    .px2vh(line-height, @height);
+}
+
+.text-indent(@height) {
+    .px2vw(text-indent, @height);
+}
+
+.top(@height) {
+    .px2vh(top, @height);
+}
+
+.bottom(@height) {
+    .px2vh(bottom, @height);
+}
+
+.font-size(@height) {
+    .px2vw(font-size, @height);
+}
+
+.padding(@top, @right, @bottom, @left) when (isnumber(@right)) and (isnumber(@left)) {
+    .px2vh(padding-top, @top);
+    .px2vw(padding-right, @right);
+    .px2vh(padding-bottom, @bottom);
+    .px2vw(padding-left, @left);
+}
+
+
+.margin(@top, @right, @bottom, @left) when (isnumber(@right)) and (isnumber(@left)) {
+    .px2vh(margin-top, @top);
+    .px2vw(margin-right, @right);
+    .px2vh(margin-bottom, @bottom);
+    .px2vw(margin-left, @left);
+}
+
+
+.border-radius(@size) {
+    .px2vw(border-radius, @size);
+}
+
+.border-width(@top, @right, @bottom, @left) {
+    .px2vh(border-top-width, @top);
+    .px2vw(border-right-width, @right);
+    .px2vh(border-bottom-width, @bottom);
+    .px2vw(border-left-width, @left);
+}
+
+.background-size(@x, @y) {
+    background-size: unit(@x / @base-size-x), unit(@y / @base-size-y);
+}
