@@ -10,7 +10,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: bigData,
+      component: index,
       // meta: { keepAlive: true }
     },{
       path: '/bigdata',

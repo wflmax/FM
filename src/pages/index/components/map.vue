@@ -16,9 +16,10 @@ var MarkerWithLabel = null;
 import Vue from "vue";
 import * as VueGoogleMaps from "vue2-google-maps";
 import { stationCoord,cityCoord } from "@/config/utils";
+import { mapKey } from "@/config/env";
 Vue.use(VueGoogleMaps, {
     load: {
-        key: "AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y",
+        key: mapKey,
         libraries: "places",
         language: "zh-CN"
     },
