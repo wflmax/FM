@@ -2,7 +2,7 @@
     <!-- 总体信息 -->
     <div class="total-warp">
         <h4 class="title">
-            贵阳空铁联运总信息
+            南宁空铁联运总信息
             <span class="sub">空铁联运可达城市</span>
             <span class="num font-nun">{{data.citysCount}}</span>
             <i class="iconfont iconqushi"></i>
@@ -69,423 +69,422 @@
 </template>
 
 <script>
-import data from "./../data";
-import Vue from "vue";
-import echarts from "vue-echarts";
-import "echarts/lib/chart/radar";
-let total=data.total;
+import data from './../data';
+import Vue from 'vue';
+import echarts from 'vue-echarts';
+import 'echarts/lib/chart/radar';
+let total = data.total
 export default {
-    components: {
-        "v-chart": echarts
-    },
-    data() {
-        return {
-            data: total,
-            optionflight: {
-                color: ["#934BE1", "rgba(86,199,60, 1)"],
-                tooltip: {
-                    show: true,
-                    trigger: "item"
-                },
+  components: {
+    'v-chart': echarts
+  },
+  data () {
+    return {
+      data: total,
+      optionflight: {
+        color: ['#934BE1', 'rgba(86,199,60, 1)'],
+        tooltip: {
+          show: true,
+          trigger: 'item'
+        },
 
-                radar: {
-                    center: ["50%", "50%"],
-                    radius: "99.5%",
-                    startAngle: 90,
-                    splitNumber: 2,
+        radar: {
+          center: ['50%', '50%'],
+          radius: '99.5%',
+          startAngle: 90,
+          splitNumber: 2,
 
-                    splitArea: {
-                        areaStyle: {
-                            color: ["transparent"]
-                        }
-                    },
-                    axisLabel: {
-                        show: false,
-                        fontSize: 20,
-                        color: "#000",
-                        fontStyle: "normal",
-                        fontWeight: "normal"
-                    },
-                    axisLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "rgba(206, 76, 229,.34)"
-                        }
-                    },
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "rgba(206, 76, 229,.34)"
-                        }
-                    },
-                    // shape: 'circle',
-                    name: {
-                        show: false
-                    },
-                    indicator: [
-                        {
-                            name: "互通航班城市",
-                            max: 150,
+          splitArea: {
+            areaStyle: {
+              color: ['transparent']
+            }
+          },
+          axisLabel: {
+            show: false,
+            fontSize: 20,
+            color: '#000',
+            fontStyle: 'normal',
+            fontWeight: 'normal'
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(206, 76, 229,.34)'
+            }
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(206, 76, 229,.34)'
+            }
+          },
+          // shape: 'circle',
+          name: {
+            show: false
+          },
+          indicator: [
+            {
+              name: '互通航班城市',
+              max: 150
 
-                        },
-                        {
-                            name: "承运航司量",
-                            max: 50,
-
-                        },
-                        {
-                            name: "航班线路总量",
-                            max: 1000,
-
-                        },
-                        {
-                            name: "承运航班总量",
-                            max: 50000,
-
-                        },
-                        {
-                            name: "飞机制造商",
-                            max: 10,
-
-                        }
-                    ]
-                },
-
-                series: [
-                    {
-                        type: "radar",
-                        symbol: "circle",
-                        symbolSize: 0,
-                        areaStyle: {
-                            normal: {
-                                color: "transparent"
-                            }
-                        },
-                        itemStyle: {
-                            color: "rgba(86,199,60, 1)",
-                            borderColor: "rgba(86,199,60, 0.3)",
-                            borderWidth: 10
-                        },
-                        lineStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#F94A6F"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#CE4CE5"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                width: 3,
-                            }
-                        },
-                        data: [[150,50,1000,50000,10]]
-                    },
-                    {
-                        type: "radar",
-                        symbol: "circle",
-                        symbolSize: 8,
-                        itemStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#F94A6F"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#CE4CE5"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                borderColor: "rgba(206, 76, 229, .4)",
-                                borderWidth: 8
-                            }
-                        },
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#F94A6F"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#CE4CE5"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                opacity: 0.34
-                            }
-                        },
-                        lineStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#F94A6F"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#CE4CE5"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                width: 1
-                            }
-                        },
-                        data: [[109, 45, 222, 25000,7]]
-                    }
-                ]
             },
-            optiontrain: {
-                color: ["#934BE1", "rgba(86,199,60, 1)"],
-                tooltip: {
-                    show: false,
-                },
+            {
+              name: '承运航司量',
+              max: 50
 
-                radar: {
-                    center: ["50%", "50%"],
-                    radius: "99.5%",
-                    startAngle: 90,
-                    splitNumber: 2,
+            },
+            {
+              name: '航班线路总量',
+              max: 1000
 
-                    splitArea: {
-                        areaStyle: {
-                            color: ["transparent"]
-                        }
-                    },
-                    axisLabel: {
-                        show: false,
-                        fontSize: 20,
-                        color: "#000",
-                        fontStyle: "normal",
-                        fontWeight: "normal"
-                    },
-                    axisLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "rgba(64, 195, 209, .4)"
-                        }
-                    },
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "rgba(4, 110, 252, .35)"
-                        }
-                    },
-                    // shape: 'circle',
-                    name: {
-                        show: false
-                    },
-                    indicator: [
-                        {
-                            name: "互通高铁城市",
-                            max: 150,
+            },
+            {
+              name: '承运航班总量',
+              max: 50000
 
-                        },
-                        {
-                            name: "承运铁路局",
-                            max: 50,
+            },
+            {
+              name: '飞机制造商',
+              max: 10
 
-                        },
-                        {
-                            name: "高铁线路总量",
-                            max: 1000,
+            }
+          ]
+        },
 
-                        },
-                        {
-                            name: "高铁车次总量",
-                            max: 20000,
-
-                        },
-                        {
-                            name: "动车组制造商",
-                            max: 10,
-
-                        }
-                    ]
-                },
-
-                series: [
+        series: [
+          {
+            type: 'radar',
+            symbol: 'circle',
+            symbolSize: 0,
+            areaStyle: {
+              normal: {
+                color: 'transparent'
+              }
+            },
+            itemStyle: {
+              color: 'rgba(86,199,60, 1)',
+              borderColor: 'rgba(86,199,60, 0.3)',
+              borderWidth: 10
+            },
+            lineStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
                     {
-                        type: "radar",
-                        symbol: "circle",
-                        symbolSize: 0,
-                        areaStyle: {
-                            normal: {
-                                color: "transparent"
-                            }
-                        },
-                        itemStyle: {
-                            color: "rgba(86,199,60, 1)",
-                            borderColor: "rgba(86,199,60, 0.3)",
-                            borderWidth: 8
-                        },
-                        lineStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#40C3D1"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#1767F2"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                width: 3,
-                            }
-                        },
-                      data: [[150,50,1000,20000,10]]
+                      offset: 0,
+                      color: '#F94A6F'
                     },
                     {
-                        type: "radar",
-                        symbol: "circle",
-                        symbolSize: 8,
-                        itemStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#40C3D1"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#1767F2"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                borderColor: "rgba(64, 195, 209, .4)",
-                                borderWidth: 8
-                            }
-                        },
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#40C3D1"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#1767F2"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                opacity: 0.34
-                            }
-                        },
-                        lineStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    1,
-                                    0,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#40C3D1"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#1767F2"
-                                        }
-                                    ],
-                                    false
-                                ),
-                                width: 1
-                            }
-                        },
-                        data: [[125, 11, 670, 9978, 5]]
+                      offset: 1,
+                      color: '#CE4CE5'
                     }
-                ]
-            }
-        };
-    },
-    props: {},
-    mounted() {
-      var chartW = document.getElementById("chartDom").offsetWidth;
-       var canvasf = document.getElementById("myCanvasf");
-       canvasf.width = chartW;
-        canvasf.height = chartW;
-      var ctxf = canvasf.getContext('2d');
-      this.draw(ctxf,'rgba(147, 75, 225,.35)',chartW/2,chartW/2,chartW/2,5);
-      var canvast = document.getElementById("myCanvast");
-       canvast.width = chartW;
-        canvast.height = chartW;
-      var ctxt = canvast.getContext('2d');
-      this.draw(ctxt,'rgba(31, 121, 235, .35)',chartW/2,chartW/2,chartW/2,5);
-    },
-    methods: {
-        draw(ctx,c,x, y, r, n) {
-            var i, ang;
-            ang = (Math.PI * 2) / n;
-            ctx.save();
-            ctx.fillStyle = "transparent";
-            ctx.strokeStyle = c;
-            ctx.lineWidth = 16;
-            ctx.translate(x, y);
-            ctx.moveTo(0, -r);
-            ctx.beginPath();
-            for (i = 0; i < n; i++) {
-                ctx.rotate(ang);
+                  ],
+                  false
+                ),
+                width: 3
+              }
+            },
+            data: [[150, 50, 1000, 50000, 10]]
+          },
+          {
+            type: 'radar',
+            symbol: 'circle',
+            symbolSize: 8,
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#F94A6F'
+                    },
+                    {
+                      offset: 1,
+                      color: '#CE4CE5'
+                    }
+                  ],
+                  false
+                ),
+                borderColor: 'rgba(206, 76, 229, .4)',
+                borderWidth: 8
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#F94A6F'
+                    },
+                    {
+                      offset: 1,
+                      color: '#CE4CE5'
+                    }
+                  ],
+                  false
+                ),
+                opacity: 0.34
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#F94A6F'
+                    },
+                    {
+                      offset: 1,
+                      color: '#CE4CE5'
+                    }
+                  ],
+                  false
+                ),
+                width: 1
+              }
+            },
+            data: [[109, 45, 222, 25000, 7]]
+          }
+        ]
+      },
+      optiontrain: {
+        color: ['#934BE1', 'rgba(86,199,60, 1)'],
+        tooltip: {
+          show: false
+        },
 
-                ctx.lineTo(0, -r);
+        radar: {
+          center: ['50%', '50%'],
+          radius: '99.5%',
+          startAngle: 90,
+          splitNumber: 2,
+
+          splitArea: {
+            areaStyle: {
+              color: ['transparent']
             }
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-            ctx.restore();
-        }
+          },
+          axisLabel: {
+            show: false,
+            fontSize: 20,
+            color: '#000',
+            fontStyle: 'normal',
+            fontWeight: 'normal'
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(64, 195, 209, .4)'
+            }
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(4, 110, 252, .35)'
+            }
+          },
+          // shape: 'circle',
+          name: {
+            show: false
+          },
+          indicator: [
+            {
+              name: '互通高铁城市',
+              max: 150
+
+            },
+            {
+              name: '承运铁路局',
+              max: 50
+
+            },
+            {
+              name: '高铁线路总量',
+              max: 1000
+
+            },
+            {
+              name: '高铁车次总量',
+              max: 20000
+
+            },
+            {
+              name: '动车组制造商',
+              max: 10
+
+            }
+          ]
+        },
+
+        series: [
+          {
+            type: 'radar',
+            symbol: 'circle',
+            symbolSize: 0,
+            areaStyle: {
+              normal: {
+                color: 'transparent'
+              }
+            },
+            itemStyle: {
+              color: 'rgba(86,199,60, 1)',
+              borderColor: 'rgba(86,199,60, 0.3)',
+              borderWidth: 8
+            },
+            lineStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#40C3D1'
+                    },
+                    {
+                      offset: 1,
+                      color: '#1767F2'
+                    }
+                  ],
+                  false
+                ),
+                width: 3
+              }
+            },
+            data: [[150, 50, 1000, 20000, 10]]
+          },
+          {
+            type: 'radar',
+            symbol: 'circle',
+            symbolSize: 8,
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#40C3D1'
+                    },
+                    {
+                      offset: 1,
+                      color: '#1767F2'
+                    }
+                  ],
+                  false
+                ),
+                borderColor: 'rgba(64, 195, 209, .4)',
+                borderWidth: 8
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#40C3D1'
+                    },
+                    {
+                      offset: 1,
+                      color: '#1767F2'
+                    }
+                  ],
+                  false
+                ),
+                opacity: 0.34
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#40C3D1'
+                    },
+                    {
+                      offset: 1,
+                      color: '#1767F2'
+                    }
+                  ],
+                  false
+                ),
+                width: 1
+              }
+            },
+            data: [[125, 11, 670, 9978, 5]]
+          }
+        ]
+      }
     }
-};
-</script>
+    },
+  props: {},
+  mounted () {
+    var chartW = document.getElementById('chartDom').offsetWidth
+       var canvasf = document.getElementById('myCanvasf')
+       canvasf.width = chartW
+        canvasf.height = chartW
+      var ctxf = canvasf.getContext('2d')
+      this.draw(ctxf, 'rgba(147, 75, 225,.35)', chartW / 2, chartW / 2, chartW / 2, 5)
+      var canvast = document.getElementById('myCanvast')
+       canvast.width = chartW
+        canvast.height = chartW
+      var ctxt = canvast.getContext('2d')
+      this.draw(ctxt, 'rgba(31, 121, 235, .35)', chartW / 2, chartW / 2, chartW / 2, 5)
+    },
+  methods: {
+    draw (ctx, c, x, y, r, n) {
+      var i, ang
+            ang = (Math.PI * 2) / n
+            ctx.save()
+            ctx.fillStyle = 'transparent';
+      ctx.strokeStyle = c
+            ctx.lineWidth = 16
+            ctx.translate(x, y)
+            ctx.moveTo(0, -r)
+            ctx.beginPath()
+            for (i = 0; i < n; i++) {
+        ctx.rotate(ang)
 
+                ctx.lineTo(0, -r)
+            }
+      ctx.closePath()
+            ctx.fill()
+            ctx.stroke()
+            ctx.restore()
+        }
+  }
+}
+</script>
