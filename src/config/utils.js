@@ -60,11 +60,12 @@ export const getSessionStore = name => {
   if (!name) return;
   return window.sessionStorage.getItem(name);
 }
-
-//string 转时间格式
+/**
+ * 转换时间
+ */
 export const coverMin = (min) => {
   let h = min / 60;
-  let m = min % h;
+  let m = min % 60;
   let s = h.toFixed(0) + '小时';
   if (m.toFixed(0) != 0) {
     s += m.toFixed(0) + '分钟';
@@ -72,7 +73,67 @@ export const coverMin = (min) => {
   return s;
 }
 
+const dateToTimestamp = (date) => {
+    date=new Date(date);
+    return date.valueOf();
+  }
 
+/**
+ * 行程时间
+ */
+export const routeTime = (dep, arr) => {
+    dep=dateToTimestamp(dep);
+    arr=dateToTimestamp(arr);
+    let cost=(arr-dep)/60000;
+    cost=coverMin(cost);
+    return cost;
+
+ }
+/**
+ * 格式日期
+ */
+export const formatDay_zh = (date, type) => {
+     date = date.split(' ');
+    let d = date[0].split('-');
+    if (type == "arrTime") {
+        return d[2] + '日'+date[1].slice(0,5);
+      }
+    if (type == "line") {
+      return d[1] + '-' + d[2];
+    }
+    return d[1] + '月' + d[2] + '日';
+  }
+/**
+ * 格式化星期
+ */
+export const formatWeekday = (date) => {
+    let w='';
+    var cDate = new Date(date);
+    switch (cDate.getDay()) {
+      case 0:
+        w = '周日';
+        break;
+      case 1:
+        w = '周一';
+        break;
+      case 2:
+        w = '周二';
+        break;
+      case 3:
+        w = '周三';
+        break;
+      case 4:
+        w = '周四';
+        break;
+      case 5:
+        w = '周五';
+        break;
+      case 6:
+        w = '周六';
+        break;
+    }
+    return w
+  }
 
 /**
  * 航司二字码对应表
