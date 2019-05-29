@@ -59,7 +59,7 @@ export default{
     "train": {
       "count": 6806,
       "depOntimeRate": 99.53,
-      "avgDelayTime": 54,
+      "avgDelayTime": 15,
       "times": [330, 0, 0, 0, 0, 0, 57, 400, 391, 460, 464, 454, 420, 570, 400, 479, 472, 550, 430, 389, 241, 190, 83, 26]
     }
   },

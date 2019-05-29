@@ -32,7 +32,7 @@
           </div>
           <div class="flex flex-yc">
              <i class="iconfont icontingzhi"></i>
-             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}</b>分钟</span></p>
+             <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}</b>秒</span></p>
           </div>
         </div>
     </div>
