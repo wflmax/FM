@@ -4,7 +4,7 @@
         <h4 class="title">贵州空铁联运实力值情况</h4>
         <div class="potential-info flex flex-yc">
           <div class="potential-item" v-for="(item,index) in data"
-          :class="{'left-curr': (index + 1) % 3 === 1, 'right-curr': (index + 1) % 3 === 0}"
+          :class="{'left-curr': (index + 1) % 4 === 1, 'right-curr': (index + 1) % 4 === 0}"
           :key="index">
             <div class="potential-text flex flex-yc flex-between" >
               <p class="font-nun">No.{{index+1}} {{item[0]}}</p>

@@ -24,327 +24,325 @@
 </template>
 
 <script>
-import Vue from "vue";
-import echarts from "vue-echarts";
-import "echarts/lib/chart/line";
-import data from "./../data";
-var xAxisData = [];
-for(let i=0;i<24;i++){
-  xAxisData.push(i);
+import Vue from 'vue'
+import echarts from 'vue-echarts'
+import 'echarts/lib/chart/line'
+import data from './../data'
+var xAxisData = []
+for (let i = 0; i < 24; i++) {
+  xAxisData.push(i)
 }
 
- let flihtDepplan=data.flow.flight.depPlan,
- flihtArrplan=data.flow.flight.arrPlan,
-  flihtDepAct=data.flow.flight.depAct,
-  flihtArrAct=data.flow.flight.arrAct;
-let trainDepplan=data.flow.train.depPlan,
- trainArrplan=data.flow.train.arrPlan,
-  trainDepAct=data.flow.train.depAct,
-  trainArrAct=data.flow.train.arrAct;
+let flihtDepplan = data.flow.flight.depPlan,
+  flihtArrplan = data.flow.flight.arrPlan,
+  flihtDepAct = data.flow.flight.depAct,
+  flihtArrAct = data.flow.flight.arrAct
+let trainDepplan = data.flow.train.depPlan,
+  trainArrplan = data.flow.train.arrPlan,
+  trainDepAct = data.flow.train.depAct,
+  trainArrAct = data.flow.train.arrAct
 
 export default {
-    components: {
-        "v-chart": echarts
-    },
-    data() {
-        return {
-            optionflight: {
-              grid: {
-                    left: "0",
-                    right: "0",
-                    top:'4%',
-                    bottom: "5%",
-                    containLabel: true
-                },
-                backgroundColor: "transparent",
-                tooltip: {},
-                xAxis: {
-                    data: xAxisData,
-                    name: "X Axis",
-                    silent: false,
-                    axisLine: { onZero: true },
-                    splitLine: { show: false },
-                    splitArea: { show: false },
-                    axisLabel: {
-                            inside: false,
-                            textStyle: {
-                                color: "#fff",
-                                fontWeight: "normal",
-                                fontSize: "12"
-                            }
-                        },
-                },
-                yAxis: {
-                    splitArea: { show: false },
-                    splitLine:{
-                      lineStyle:{
-                         color: 'rgba(255,255,255,0.3)'
-                      }
-                    },
-                    axisLabel: {
-                            inside: false,
-                            textStyle: {
-                                color: "#fff",
-                                fontWeight: "normal",
-                                fontSize: "12"
-                            }
-                        },
-                },
-
-                series: [
-                  {
-                        name: "bar3",
-                        type: "line",
-                        stack: "two",
-                        smooth:true,
-                        data: flihtArrplan,
-                        showSymbol:false,
-                        lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
-                    },
-                    {
-                        name: "bar4",
-                        type: "line",
-                        stack: "two",
-                        smooth:true,
-                         showSymbol:false,
-                        data: flihtDepplan,
-                         lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
-                    },
-                    {
-                        name: "bar",
-                        type: "line",
-                        stack: "one",
-                        smooth:true,
-                         showSymbol:false,
-                        lineStyle: {
-                            normal: {
-                                color: "#FF38C6" // 线条颜色
-                            }
-                        },
-                        data: flihtArrAct,
-                        areaStyle: {
-                            //区域填充样式
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
-                                    1,
-                                    [
-                                        {
-                                            offset: 1,
-                                            color: "#FF38C6"
-                                        },
-                                        {
-                                            offset: 0,
-                                            color: "transparent"
-                                        }
-                                    ],
-                                    false
-                                )
-                            }
-                        }
-                    },
-                    {
-                        name: "bar2",
-                        type: "line",
-                        stack: "one",
-                        smooth:true,
-                        data: flihtDepAct,
-                         showSymbol:false,
-                          lineStyle: {
-                            normal: {
-                                color: "#FF3C59" // 线条颜色
-                            }
-                        },
-                        areaStyle: {
-                            //区域填充样式
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
-                                    1,
-                                    [
-                                        {
-                                            offset:0,
-                                            color: "#FF3C59"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "transparent"
-                                        }
-                                    ],
-                                    false
-                                )
-                            }
-                        }
-                    }
-
-                ]
-            },
-             optionTrain: {
-              grid: {
-                    left: "0",
-                    right: "0",
-                    top:'4%',
-                    bottom: "5%",
-                    containLabel: true
-                },
-                backgroundColor: "transparent",
-
-
-                tooltip: {},
-                xAxis: {
-                    data: xAxisData,
-                    name: "X Axis",
-                    silent: false,
-                    axisLine: { onZero: true },
-                    splitLine: { show: false },
-                    splitArea: { show: false },
-                    axisLabel: {
-                            inside: false,
-                            textStyle: {
-                                color: "#fff",
-                                fontWeight: "normal",
-                                fontSize: "12"
-                            }
-                        },
-                },
-                yAxis: {
-                    splitArea: { show: false },
-                    splitLine:{
-                      lineStyle:{
-                         color: 'rgba(255,255,255,0.3)'
-                      }
-                    },
-                    axisLabel: {
-                            inside: false,
-                            textStyle: {
-                                color: "#fff",
-                                fontWeight: "normal",
-                                fontSize: "12"
-                            }
-                        },
-                },
-
-
-                series: [
-                  {
-                        name: "bar3",
-                        type: "line",
-                        stack: "two",
-                        data: trainArrplan,
-                        smooth:true,
-                         showSymbol:false,
-                        lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
-                    },
-                    {
-                        name: "bar4",
-                        type: "line",
-                        stack: "two",
-                        smooth:true,
-                         showSymbol:false,
-                        data: trainDepplan,
-                         lineStyle: {
-                            normal: {
-                                color: "#fff" // 线条颜色
-                            }
-                        },
-                    },
-                    {
-                        name: "bar",
-                        type: "line",
-                        stack: "one",
-                        smooth:true,
-                        showSymbol:false,
-                        lineStyle: {
-                            normal: {
-                                color: "#40D1BD" // 线条颜色
-                            }
-                        },
-                        data: trainArrAct,
-                        areaStyle: {
-                            //区域填充样式
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
-                                    1,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "transparent"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#40D1BD"
-                                        }
-                                    ],
-
-                                    false
-                                )
-                            }
-                        }
-                    },
-                    {
-                        name: "bar2",
-                        type: "line",
-                        stack: "one",
-                        smooth:true,
-                        data: trainDepAct,
-                         showSymbol:false,
-                          lineStyle: {
-                            normal: {
-                                color: "#1767F2" // 线条颜色
-                            }
-                        },
-                        areaStyle: {
-                            //区域填充样式
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
-                                    1,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#1767F2"
-                                        },
-
-                                        {
-                                            offset: 1,
-                                            color: "transparent"
-                                        }
-                                    ],
-                                    false
-                                )
-                            }
-                        }
-                    }
-
-                ]
+  components: {
+    'v-chart': echarts
+  },
+  data () {
+    return {
+      optionflight: {
+        grid: {
+          left: '0',
+          right: '0',
+          top: '4%',
+          bottom: '5%',
+          containLabel: true
+        },
+        backgroundColor: 'transparent',
+        tooltip: {},
+        xAxis: {
+          data: xAxisData,
+          name: 'X Axis',
+          silent: false,
+          axisLine: { onZero: true },
+          splitLine: { show: false },
+          splitArea: { show: false },
+          axisLabel: {
+            inside: false,
+            textStyle: {
+              color: '#fff',
+              fontWeight: 'normal',
+              fontSize: '12'
             }
-        };
-    },
-    props: {},
-    mounted() {},
-    methods: {}
-};
+          }
+        },
+        yAxis: {
+          splitArea: { show: false },
+          splitLine: {
+            lineStyle: {
+              color: 'rgba(255,255,255,0.3)'
+            }
+          },
+          axisLabel: {
+            inside: false,
+            textStyle: {
+              color: '#fff',
+              fontWeight: 'normal',
+              fontSize: '12'
+            }
+          }
+        },
+
+        series: [
+          {
+            name: 'bar3',
+            type: 'line',
+            stack: 'two',
+            smooth: true,
+            data: flihtArrplan,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                color: '#fff' // 线条颜色
+              }
+            }
+          },
+          {
+            name: 'bar4',
+            type: 'line',
+            stack: 'two',
+            smooth: true,
+            showSymbol: false,
+            data: flihtDepplan,
+            lineStyle: {
+              normal: {
+                color: '#fff' // 线条颜色
+              }
+            }
+          },
+          {
+            name: 'bar',
+            type: 'line',
+            stack: 'one',
+            smooth: true,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                color: '#FF38C6' // 线条颜色
+              }
+            },
+            data: flihtArrAct,
+            areaStyle: {
+              // 区域填充样式
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 1,
+                      color: '#FF38C6'
+                    },
+                    {
+                      offset: 0,
+                      color: 'transparent'
+                    }
+                  ],
+                  false
+                )
+              }
+            }
+          },
+          {
+            name: 'bar2',
+            type: 'line',
+            stack: 'one',
+            smooth: true,
+            data: flihtDepAct,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                color: '#FF3C59' // 线条颜色
+              }
+            },
+            areaStyle: {
+              // 区域填充样式
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: '#FF3C59'
+                    },
+                    {
+                      offset: 1,
+                      color: 'transparent'
+                    }
+                  ],
+                  false
+                )
+              }
+            }
+          }
+
+        ]
+      },
+      optionTrain: {
+        grid: {
+          left: '0',
+          right: '0',
+          top: '4%',
+          bottom: '5%',
+          containLabel: true
+        },
+        backgroundColor: 'transparent',
+
+        tooltip: {},
+        xAxis: {
+          data: xAxisData,
+          name: 'X Axis',
+          silent: false,
+          axisLine: { onZero: true },
+          splitLine: { show: false },
+          splitArea: { show: false },
+          axisLabel: {
+            inside: false,
+            textStyle: {
+              color: '#fff',
+              fontWeight: 'normal',
+              fontSize: '12'
+            }
+          }
+        },
+        yAxis: {
+          splitArea: { show: false },
+          splitLine: {
+            lineStyle: {
+              color: 'rgba(255,255,255,0.3)'
+            }
+          },
+          axisLabel: {
+            inside: false,
+            textStyle: {
+              color: '#fff',
+              fontWeight: 'normal',
+              fontSize: '12'
+            }
+          }
+        },
+
+        series: [
+          {
+            name: 'bar3',
+            type: 'line',
+            stack: 'two',
+            data: trainArrplan,
+            smooth: true,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                color: '#fff' // 线条颜色
+              }
+            }
+          },
+          {
+            name: 'bar4',
+            type: 'line',
+            stack: 'two',
+            smooth: true,
+            showSymbol: false,
+            data: trainDepplan,
+            lineStyle: {
+              normal: {
+                color: '#fff' // 线条颜色
+              }
+            }
+          },
+          {
+            name: 'bar',
+            type: 'line',
+            stack: 'one',
+            smooth: true,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                color: '#40D1BD' // 线条颜色
+              }
+            },
+            data: trainArrAct,
+            areaStyle: {
+              // 区域填充样式
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: 'transparent'
+                    },
+                    {
+                      offset: 1,
+                      color: '#40D1BD'
+                    }
+                  ],
+
+                  false
+                )
+              }
+            }
+          },
+          {
+            name: 'bar2',
+            type: 'line',
+            stack: 'one',
+            smooth: true,
+            data: trainDepAct,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                color: '#1767F2' // 线条颜色
+              }
+            },
+            areaStyle: {
+              // 区域填充样式
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: '#1767F2'
+                    },
+
+                    {
+                      offset: 1,
+                      color: 'transparent'
+                    }
+                  ],
+                  false
+                )
+              }
+            }
+          }
+
+        ]
+      }
+    }
+  },
+  props: {},
+  mounted () {},
+  methods: {}
+}
 </script>
 
 <style lang="less" scoped>
@@ -355,4 +353,3 @@ export default {
   height: 28vh;
 }
 </style>
-
