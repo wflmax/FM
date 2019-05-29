@@ -2,7 +2,7 @@
 <template>
     <div class="pages">
         <Header></Header>
-        <Map :data="dataRoute.datas"></Map>
+        <Map :data="dataRoute.datas" v-if="dataRoute"></Map>
         <!-- 搜索面板 -->
         <div class="search-panel" :class="{'hide':showSearch}">
             <div class="panel-contorl abs" @click="showSearch=!showSearch">
@@ -12,9 +12,13 @@
             <div class="main-box">
                 <div class="main-type flex flex-yc">
                     <label>查询类型</label>
-                    <span class="active">Air-Rail</span>
-                    <span>Rail</span>
-                    <span>Air</span>
+                    <el-radio
+                        v-model="searchType"
+                        v-for="(item,index) in searchTypeOption"
+                        :key="'s'+index"
+                        :label="item[0]"
+                        :disabled="item[0]!=1"
+                    >{{item[1]}}</el-radio>
                 </div>
                 <div class="main-body">
                     <div class="item flex flex-yc">
@@ -35,24 +39,24 @@
                             <el-date-picker v-model="date" type="date" placeholder="选择日期"></el-date-picker>
                         </div>
                     </div>
-                    <button type="button">查询</button>
+                    <button type="button" @click="getData">查询</button>
                 </div>
             </div>
         </div>
         <!-- 结果展示面板 -->
-        <div class="routes-panel">
+        <div class="routes-panel" v-if="dataRoute">
             <div class="routes-warp">
                 <happy-scroll color="rgba(0,0,0,.5)">
-                    <topRoute :data="dataRoute.happy" :title="'最为舒适'"></topRoute>
-                    <topRoute :data="dataRoute.early" :title="'最早到达'"></topRoute>
-                    <topRoute :data="dataRoute.cheap" :title="'价格最低'"></topRoute>
-                    <topRoute :data="dataRoute.short" :title="'最短时长'"></topRoute>
+                    <recommendRoute :data="dataRoute.happy" :title="'最为舒适'"></recommendRoute>
+                    <recommendRoute :data="dataRoute.early" :title="'最早到达'"></recommendRoute>
+                    <recommendRoute :data="dataRoute.cheap" :title="'价格最低'"></recommendRoute>
+                    <recommendRoute :data="dataRoute.short" :title="'最短时长'"></recommendRoute>
                 </happy-scroll>
                 <all :data="dataRoute.datas" :active="showAll" @back="showAll=false"></all>
             </div>
-            <div class="intro flex flex-between">
+            <div class="intro flex flex-between" @click="showAll=true">
                 <p>共涉及{{dataRoute.lines.length}}种行程路线、{{dataRoute.datas.length}}种出行方案</p>
-                <p @click="showAll=true">
+                <p>
                     查看所有方案
                     <i class="iconfont iconright"></i>
                 </p>
@@ -62,46 +66,72 @@
 </template>
 <script>
 import Header from "@/components/header";
-import topRoute from "./components/top-route";
+import recommendRoute from "./components/recommend-route";
 import Map from "./components/map";
 import all from "./components/all";
 import dataRoute from "./data";
-import cityGps from '@/service/cityDict'
+import cityGps from "@/service/cityDict";
 import { HappyScroll } from "vue-happy-scroll";
 import "vue-happy-scroll/docs/happy-scroll.css";
+import { getIndexData } from "@/service/getData";
+import { Loading } from "element-ui";
+
 export default {
     components: {
         Header,
-        topRoute,
+        recommendRoute,
         all,
         HappyScroll,
-        Map,
+        Map
     },
     data() {
         return {
             showSearch: true,
-            dataRoute: dataRoute,
+            dataRoute: null,
             showAll: false,
+            searchType: 1,
+            searchTypeOption: [[1, "Air-Rail"], [2, "Air"], [3, "Rail"]],
             date: "",
             dep: "",
             arr: "",
-            cityGps: cityGps
+            cityGps: cityGps,
+            loading: null
         };
     },
 
-    mounted() {},
+    mounted() {
+        this.loading = Loading.service({
+            lock: true,
+            text: "正在加载数据...",
+            background: "rgba(0, 0, 0, 0.5)"
+        });
+        this.getData();
+    },
     methods: {
-        getData(obj) {
-            console.log('dsdsd');
+        getData() {
+            let obj = {
+                type: this.type,
+                dep: this.dep,
+                arr: this.arr,
+                date: this.date
+            };
+            this.dataRoute = dataRoute;
+            setTimeout(() => {
+                this.loading.close();
+            }, 4000);
+            return;
+            getIndexData(obj).then(res => {
+                this.dataRoute = dataRoute;
+            });
         }
     }
 };
 </script>
 <style lang="less" scoped>
- .autocomplete-input{
-   border: 1px solid #000;
-   height: 30px;
- }
+.autocomplete-input {
+    border: 1px solid #000;
+    height: 30px;
+}
 .search-panel {
     position: fixed;
     width: 360px;

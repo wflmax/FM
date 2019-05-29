@@ -11,3 +11,9 @@ export const commonToken = (param) => fetch('/api/token',{noSign:0,data:param});
 export const aeslogin = (param) => fetch('/api/token/aes',{noSign:0,data:param});
 //清除totken
 export const clearToken = (param) => fetch('/api/token/clear',{data:param});
+
+
+//首页
+//获取全部数据
+export const getIndexData = (param) => fetch('/api/data',{data:param});
+

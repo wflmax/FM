@@ -1,7 +1,7 @@
 <template>
     <div class="all-page" :class="{'active':active}">
        <p @click="back" class="back"><i class="iconfont iconfanhui"></i> </p>
-        <filter-box ></filter-box>
+        <!-- <filter-box ></filter-box> -->
          <happy-scroll color="rgba(0,0,0,.5)" resize>
           <div class="list">
               <div class="list-item" v-for="(item,index) in data" :key="index">
