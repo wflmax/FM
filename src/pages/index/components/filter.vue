@@ -68,7 +68,7 @@ export default {
                 priceSort: '', //desc,asc
                 routeSort: '', //ft,tf
                 airline: [], //[CA,CZ,..]
-                routeLine: [] //[a-b,b-c]
+                routeLine: [] //[0,1,2]
             }
         };
     },
@@ -88,18 +88,6 @@ export default {
     methods: {
         setFilter(type, item) {
             switch (type) {
-                case "dep":
-                    this.filterData.dep=this.filterData.dep==item?'':item;
-                    break;
-                case "arr":
-                    this.filterData.arr=this.filterData.arr==item?'':item;
-                    break;
-                case "priceSort":
-                     this.filterData.priceSort=item;
-                    break;
-                case "routeSort":
-                     this.filterData.routeSort=item;
-                    break;
                 case "airline":
                     let i=this.filterData.airline.indexOf(item);
                     if(i==-1){
@@ -118,6 +106,7 @@ export default {
                     break;
 
                 default:
+                    this.filterData[type]=this.filterData[type]==item?'':item;
                     break;
             }
             this.$emit("filterCallback",this.filterData);
@@ -207,14 +196,14 @@ export default {
     }
     &:nth-child(3) {
         .f-box {
-            width: 260px;
-            left: -130px;
+            width: 200px;
+            left: -100px;
         }
     }
     &:nth-child(5) {
         .f-box {
             left: auto;
-            right: 0;
+            right: -30px;
         }
     }
     &:hover {
