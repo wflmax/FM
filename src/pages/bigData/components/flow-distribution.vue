@@ -53,7 +53,7 @@ export default {
                     left: "0",
                     right: "0",
                     top:'4%',
-                    bottom: "10%",
+                    bottom: "5%",
                     containLabel: true
                 },
                 backgroundColor: "transparent",
@@ -196,7 +196,7 @@ export default {
                     left: "0",
                     right: "0",
                     top:'4%',
-                    bottom: "10%",
+                    bottom: "5%",
                     containLabel: true
                 },
                 backgroundColor: "transparent",
@@ -350,9 +350,9 @@ export default {
 <style lang="less" scoped>
 @import '../../../assets/css/func.less';
 .flight-chart{
-  width: 100%!important;
+  width: 100%;
   position: relative;
-  height: 24vh!important;
+  height: 28vh;
 }
 </style>
 

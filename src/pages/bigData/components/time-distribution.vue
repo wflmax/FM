@@ -69,7 +69,7 @@ export default {
                     left: "0",
                     right: "0",
                     top:'5%',
-                    bottom: "8%",
+                    bottom: "2%",
                     containLabel: true
                 },
 
