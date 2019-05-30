@@ -140,13 +140,8 @@ export const formatWeekday = (date) => {
  */
 
 export const airlineCoord = {
-  coord: function (code) {
-    if (airlineGps[code]) {
-      return airlineGps[code];
-    }
-  },
   name: function (code) {
-    return this.coord(code)[0];
+    return airlineGps[code][0];
   },
 }
 

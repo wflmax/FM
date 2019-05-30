@@ -52,7 +52,7 @@
                     <recommendRoute :data="dataRoute.cheap" :title="'价格最低'"></recommendRoute>
                     <recommendRoute :data="dataRoute.short" :title="'最短时长'"></recommendRoute>
                 </happy-scroll>
-                <all :data="dataRoute.datas" :active="showAll" @back="showAll=false"></all>
+                <all :data="dataRoute.datas" :active="showAll" :lines="dataRoute.lines" @back="showAll=false" ></all>
             </div>
             <div class="intro flex flex-between" @click="showAll=true">
                 <p>共涉及{{dataRoute.lines.length}}种行程路线、{{dataRoute.datas.length}}种出行方案</p>

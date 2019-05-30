@@ -41,7 +41,6 @@
                                 >{{formatDay_zh(subItem.depPlanTime)}} {{formatWeekday(subItem.depPlanTime)}}</span>
                                 <span class="trans">波音737-800 经济舱</span>
                             </p>
-                            <!-- {{item}} -->
                             <div class="sub-info flex flex-between">
                                 <p class="dep city">
                                     {{stationCoord.name(subItem.type,subItem.depCode)}}
@@ -130,7 +129,6 @@ export default {
         initData(){
             let data=this.data;
            for (let i=0,row; row=data[i]; i++) {
-					//决定哪些列表可以下拉刷新
 					row.show = false;
 				}
             this.list=data;
