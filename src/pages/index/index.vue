@@ -1,285 +1,463 @@
 <!--首页-->
 <template>
-    <div class="pages">
-        <Header></Header>
-        <Map :data="dataRoute.datas" v-if="dataRoute"></Map>
-        <!-- 搜索面板 -->
-        <div class="search-panel" :class="{'hide':showSearch}">
-            <div class="panel-contorl abs" @click="showSearch=!showSearch">
-                <i class="iconfont" :class="{'iconsousuo':showSearch,'iconleft':!showSearch}"></i>
-                查询
-            </div>
-            <div class="main-box">
-                <div class="main-type flex flex-yc">
-                    <label>查询类型</label>
-                    <el-radio
-                        v-model="searchType"
-                        v-for="(item,index) in searchTypeOption"
-                        :key="'s'+index"
-                        :label="item[0]"
-                        :disabled="item[0]!=1"
-                    >{{item[1]}}</el-radio>
-                </div>
-                <div class="main-body">
-                    <div class="item flex flex-yc">
-                        <label>出发地</label>
-                        <div class="item-input">
-                            <el-select v-model="dep" filterable placeholder="请选择出发城市"></el-select>
-                        </div>
-                    </div>
-                    <div class="item flex flex-yc">
-                        <label>目的地</label>
-                        <div class="item-input">
-                            <el-select v-model="arr" filterable placeholder="请选择"></el-select>
-                        </div>
-                    </div>
-                    <div class="item flex flex-yc">
-                        <label>出行日期</label>
-                        <div class="item-input">
-                            <el-date-picker v-model="date" type="date" placeholder="选择日期"></el-date-picker>
-                        </div>
-                    </div>
-                    <button type="button" @click="getData">查询</button>
-                </div>
-            </div>
+  <div class="pages">
+    <Header></Header>
+    <Map :data="dataRoute.datas" v-if="dataRoute"></Map>
+    <!-- 搜索面板 -->
+    <div class="search-panel" :class="{'hide':showSearch}">
+      <div class="panel-contorl abs" @click="showSearch=!showSearch">
+        <i class="iconfont" :class="{'iconsousuo':showSearch,'iconleft':!showSearch}"></i>
+        查询
+      </div>
+      <div class="main-box">
+        <div class="main-type flex flex-yc">
+          <label>查询类型</label>
+          <el-radio
+            v-model="searchType"
+            v-for="(item,index) in searchTypeOption"
+            :key="'s'+index"
+            :label="item[0]"
+            :disabled="item[0]!=1"
+          >{{item[1]}}</el-radio>
         </div>
-        <!-- 结果展示面板 -->
-        <div class="routes-panel" v-if="dataRoute">
-            <div class="routes-warp">
-                <happy-scroll color="rgba(0,0,0,.5)">
-                    <recommendRoute :data="dataRoute.happy" :title="'最为舒适'"></recommendRoute>
-                    <recommendRoute :data="dataRoute.early" :title="'最早到达'"></recommendRoute>
-                    <recommendRoute :data="dataRoute.cheap" :title="'价格最低'"></recommendRoute>
-                    <recommendRoute :data="dataRoute.short" :title="'最短时长'"></recommendRoute>
-                </happy-scroll>
-                <all :data="dataRoute.datas" :active="showAll" @back="showAll=false"></all>
+        <div class="main-body">
+          <div class="item flex flex-yc">
+            <label>出发地</label>
+            <div class="item-input">
+              <el-select v-model="depInfo.name"
+                filterable
+                :filter-method="depSearch"
+                placeholder="请选择出发城市">
+                <div v-if="depInfo.optionType">
+                  <el-option v-for="(item, index) in depSearchResult" :key="index" :label="item[0]" :value="item[0]">
+                      <span style="color: blue" v-text="item[0]"></span>
+                      <span v-text="item[1]"></span>
+                      <span v-text="'englishName'"></span>
+                  </el-option>
+                </div>
+                <div v-else>
+                  <div>热门城市</div>
+                  <el-option v-for="item in [4,5,6]" :key="item" :label="item" :value="item">
+                    <span v-text="item"></span>
+                    <span v-text="'PEK'"></span>
+                  </el-option>
+                </div>
+              </el-select>
             </div>
-            <div class="intro flex flex-between" @click="showAll=true">
-                <p>共涉及{{dataRoute.lines.length}}种行程路线、{{dataRoute.datas.length}}种出行方案</p>
-                <p>
-                    查看所有方案
-                    <i class="iconfont iconright"></i>
-                </p>
+          </div>
+          <div class="item flex flex-yc">
+            <label>目的地</label>
+            <div class="item-input">
+              <el-select v-model="tarInfo.name"
+                filterable
+                :filter-method="tarSearch"
+                placeholder="请选择">
+                <div v-if="tarInfo.optionType">
+                  <el-option v-for="(item, index) in tarSearchResult" :key="index" :label="item[0]" :value="item[0]">
+                      <span style="color: blue" v-text="item[0]"></span>
+                      <span v-text="item[1]"></span>
+                      <span v-text="'englishName'"></span>
+                  </el-option>
+                </div>
+                <div v-else>
+                  <div>热门城市</div>
+                  <el-option v-for="item in [4,5,6]" :key="item" :label="item" :value="item">
+                    <span v-text="item"></span>
+                    <span v-text="'PEK'"></span>
+                  </el-option>
+                </div>
+              </el-select>
             </div>
+          </div>
+          <div class="item flex flex-yc">
+            <label>出行日期</label>
+            <div class="item-input">
+              <el-date-picker v-model="date" type="date" placeholder="选择日期"></el-date-picker>
+            </div>
+          </div>
+          <button type="button" @click="getData">查询</button>
         </div>
+      </div>
     </div>
+    <!-- 结果展示面板 -->
+    <div class="routes-panel" v-if="dataRoute">
+      <div class="routes-warp">
+        <happy-scroll color="rgba(0,0,0,.5)">
+          <recommendRoute :data="dataRoute.happy" :title="'最为舒适'"></recommendRoute>
+          <recommendRoute :data="dataRoute.early" :title="'最早到达'"></recommendRoute>
+          <recommendRoute :data="dataRoute.cheap" :title="'价格最低'"></recommendRoute>
+          <recommendRoute :data="dataRoute.short" :title="'最短时长'"></recommendRoute>
+        </happy-scroll>
+        <all :data="dataRoute.datas" :active="showAll" @back="showAll=false"></all>
+      </div>
+      <div class="intro flex flex-between" @click="showAll=true">
+        <p>共涉及{{dataRoute.lines.length}}种行程路线、{{dataRoute.datas.length}}种出行方案</p>
+        <p>
+          查看所有方案
+          <i class="iconfont iconright"></i>
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-import Header from "@/components/header";
-import recommendRoute from "./components/recommend-route";
-import Map from "./components/map";
-import all from "./components/all";
-import dataRoute from "./data";
-import cityGps from "@/service/cityDict";
-import { HappyScroll } from "vue-happy-scroll";
-import "vue-happy-scroll/docs/happy-scroll.css";
-import { getIndexData } from "@/service/getData";
-import { Loading } from "element-ui";
+import Header from '@/components/header'
+import recommendRoute from './components/recommend-route'
+import Map from './components/map'
+import all from './components/all'
+import dataRoute from './data'
+import cityGps from '@/service/cityDict'
+import stationDict from '@/service/stationDict'
+import { HappyScroll } from 'vue-happy-scroll'
+import 'vue-happy-scroll/docs/happy-scroll.css'
+import { getIndexData } from '@/service/getData'
+import { Loading } from 'element-ui'
 
 export default {
-    components: {
-        Header,
-        recommendRoute,
-        all,
-        HappyScroll,
-        Map
-    },
-    data() {
-        return {
-            showSearch: true,
-            dataRoute: null,
-            showAll: false,
-            searchType: 1,
-            searchTypeOption: [[1, "Air-Rail"], [2, "Air"], [3, "Rail"]],
-            date: "",
-            dep: "",
-            arr: "",
-            cityGps: cityGps,
-            loading: null
-        };
-    },
-
-    mounted() {
-        this.loading = Loading.service({
-            lock: true,
-            text: "正在加载数据...",
-            background: "rgba(0, 0, 0, 0.5)"
-        });
-        this.getData();
-    },
-    methods: {
-        getData() {
-            let obj = {
-                type: this.type,
-                dep: this.dep,
-                arr: this.arr,
-                date: this.date
-            };
-            this.dataRoute = dataRoute;
-            setTimeout(() => {
-                this.loading.close();
-            }, 4000);
-            return;
-            getIndexData(obj).then(res => {
-                this.dataRoute = dataRoute;
-            });
-        }
+  components: {
+    Header,
+    recommendRoute,
+    all,
+    HappyScroll,
+    Map
+  },
+  data () {
+    return {
+      // 被搜索的数据的索引集合
+      depSearchIndex: [],
+      tarSearchIndex: [],
+      showSearch: true,
+      dataRoute: null,
+      showAll: false,
+      searchType: 1,
+      searchTypeOption: [[1, 'Air-Rail'], [2, 'Air'], [3, 'Rail']],
+      date: '',
+      // 出发站
+      depInfo: {
+        name: '',
+        // 0 - 热门+拼音排序   1 - 搜索后的界面
+        optionType: 0
+      },
+      // 目的地
+      tarInfo: {
+        name: '',
+        // 0 - 热门+拼音排序   1 - 搜索后的界面
+        optionType: 0
+      },
+      cityGps: cityGps,
+      loading: null
     }
-};
+  },
+  updated () {
+    console.timeEnd('渲染花费')
+  },
+  created () {
+  },
+  watch: {
+  },
+  computed: {
+    // 目的地搜索结果集合
+    tarSearchResult: function () {
+      let that = this
+      return that.getSearchResult(that.tarSearchIndex)
+    },
+    // 出发站搜索结果集合
+    depSearchResult: function () {
+      let that = this
+      return that.getSearchResult(that.depSearchIndex)
+    },
+    // 所有站点（包括飞机火车）
+    allSiteInfoList: function () {
+      let that = this
+      return [].concat(that.flightInfoList, that.trainInfoList)
+    },
+    // 所有站点数据字符串形式（一条数据一个字符串，比如，['卡塔卡马斯机场', '-85.89445', '14.830556', 'CAA'],）
+    // 变成：'卡塔卡马斯机场,-85.89445,14.830556,CAA'
+    // 用于el-select 搜索
+    allSiteInfoStrList: function () {
+      let that = this
+      let list = []
+      let opList = that.allSiteInfoList
+      for (let i = 0; i < opList.length; i++) {
+        let str = opList[i].join(',')
+        list.push(str)
+      }
+      list = [...new Set(list)]
+      return list
+    },
+    flightInfoList: function () {
+      return this.getFAndTList('flight')
+    },
+    trainInfoList: function () {
+      return this.getFAndTList('train')
+    }
+  },
+  mounted () {
+    this.loading = Loading.service({
+      lock: true,
+      text: '正在加载数据...',
+      background: 'rgba(0, 0, 0, 0.5)'
+    })
+    this.getData()
+  },
+  methods: {
+    /**
+     * 计算搜索结果计划
+     * @param {Array} indexList 搜索结果的索引集合
+     */
+    getSearchResult (indexList) {
+      let list = []
+      let siteList = this.allSiteInfoStrList
+      for (let i of indexList) {
+        let data = siteList[i].split(',')
+        list.push(data)
+      }
+      return list
+    },
+    /**
+     * 获取飞机or火车数据列表func
+     * @param {string} type 类型--飞机/火车 flight -- train
+     */
+    getFAndTList (type) {
+      let list = []
+      type = type === 'flight' ? 'f' : 't'
+      let keys = Object.keys(stationDict[type])
+      for (let key of keys) {
+        let data = stationDict[type][key]
+        if (!data[3] || !data[3][0]) {
+          continue
+        }
+        data = [cityGps[data[3]][0], data[3]]
+        list.push(data)
+      }
+      return list
+    },
+    /**
+     * 检测地点类型
+     * @param {string} placeType 地点类型 tar-目的地/dep-出发地
+     */
+    depSearch (searchText) {
+      let that = this
+      that.depInfo.name = searchText
+      that.depInfo.optionType = searchText ? 1 : 0
+      that.depSearchIndex = that.searchChange(searchText)
+    },
+    tarSearch (searchText) {
+      let that = this
+      that.tarInfo.name = searchText
+      that.tarInfo.optionType = searchText ? 1 : 0
+      that.tarSearchIndex = that.searchChange(searchText)
+    },
+    /**
+     * 改变出发站选择框条件值
+     * @param {string} searchText 搜索条件
+     */
+    searchChange (searchText) {
+      let that = this
+      let strList = that.allSiteInfoStrList
+      let list = []
+      console.time('搜索花费')
+      for (let i = 0; i < strList.length; i++) {
+        let cityStr = strList[i]
+        if (cityStr.indexOf(searchText) > -1) {
+          list.push(i)
+        } else if (searchText.length > 1) {
+          let textArr = searchText.split('')
+          let res = []
+          for (let te of textArr) {
+            res.push(cityStr.indexOf(te))
+          }
+          if (res[res.length - 1] < 0) {
+            continue
+          }
+          // 匹配标志位
+          let flag = false
+          for (let j = 0; j < res.length - 1; j++) {
+            if (res[j] > res[j + 1] || res[j] < 0 || res[j + 1] < 0) {
+              flag = true
+            }
+          }
+          if (!flag) {
+            list.push(i)
+          }
+        }
+      }
+      console.timeEnd('搜索花费')
+      return list
+    },
+    /**
+     * 获取数据
+     */
+    getData () {
+      let that = this
+      that.dataRoute = dataRoute
+      setTimeout(() => {
+        that.loading.close()
+      }, 4000)
+      return getIndexData({
+        type: that.type,
+        dep: that.depInfo.name,
+        arr: that.tarInfo.name,
+        date: that.date
+      }).then(res => {
+        that.dataRoute = dataRoute
+      })
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 .autocomplete-input {
-    border: 1px solid #000;
-    height: 30px;
+  border: 1px solid #000;
+  height: 30px;
 }
 .search-panel {
-    position: fixed;
-    width: 360px;
-    height: 440px;
-    background: rgb(255, 255, 255, 1);
-    box-shadow: 0px 3px 9px 1px rgba(17, 70, 188, 0.09),
-        0px -3px 9px 1px rgba(17, 70, 188, 0.09);
-    z-index: 10;
-    top: 150px;
-    left: 0;
+  position: fixed;
+  width: 360px;
+  height: 440px;
+  background: rgb(255, 255, 255, 1);
+  box-shadow: 0px 3px 9px 1px rgba(17, 70, 188, 0.09),
+    0px -3px 9px 1px rgba(17, 70, 188, 0.09);
+  z-index: 10;
+  top: 150px;
+  left: 0;
+  transition: left 0.5s;
+  &.hide {
+    left: -360px;
     transition: left 0.5s;
-    &.hide {
-        left: -360px;
-        transition: left 0.5s;
-    }
-    .main-box {
-        margin: 20px;
-        .main-type {
-            border-bottom: 1px dashed #d3d3d3;
-            line-height: 58px;
-            span {
-                display: inline-block;
-                padding-left: 25px;
-                padding-right: 10px;
-                position: relative;
-                &:before {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    height: 14px;
-                    width: 14px;
-                    border-radius: 100%;
-                    border: 1px solid #e9e9e9;
-                    top: 50%;
-                    margin-top: -7.5px;
-                }
-                &.active {
-                    &::before {
-                        border-color: #1146bc;
-                    }
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        left: 4px;
-                        height: 7px;
-                        width: 7px;
-                        border-radius: 100%;
-                        top: 50%;
-                        background: #1146bc;
-                        margin-top: -3.5px;
-                    }
-                }
-            }
+  }
+  .main-box {
+    margin: 20px;
+    .main-type {
+      border-bottom: 1px dashed #d3d3d3;
+      line-height: 58px;
+      span {
+        display: inline-block;
+        padding-left: 25px;
+        padding-right: 10px;
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          height: 14px;
+          width: 14px;
+          border-radius: 100%;
+          border: 1px solid #e9e9e9;
+          top: 50%;
+          margin-top: -7.5px;
         }
-        label {
-            font-size: 16px;
-            color: #333;
-            width: 80px;
-            margin-right: 10px;
+        &.active {
+          &::before {
+            border-color: #1146bc;
+          }
+          &:after {
+            content: "";
+            position: absolute;
+            left: 4px;
+            height: 7px;
+            width: 7px;
+            border-radius: 100%;
+            top: 50%;
+            background: #1146bc;
+            margin-top: -3.5px;
+          }
         }
+      }
     }
-    .el-select {
-        display: block;
+    label {
+      font-size: 16px;
+      color: #333;
+      width: 80px;
+      margin-right: 10px;
     }
-    .el-date-editor.el-input {
-        width: 100%;
-    }
-    .main-body {
-        .item {
-            padding: 30px 0 0 0;
-            .item-input {
-                height: 40px;
-                width: 95%;
-                input {
-                    width: 100%;
-                    line-height: 40px;
-                    background: none;
-                }
-            }
+  }
+  .el-select {
+    display: block;
+  }
+  .el-date-editor.el-input {
+    width: 100%;
+  }
+  .main-body {
+    .item {
+      padding: 30px 0 0 0;
+      .item-input {
+        height: 40px;
+        width: 95%;
+        input {
+          width: 100%;
+          line-height: 40px;
+          background: none;
         }
-        button {
-            background-color: #1146bc;
-            color: #fff;
-            width: 100%;
-            margin-top: 50px;
-            height: 40px;
-            line-height: 40px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 400px;
-        }
+      }
     }
+    button {
+      background-color: #1146bc;
+      color: #fff;
+      width: 100%;
+      margin-top: 50px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 400px;
+    }
+  }
 }
 .panel-contorl {
-    background: #1146bc;
-    cursor: pointer;
-    height: 140px;
-    width: 50px;
-    padding: 30px 15px;
-    right: -51px;
-    top: 50%;
-    margin-top: -70px;
-    box-shadow: 2px 3px 18px 0px #6186d6;
-    i {
-        display: block;
-        font-size: 24px;
-    }
-    color: #fff;
-    font-size: 18px;
-    border-radius: 5px;
+  background: #1146bc;
+  cursor: pointer;
+  height: 140px;
+  width: 50px;
+  padding: 30px 15px;
+  right: -51px;
+  top: 50%;
+  margin-top: -70px;
+  box-shadow: 2px 3px 18px 0px #6186d6;
+  i {
+    display: block;
+    font-size: 24px;
+  }
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
 }
 .routes-panel {
-    width: 538px;
-    height: 80vh;
-    // display: none;
-    position: fixed;
-    right: 10px;
-    top: 120px;
-    background: #fff;
-    padding-bottom: 40px;
-    z-index: 9;
-    box-shadow: 0px 3px 9px 1px rgba(17, 70, 188, 0.09),
-        0px -3px 9px 1px rgba(17, 70, 188, 0.09);
-    border-radius: 10px;
-    padding: 26px 0 0;
+  width: 538px;
+  height: 80vh;
+  // display: none;
+  position: fixed;
+  right: 10px;
+  top: 120px;
+  background: #fff;
+  padding-bottom: 40px;
+  z-index: 9;
+  box-shadow: 0px 3px 9px 1px rgba(17, 70, 188, 0.09),
+    0px -3px 9px 1px rgba(17, 70, 188, 0.09);
+  border-radius: 10px;
+  padding: 26px 0 0;
+  overflow: hidden;
+  .panel-warp {
+    height: 100%;
     overflow: hidden;
-    .panel-warp {
-        height: 100%;
-        overflow: hidden;
-    }
-    .intro {
-        font-weight: bold;
-        position: absolute;
-        bottom: 0;
-        background: #1146bc;
-        width: 100%;
-        left: 0;
-        height: 40px;
-        line-height: 40px;
-        padding: 0 4%;
-        color: #fff;
-        z-index: 9;
-    }
+  }
+  .intro {
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    background: #1146bc;
+    width: 100%;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 4%;
+    color: #fff;
+    z-index: 9;
+  }
 }
 .routes-warp {
-    padding-bottom: 90px;
-    height: 80vh;
-    overflow: hidden;
+  padding-bottom: 90px;
+  height: 80vh;
+  overflow: hidden;
 }
 </style>
-
