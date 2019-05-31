@@ -182,7 +182,8 @@ export default {
         let str = opList[i].join(',')
         list.push(str)
       }
-      return [...new Set(list)]
+      list = [...new Set(list)]
+      return list
     },
     flightInfoList: function () {
       return this.getFAndTList('flight')
