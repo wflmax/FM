@@ -164,7 +164,23 @@ html, body {
   color: #FFF;
   text-shadow: 0 0 4px #150707, 0 0 3px #151010, 0 0 2px #a08d8d, 0 0 2px #131111;
   max-width: 125px;
-    font-size:12px;
+  font-size:12px;
   width: 85px;
   overflow: hidden;
+}
+.markerlabels_top{
+    margin-top:-25px!important;
+    margin-left:-15px!important;
+}
+.markerlabels_right{
+    margin-left:15px!important;
+    margin-top: -8px!important;
+}
+.markerlabels_left{
+    margin-left:-28px!important;
+    margin-top:5px!important;
+}
+.markerlabels_bottom{
+    margin-top:15px!important;
+    margin-left:-15px!important;
 }

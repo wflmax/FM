@@ -62,7 +62,7 @@ export default {
             trainRoutes: [],
             mapOption: {
                 backgroundColor: "#fefefe",
-                minZoom: 2,
+                minZoom:4,
                 maxZoom: 6,
                 streetViewControl: false,
                 mapTypeControl: false,
@@ -80,7 +80,8 @@ export default {
                 boundaryColor: "#d1d1d1" //国界颜色
             },
             bounds: null,
-            hoverOffset:8000//解决label 重叠问题
+            labelPosition:['_left','_top','_right','_bottom'],
+            citysLevel:{}//设置同一城市站点的排序 优化label堆叠
         };
     },
     mounted() {
@@ -357,12 +358,18 @@ export default {
         drawMaker(type, code) {
             let self = this;
             let coord = stationCoord.coord(type, code);
+            let cityCode = stationCoord.city(type, code);
             let latLng = new google.maps.LatLng(
                 Number(coord[2]),
                 Number(coord[1])
             );
-            let citys=cityCoord.coord(coord[3]);
-            let r=(Math.random()*2000-1000)/100;
+            let citys=stationCoord.city(type, code);
+            if(this.cityLevel[cityCode]!==undefined){
+                this.cityLevel[cityCode]++;
+            }else{
+                this.cityLevel[cityCode]=0;
+            }
+            let labelIndex=this.cityLevel[cityCode];
             this.bounds.extend(latLng);
             let icon_opt = {
                 path: self.mapConstant.uSymbol,
@@ -378,11 +385,12 @@ export default {
                 map: self.map,
                 title: coord[0]+'('+code+')',
                 cityCoord:citys,
-                codeInfo:coord,
+                codeInfo:coord[0],
                 labelContent: coord[0],
                 icon: icon_opt,
-                labelClass: "markerlabels", // the CSS class for the label
-                labelAnchor: new google.maps.Point(r, r)
+                labelIndex:labelIndex,
+                labelClass: "markerlabels markerlabels"+this.labelPosition[labelIndex], // the CSS class for the label
+                labelAnchor: new google.maps.Point(0, 0)
             });
             this.mapZoomChanged(marker);
             this.mapConstant.markersArray.push(marker);
@@ -429,11 +437,12 @@ export default {
                 "zoom_changed",
                 (event)=> {
                     let city=markers.cityCoord;
-                    let code=markers.codeInfo;
-                    if (this.map.getZoom() <= 5 ) {
-                        markers.set('labelContent', city[0]);
+                    if (this.map.getZoom() <= 5 && markers.labelIndex==0) {
+                        markers.set('labelContent', city);
+                    }else if (this.map.getZoom() <= 5 && markers.labelIndex>0) {
+                        markers.set('labelContent', '');
                     } else {
-                        markers.set('labelContent', code[0]); //显示标注
+                        markers.set('labelContent', markers.codeInfo); //显示标注
                     }
 
                 }
@@ -512,7 +521,7 @@ export default {
             return g;
         },
         /**
-         * 清除画布
+         * 清除画布重置相关数据
          */
         clearMap() {
             var _nPolylineSumCount = this.mapConstant.polylines.length;
@@ -534,6 +543,7 @@ export default {
             this.trainMakers=[];
             this.flightRoutes= [];
             this.trainRoutes=[];
+            this.cityLevel={};
         },
         }
 };
@@ -555,6 +565,7 @@ export default {
     background:rgba(0,0,0,.4);color: #fff;
     padding: 2px 5px;
     border-radius: 3px;
+    font-size: 12px;
 }
 
 /deep/.marker-nomarl {
