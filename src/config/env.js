@@ -8,7 +8,7 @@
 
 let webUrl = ''
 let routerMode = 'hash'
-let mapKey = 'AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y1'
+let mapKey = 'AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y'
 if (process.env.NODE_ENV == 'development') { // 本地开发
   webUrl = ''
 } else if (process.env.NODE_ENV == 'testing') { // 现场测试环境
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV == 'development') { // 本地开发
 } else if (process.env.NODE_ENV == 'production') { // 生产环境
   mapKey = 'AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y'
 }
-let baseUrl = webUrl//可能拼接
+let baseUrl = webUrl// 可能拼接
 export {
   baseUrl,
   routerMode,
