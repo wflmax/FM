@@ -80,7 +80,32 @@
       </div>
     </div>
     <!-- 结果展示面板 -->
-    <div class="routes-panel" v-if="dataRoute">
+    <div class="routes-panel" :class="{'current': routesPanelFlag}" v-if="dataRoute">
+      <!-- 窗口开关 -->
+      <div class="panel-switch" @click="switchRoutesPanel()">
+        <span v-show="routesPanelFlag">
+          收起
+          <svg t="1559531303271" class="icon" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="1143"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="20">
+            <path d="M392.7 76.3l489.1 403.1c18.9 16.9 18.9 46.5 0 63.4L392.7 947.7c-27.4 24.4-70.8 5-70.8-31.7V107.9c0.1-36.6 43.4-56.1 70.8-31.6z" p-id="1144" fill="rgba(153,153,153,1)"></path>
+          </svg>
+        </span>
+        <span v-show="!routesPanelFlag">
+          展开
+          <svg xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            t="1559531597217" class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            p-id="1473"
+            width="14"
+            height="20">
+            <path d="M631.3 76.3l-489.2 403c-18.9 16.9-18.9 46.5 0 63.4l489.1 405.1c27.4 24.4 70.8 5 70.8-31.7V107.9c0-36.6-43.4-56.1-70.7-31.6z" p-id="1474" fill="rgba(153,153,153,1)"/>
+          </svg>
+        </span>
+      </div>
+      <!-- 路线详细 -->
       <div class="routes-warp">
         <happy-scroll color="rgba(0,0,0,.5)">
           <recommendRoute :data="dataRoute.happy" :title="'最为舒适'"></recommendRoute>
@@ -98,12 +123,14 @@
         </p>
       </div>
     </div>
+    <!-- 反馈窗口 -->
+    <feed-back></feed-back>
   </div>
 </template>
 <script>
 import Header from '@/components/header'
 import recommendRoute from './components/recommend-route'
-import Map from './components/map'
+import Map from './components/map/map'
 import all from './components/all'
 import dataRoute from './data'
 import cityGps from '@/service/cityDict'
@@ -112,6 +139,7 @@ import { HappyScroll } from 'vue-happy-scroll'
 import 'vue-happy-scroll/docs/happy-scroll.css'
 import { getIndexData } from '@/service/getData'
 import { Loading } from 'element-ui'
+import FeedBack from './components/feed-back/feed-back'
 
 export default {
   components: {
@@ -119,10 +147,13 @@ export default {
     recommendRoute,
     all,
     HappyScroll,
-    Map
+    Map,
+    'feed-back': FeedBack
   },
   data () {
     return {
+      // 结果面板展示标志位
+      routesPanelFlag: false,
       // 被搜索的数据的索引集合
       depSearchIndex: [],
       tarSearchIndex: [],
@@ -159,11 +190,13 @@ export default {
     // 目的地搜索结果集合
     tarSearchResult: function () {
       let that = this
+      console.time('渲染花费')
       return that.getSearchResult(that.tarSearchIndex)
     },
     // 出发站搜索结果集合
     depSearchResult: function () {
       let that = this
+      console.time('渲染花费')
       return that.getSearchResult(that.depSearchIndex)
     },
     // 所有站点（包括飞机火车）
@@ -182,8 +215,7 @@ export default {
         let str = opList[i].join(',')
         list.push(str)
       }
-      list = [...new Set(list)]
-      return list
+      return [...new Set(list)]
     },
     flightInfoList: function () {
       return this.getFAndTList('flight')
@@ -201,6 +233,13 @@ export default {
     this.getData()
   },
   methods: {
+    /**
+     * xx
+     */
+    switchRoutesPanel () {
+      let that = this
+      that.routesPanelFlag = !that.routesPanelFlag
+    },
     /**
      * 计算搜索结果计划
      * @param {Array} indexList 搜索结果的索引集合
@@ -307,6 +346,43 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.panel-switch {
+  cursor: pointer;
+  position: absolute;
+  width: 40px;
+  height: 300px;
+  left: -40px;
+  top: 30%;
+  text-align: center;
+  // overflow: hidden;
+  transform: translate(0, -50%);
+  // border: 1px solid red;
+  span {
+    z-index: 1;
+    display: block;
+    text-align: center;
+    word-wrap: break-word;
+    height: 90px;
+    margin: 105px auto 0 auto;
+    width: 30px;
+    line-height: 30px;
+    font-size: 18px;
+  }
+  &::after {
+    z-index: -1;
+    position: absolute;
+    content: '';
+    width: 120%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: #fff;
+    transform: perspective(50px) rotateY(-10deg);
+    transform-origin: right;
+    box-shadow: -8px 0 9px 1px rgba(17,70,188,0.09);
+  }
+}
+
 .autocomplete-input {
   border: 1px solid #000;
   height: 30px;
@@ -427,7 +503,8 @@ export default {
   height: 80vh;
   // display: none;
   position: fixed;
-  right: 10px;
+  right: 0;
+  transform: translateX(100%);
   top: 120px;
   background: #fff;
   padding-bottom: 40px;
@@ -436,7 +513,11 @@ export default {
     0px -3px 9px 1px rgba(17, 70, 188, 0.09);
   border-radius: 10px;
   padding: 26px 0 0;
-  overflow: hidden;
+  transition: .5s;
+  &.current {
+    right: 10px;
+    transform: translateX(0);
+  }
   .panel-warp {
     height: 100%;
     overflow: hidden;

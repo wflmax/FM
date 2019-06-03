@@ -56,75 +56,74 @@
 </template>
 
 <script>
-import { airlineCoord } from "@/config/utils";
+import { airlineCoord } from '@/config/utils'
 export default {
-    data() {
-        return {
-            airlineCoord: airlineCoord,
-            times:[{time:'0-8',text:'8点以前'},{time:'8-11',text:'8点至11点'},{time:'11-14',text:'11点至14点'},{time:'14-20',text:'14点至20点'},{time:'20-24',text:'20点以后'}],
-            filterData: {
-                dep: '',
-                arr: '',
-                priceSort: '', //desc,asc
-                routeSort: '', //ft,tf
-                airline: [], //[CA,CZ,..]
-                routeLine: [] //[0,1,2]
-            }
-        };
-    },
-    props: {
-        time: {
-            type: String,
-            default: ""
-        },
-        lines: {
-            type: Array
-        },
-        airlines: {
-            type: Array
-        }
-    },
-    mounted() {},
-    methods: {
-        setFilter(type, item) {
-            switch (type) {
-                case "airline":
-                    let i=this.filterData.airline.indexOf(item);
-                    if(i==-1){
-                         this.filterData.airline.push(item);
-                    }else{
-                         this.filterData.airline.splice(i,1);
-                    }
-                    break;
-                case "routeLine":
-                    let x=this.filterData.routeLine.indexOf(item);
-                    if(x==-1){
-                         this.filterData.routeLine.push(item);
-                    }else{
-                         this.filterData.routeLine.splice(x,1);
-                    }
-                    break;
-
-                default:
-                    this.filterData[type]=this.filterData[type]==item?'':item;
-                    break;
-            }
-            this.$emit("filterCallback",this.filterData);
-        },
-        reset(){
-            this. filterData= {
-                dep: '',
-                arr: '',
-                priceSort: '', //desc,asc
-                routeSort: '', //ft,tf
-                airline: [], //[CA,CZ,..]
-                routeLine: [] //[a-b,b-c]
-            }
-            this.$emit("filterReset");
-
-        }
+  data () {
+    return {
+      airlineCoord: airlineCoord,
+      times: [{time: '0-8', text: '8点以前'}, {time: '8-11', text: '8点至11点'}, {time: '11-14', text: '11点至14点'}, {time: '14-20', text: '14点至20点'}, {time: '20-24', text: '20点以后'}],
+      filterData: {
+        dep: '',
+        arr: '',
+        priceSort: '', // desc,asc
+        routeSort: '', // ft,tf
+        airline: [], // [CA,CZ,..]
+        routeLine: [] // [0,1,2]
+      }
     }
-};
+  },
+  props: {
+    time: {
+      type: String,
+      default: ''
+    },
+    lines: {
+      type: Array
+    },
+    airlines: {
+      type: Array
+    }
+  },
+  mounted () {},
+  methods: {
+    setFilter (type, item) {
+      switch (type) {
+        case 'airline':
+          let i = this.filterData.airline.indexOf(item)
+          if (i == -1) {
+            this.filterData.airline.push(item)
+          } else {
+            this.filterData.airline.splice(i, 1)
+          }
+          break
+        case 'routeLine':
+          let x = this.filterData.routeLine.indexOf(item)
+          if (x == -1) {
+            this.filterData.routeLine.push(item)
+          } else {
+            this.filterData.routeLine.splice(x, 1)
+          }
+          break
+
+        default:
+          this.filterData[type] = this.filterData[type] == item ? '' : item
+          break
+      }
+      this.$emit('filterCallback', this.filterData)
+    },
+    reset () {
+      this.filterData = {
+        dep: '',
+        arr: '',
+        priceSort: '', // desc,asc
+        routeSort: '', // ft,tf
+        airline: [], // [CA,CZ,..]
+        routeLine: [] // [a-b,b-c]
+      }
+      this.$emit('filterReset')
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 .filter-box {
@@ -213,4 +212,3 @@ export default {
     }
 }
 </style>
-

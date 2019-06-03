@@ -14,7 +14,7 @@
       <p class="flex flex-column flex-xc">
         <i class="iconfont iconfenxi"></i>分析
       </p>
-      <p class="flex flex-column flex-xc ">
+      <p class="flex flex-column flex-xc " @click="feedBack()">
         <i class="iconfont iconfeedback"></i>反馈
       </p>
       <p class="flex flex-column flex-xc">
@@ -24,7 +24,15 @@
   </div>
 </template>
 <script>
-export default {};
+import Bus from '@/components/bus/bus'
+export default {
+  methods: {
+    // 反馈事件
+    feedBack () {
+      Bus.$emit('feed-back', true)
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -67,4 +75,3 @@ export default {};
   }
 }
 </style>
-
