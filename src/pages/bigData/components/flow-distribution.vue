@@ -347,9 +347,5 @@ export default {
 
 <style lang="less" scoped>
 @import '../../../assets/css/func.less';
-.flight-chart{
-  width: 100%;
-  position: relative;
-  height: 28vh;
-}
+
 </style>

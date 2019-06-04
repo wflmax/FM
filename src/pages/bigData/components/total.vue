@@ -2,7 +2,7 @@
     <!-- 总体信息 -->
     <div class="total-warp">
         <h4 class="title">
-            南宁空铁联运总信息
+            空铁联运总信息
             <span class="sub">空铁联运可达城市</span>
             <span class="num font-nun">{{data.citysCount}}</span>
             <i class="iconfont iconqushi"></i>
@@ -69,10 +69,10 @@
 </template>
 
 <script>
-import data from './../data';
-import Vue from 'vue';
-import echarts from 'vue-echarts';
-import 'echarts/lib/chart/radar';
+import data from './../data'
+import Vue from 'vue'
+import echarts from 'vue-echarts'
+import 'echarts/lib/chart/radar'
 let total = data.total
 export default {
   components: {
@@ -449,42 +449,46 @@ export default {
         ]
       }
     }
-    },
+  },
   props: {},
   mounted () {
-    var chartW = document.getElementById('chartDom').offsetWidth
-       var canvasf = document.getElementById('myCanvasf')
-       canvasf.width = chartW
-        canvasf.height = chartW
+    this.makeFiveStart()
+  },
+  methods: {
+    // 实现五角形
+    makeFiveStart () {
+      var chartW = document.getElementById('chartDom').offsetWidth
+      var canvasf = document.getElementById('myCanvasf')
+      canvasf.width = chartW
+      canvasf.height = chartW
       var ctxf = canvasf.getContext('2d')
       this.draw(ctxf, 'rgba(147, 75, 225,.35)', chartW / 2, chartW / 2, chartW / 2, 5)
       var canvast = document.getElementById('myCanvast')
-       canvast.width = chartW
-        canvast.height = chartW
+      canvast.width = chartW
+      canvast.height = chartW
       var ctxt = canvast.getContext('2d')
       this.draw(ctxt, 'rgba(31, 121, 235, .35)', chartW / 2, chartW / 2, chartW / 2, 5)
     },
-  methods: {
+    // 具体绘制方法
     draw (ctx, c, x, y, r, n) {
       var i, ang
-            ang = (Math.PI * 2) / n
-            ctx.save()
-            ctx.fillStyle = 'transparent';
+      ang = (Math.PI * 2) / n
+      ctx.save()
+      ctx.fillStyle = 'transparent'
       ctx.strokeStyle = c
-            ctx.lineWidth = 16
-            ctx.translate(x, y)
-            ctx.moveTo(0, -r)
-            ctx.beginPath()
-            for (i = 0; i < n; i++) {
+      ctx.lineWidth = 12
+      ctx.translate(x, y)
+      ctx.moveTo(0, -r)
+      ctx.beginPath()
+      for (i = 0; i < n; i++) {
         ctx.rotate(ang)
-
-                ctx.lineTo(0, -r)
-            }
+        ctx.lineTo(0, -r)
+      }
       ctx.closePath()
-            ctx.fill()
-            ctx.stroke()
-            ctx.restore()
-        }
+      ctx.fill()
+      ctx.stroke()
+      ctx.restore()
+    }
   }
 }
 </script>

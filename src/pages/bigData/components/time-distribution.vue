@@ -3,10 +3,7 @@
     <div class="time-warp">
         <h4 class="title"><span class="font-nun">0-24</span>点出行时刻分布</h4>
         <v-chart :options="option" class="time-chart"/>
-        <div class="lengs flex">
-          <p>航班量（架次）</p>
-          <p>高铁量（车次）</p>
-        </div>
+
         <div class="other-info flex flex-yc">
           <div class="flex flex-yc">
              <i class="iconfont iconfeiji"></i>
@@ -34,6 +31,10 @@
              <i class="iconfont icontingzhi"></i>
              <p>高铁平均延误时长<span><b class="font-nun">{{trainData.avgDelayTime}}</b>秒</span></p>
           </div>
+        </div>
+        <div class="lengs flex">
+          <p>航班量（架次）</p>
+          <p>高铁量（车次）</p>
         </div>
     </div>
 </template>

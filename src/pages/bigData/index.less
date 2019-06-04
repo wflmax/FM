@@ -1,4 +1,4 @@
-@import '../../assets/css/func.less';
+@import '../../assets/css/adaptation.less';
 
 @font-face {
     font-family: 'numFont';
@@ -20,6 +20,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
+    .padding(60, 60, 60, 60);
 }
 
 .logo {
@@ -39,10 +40,15 @@ body {
 }
 
 .title {
-    font-size: 1.67rem;
-    font-weight: normal;
+    width: 100%;
+    .height(24);
+    font-family: PingFangSC-Semibold;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    .line-height(24);
+    .font-size(18);
     color: #fff;
-    margin: 1vh 0 1vh 0;
+    .margin(0, 0, 20, 0);
 
     .sub {
         background: linear-gradient(223deg, #FFD74B, #F65951);
@@ -68,54 +74,45 @@ body {
     }
 }
 
-
-.proportion-warp {
-    position: absolute;
-    right: 2vw;
-    bottom: 6vh;
-    z-index: 20;
-}
-
+// 机型占比/车型占比
 .proportion-box {
     width: 100%;
     height: 100%;
     position: relative;
     color: #fff;
-    .title {
-      text-indent: 1vw;
-      margin: 0;
+    .margin(0,0,0,20);
+    &:first-child {
+        .margin(0,20,0,0);
     }
-    // &:nth-child(1) {
-    //     margin-right: 2.5vw;
-    // }
-
     .proportion-body {
         position: relative;
-        height: 6vw;
+        .height(200 - 44);
     }
 
     .proportion-tag {
-        width: 38%;
+        .width(164);
         font-size: 1.67rem;
         flex-flow: row wrap;
 
         p {
-          font-size: 1.1rem;
-            margin: 0 0 0 1vw;
-            width: 3.5vw;
+            font-size: 1.1rem;
+            .margin(0,15,0,0);
+            .width(66);
+            .height(40);
             text-align: center;
 
             &.right {
-                margin: 0 1vw 0 0;
+                .margin(0,0,0,15);
             }
         }
 
         span {
-            height: 1.42rem;
+            .width(66);
+            .height(20);
+            .line-height(20);
             background: rgba(147, 74, 225, 1);
             text-transform: uppercase;
             border-radius: 0.17rem;
-            line-height: 1.42rem;
             text-align: center;
             display: block;
             font-size: 0.8rem;
@@ -125,8 +122,8 @@ body {
     }
 
     .proportion-circle {
-        height: 6vw;
-        width: 6vw;
+        width: 18vh;
+        height: 18vh;
         border: .5rem solid rgba(147, 75, 225, 0);
         border-radius: 100%;
         // background:  rgba(147,75,225,.35);
@@ -149,7 +146,6 @@ body {
     &.proportion-train {
         .proportion-tag {
             span {
-                width: 6.67rem;
                 background: #2C99FF;
             }
         }
@@ -161,28 +157,209 @@ body {
     }
 }
 
-.time-warp {
-    .time-chart {
-        width: 100% !important;
-        height: 20vh !important;
-    }
-
-    color: #fff;
+.map-warp {
     position: absolute;
-    width:30vw;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+
+    .map {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+}
+
+// add by yuqb 20190528
+.logo-container {
+    .width(375);
+    .height(35);
+}
+
+.logo {
+    width: 100%;
+}
+
+// 总信息
+.total-warp {
+    position: relative;
+    .margin(60, 0, 0, 0);
+    .width(900);
+    .height(200);
+    overflow: hidden;
+    color: #fff;
     z-index: 20;
 
+    .chart-box {
+        width: 50%;
+        .padding(0, 0, 0, 25);
+        position: relative;
+
+        &:first-child {
+            .padding(0, 25, 0, 0);
+        }
+
+        .chart {
+            position: absolute;
+            width: 17vh;
+            height: 17vh;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+
+            .charts {
+                position: absolute;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+        }
+
+        .list {
+            position: relative;
+            z-index: 2;
+            .height(150);
+
+            .name {
+                background: linear-gradient(223deg, rgba(206, 76, 229, 1), #F94A6F);
+                .width(84);
+                .height(20);
+                .line-height(20);
+                .font-size(12);
+                border-radius: 0.17rem;
+                display: inline-block;
+                text-align: center;
+                // margin-right: .5rem;
+                box-shadow: 0rem 0.17rem 0.83rem 0rem rgba(0, 0, 0, 0.5);
+                overflow: hidden;
+
+                &.train {
+                    background: linear-gradient(223deg, rgba(62, 204, 232, 1) 0%, rgba(4, 110, 252, 1) 100%, rgba(249, 74, 111, 1) 100%);
+                }
+            }
+
+            .fun {
+                font-family: 'numFont';
+                .font-size(17);
+                display: inline-block;
+                min-width: 2rem;
+            }
+
+            p {
+                border-bottom: 1px solid #fff;
+                padding-bottom: .2rem;
+                display: inline-block;
+                position: absolute;
+
+                &:nth-child(1) {
+                    left: 0;
+                    width: 53%;
+                    top: 0;
+                }
+
+                &:nth-child(2) {
+                    left: 0;
+                    width: 39%;
+                    top: 22%;
+                }
+
+                &:nth-child(3) {
+                    left: 0;
+                    width: 50%;
+                    top: 47%;
+                }
+
+                &:nth-child(4) {
+                    text-align: right;
+                    right: 0;
+                    width: 42%;
+                    top: 55%;
+                }
+
+                &:nth-child(5) {
+                    text-align: right;
+                    right: 0;
+                    width: 36%;
+                    top: 23%;
+                }
+
+            }
+
+            &.train {
+                p {
+                    &:nth-child(1) {
+                        left: 0;
+                        width: 46%;
+                        top: -10%;
+                    }
+
+                    &:nth-child(2) {
+                        left: 0;
+                        width: 43%;
+                        top: 30%;
+                    }
+
+                    &:nth-child(3) {
+                        left: 0;
+                        width: 39%;
+                        top: 62%;
+                    }
+
+                    &:nth-child(4) {
+                        text-align: right;
+                        right: 0;
+                        width: 44%;
+                        top: 25%;
+                    }
+
+                    &:nth-child(5) {
+                        text-align: right;
+                        right: 0;
+                        width: 48%;
+                        top: 55%;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+// 出行时刻表
+.time-warp {
+    position: relative;
+    .margin(40, 0, 0, 0);
+    .width(900);
+    .height(200);
+    color: #fff;
+    z-index: 20;
+    overflow: hidden;
+
+    .time-chart {
+        .width(500);
+        .height(130);
+        float: left;
+    }
+
+
     .lengs {
+        position: absolute;
+        bottom: 0;
+        .width(400);
+        .margin(10, 0, 0, 0);
 
         p {
+            width: 50%;
             position: relative;
-            padding-left: 4rem;
             font-size: 1rem;
-            margin-right: 3rem;
+            text-align: center;
+            .text-indent(30);
 
             &:before {
                 content: '';
-                width: 3rem;
+                .width(30);
                 height: 0.2rem;
                 background: linear-gradient(223deg, #F94A6F, #CE4CE5);
                 border-radius: 1rem;
@@ -202,33 +379,36 @@ body {
     }
 
     .other-info {
-        margin-top: 1rem;
+        .width(400);
+        .height(40);
+        .margin(16, 0, 0, 0);
+        float: right;
+        .padding(0, 0, 0, 30);
 
         div {
-          box-sizing: border-box;
-          // width: 33.33%;
-          padding: 0 5% 0 5%;
+            box-sizing: border-box;
+            // .padding(0,4,0,4);
         }
 
         .iconfont {
             display: block;
             font-size: 2.4rem;
-            width: 3.6rem;
+            .width(28);
+            .height(28);
             color: #F94A6F;
         }
 
         p {
-            font-size: 1rem;
+            text-align: left;
+            .text-indent(8);
+            .font-size(10);
 
             span {
-                // display: block;
-
                 b {
-                    font-size: 1.5rem;
+                    .font-size(16);
                     display: inline-block;
                     font-weight: normal;
                     display: inline-block;
-                    padding: 0 0.4rem 0 0.4rem;
                 }
             }
         }
@@ -242,14 +422,15 @@ body {
 }
 
 .potential-warp {
-  overflow: hidden;
+    position: relative;
+    .margin(40, 0, 0, 0);
+    .width(900);
+    .height(200);
+    overflow: hidden;
     color: #fff;
     font-size: 1.17rem;
-    position: absolute;
     z-index: 20;
-    .title {
-      // margin: 0;
-    }
+
     .potential-info {
         flex-flow: row wrap;
 
@@ -257,8 +438,9 @@ body {
             width: 22%;
             margin: 0 4% 0.5vh 0;
         }
+
         .right-curr {
-          margin: 0 0 0.5vh 0;
+            margin: 0 0 0.5vh 0;
         }
     }
 
@@ -305,25 +487,39 @@ body {
             border-radius: .2rem;
             top: -1px;
         }
-
     }
-
 }
 
-// 航班流量分布情况
+// 折线图
 .flow-warp {
-    position: absolute;
-    right: 2vw;
-    top: 0;
-    width: 30vw;
+    position: relative;
+    overflow: hidden;
+    .width(1000);
+    .height(300);
+    .margin(100, 0, 0, 0);
     color: #fff;
     z-index: 20;
-    .flight, .subway {
-      width: 50%;
-      float: left;
+
+    .flight-chart{
+        width: 100%;
+        position: relative;
+        .height(180);
+      }
+
+    .flight,
+    .subway {
+        width: 50%;
+        float: left;
     }
+    .flight {
+        .padding(0,20,0, 0);
+    }
+    .subway {
+        .padding(0, 0,0, 20);
+    }
+
     .sub-title {
-      width: 50%;
+        width: 50%;
         font-size: 1.17rem;
         margin-bottom: 10px;
         color: #F94A6F;
@@ -334,7 +530,7 @@ body {
     }
 
     .lengs {
-      width: 100%;
+        width: 100%;
 
         p {
             position: relative;
@@ -388,219 +584,30 @@ body {
 
         }
     }
-
 }
 
-.total-warp {
-    position: absolute;
-    color: #fff;
-    z-index: 20;
-    .title {
-      margin: 0 0 1vh 0;
-    }
-    .chart-box {
-        width: 50%;
-        padding: 0 1% 0 2%;
-        position: relative;
-
-        .chart {
-            position: absolute;
-            width: 6vw;
-            height: 6vw;
-            left: 50%;
-            margin-left: -3vw;
-            top: 1.5vh;
-
-            .charts {
-                position: absolute;
-                left: 0;
-                width: 100% !important;
-                height: 100% !important;
-            }
-
-        }
-
-        .list {
-            position: relative;
-            z-index: 2;
-            height: 100%;
-            height: 6vw;
-
-            .name {
-                background: linear-gradient(223deg, rgba(206, 76, 229, 1), #F94A6F);
-                width: 3.6vw;
-                height: 2rem;
-                line-height: 2rem;
-                font-size: 1.17rem;
-                border-radius: 0.17rem;
-                display: inline-block;
-                text-align: center;
-                // margin-right: .5rem;
-                box-shadow: 0rem 0.17rem 0.83rem 0rem rgba(0, 0, 0, 0.5);
-                overflow: hidden;
-
-                &.train {
-                    background: linear-gradient(223deg, rgba(62, 204, 232, 1) 0%, rgba(4, 110, 252, 1) 100%, rgba(249, 74, 111, 1) 100%);
-                }
-            }
-
-            .fun {
-                font-family: 'numFont';
-                font-size: 1.67rem;
-                display: inline-block;
-                min-width: 2rem;
-            }
-
-            p {
-                border-bottom: 1px solid #fff;
-                padding-bottom: .2rem;
-                display: inline-block;
-                position: absolute;
-
-                &:nth-child(1) {
-                    left: 0;
-                    width: 45%;
-                    top: 2%;
-                }
-
-                &:nth-child(2) {
-                    left: 0;
-                    width: 39%;
-                    top: 33%;
-                }
-
-                &:nth-child(3) {
-                    left: 0;
-                    width: 40%;
-                    top: 66%;
-                }
-
-                &:nth-child(4) {
-                    text-align: right;
-                    right: 0;
-                    width: 45%;
-                    top: 57%;
-                }
-
-                &:nth-child(5) {
-                    text-align: right;
-                    right: 0;
-                    width: 38%;
-                    top: 23%;
-                }
-
-            }
-
-            &.train {
-                p {
-                    &:nth-child(1) {
-                        left: 0;
-                        width: 48%;
-                        top: 0;
-                    }
-
-                    &:nth-child(2) {
-                        left: 0;
-                        width: 45%;
-                        top: 34%;
-                    }
-
-                    &:nth-child(3) {
-                        left: 0;
-                        width: 41%;
-                        top: 66%;
-                    }
-
-                    &:nth-child(4) {
-                        text-align: right;
-                        right: 0;
-                        width: 41%;
-                        top: 27%;
-                    }
-
-                    &:nth-child(5) {
-                        text-align: right;
-                        right: 0;
-                        width: 44%;
-                        top: 57%;
-                    }
-
-                }
-            }
-        }
-    }
-}
-
-.map-warp {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-
-    .map {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-    }
-}
-
-// add by yuqb 20190528
-.logo-container {
-    position: absolute;
-    left: 10vh;
-    height: 8vh;
-    top: 0;
-    width: 150vh;
-}
-
-.logo {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    // display: none;
-}
-
-.total-warp {
-    width: 150vh;
-    top: 8vh;
-    height: 34vh;
-    overflow: hidden;
-    left: 10vh;
-    // display: none;
-}
-
-.time-warp {
-    width: 150vh;
-    height: 50vh;
-    right: 10vh;
-    bottom: 0;
-    overflow: hidden;
-}
-
-.potential-warp {
-    overflow: hidden;
-    top: 75vh;
-    height: 24vh;
-    width: 150vh;
-    left: 10vh;
-    // 22vh
-    // display: none;
-}
-
-.flow-warp {
-    overflow: hidden;
-    width: 150vh;
-    height: 50vh;
-    right: 10vh;
-    // display: none;
-}
-
+// 机型车型占比
 .proportion-warp {
+    z-index: 20;
+    position: relative;
     overflow: hidden;
-    top: 42vh;
-    height: 33vh;
-    width: 150vh;
-    left: 10vh;
-    // display: none;
+    .width(1000);
+    .height(200);
+    .margin(80, 0, 0, 0);
+}
+
+.box-fl {
+    float: left;
+}
+
+.box-fr {
+    float: right;
+}
+
+.clear-fix {
+    &::after {
+        width: 0;
+        height: 0;
+        clear: both;
+    }
 }
