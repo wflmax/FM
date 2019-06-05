@@ -156,11 +156,8 @@ export const cityCoord = {
   name: function (code) {
     return this.coord(code)[0]
   },
-  lng: function (code) {
-    return this.coord(code)[1]
-  },
-  lat: function (code) {
-    return this.coord(code)[2]
+  level: function (code) {
+    return (this.coord(code) && this.coord(code)[1]) || 999
   }
 }
 

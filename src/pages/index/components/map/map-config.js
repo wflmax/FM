@@ -2,11 +2,17 @@
  * @Author: mikey.yuqbin
  * @Date: 2019-05-30 16:15:05
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-05-31 14:44:28
+ * @Last Modified time: 2019-06-05 15:08:08
  * 地图配置数据
  */
 
 export default {
+  /**
+   * 缩放比例对应城市等级
+   * 制定城市等级与地图缩放之间的关系，以过滤展示
+   */
+  cityLevelAndZoom: {
+  },
   /**
    * 地图颜色配置参数
    * 参数说明：

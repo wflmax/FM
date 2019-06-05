@@ -36,7 +36,7 @@ export default {
     return {
       map: null,
       config: {
-        zoom: 3,
+        zoom: 4,
         centerLat: 39.334053,
         centerLng: 159.02045
       },
@@ -63,7 +63,7 @@ export default {
       mapOption: {
         backgroundColor: '#fefefe',
         minZoom: 4,
-        maxZoom: 7,
+        maxZoom: 9,
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: true
@@ -81,7 +81,7 @@ export default {
       },
       bounds: null,
       labelPosition: ['_left', '_top', '_right', '_bottom'],
-      cityLevel: {}// 设置同一城市站点的排序 优化label堆叠
+      citysLevel: {}// 设置同一城市站点的排序 优化label堆叠
     }
   },
   mounted () {
@@ -354,8 +354,8 @@ export default {
     },
 
     /**
-         * 绘制站点
-         */
+     * 绘制站点
+     */
     drawMaker (type, code) {
       let self = this
       let coord = stationCoord.coord(type, code)
@@ -366,14 +366,16 @@ export default {
       )
       // console.log('<<<<<', latLng.lat(), latLng.lng())
       let citys = stationCoord.city(type, code)
-      if (this.cityLevel[cityCode]) {
+      if (this.cityLevel[cityCode] !== undefined) {
         this.cityLevel[cityCode]++
+        console.log(1)
       } else {
         this.cityLevel[cityCode] = 0
       }
       let labelIndex = this.cityLevel[cityCode]
+      console.log(cityCode, this.cityLevel)
       this.bounds.extend(latLng)
-      let icon_opt = {
+      let iconOpt = {
         path: self.mapConstant.uSymbol,
         fillColor: self.color[type],
         fillOpacity: 0.4,
@@ -390,7 +392,9 @@ export default {
         cityCoord: citys,
         codeInfo: coord[0],
         labelContent: coord[0],
-        icon: icon_opt,
+        icon: iconOpt,
+        // visible: false,
+        cityCode: stationCoord.coord(type, code)[3],
         labelIndex: labelIndex,
         labelClass: 'markerlabels markerlabels' + this.labelPosition[labelIndex], // the CSS class for the label
         labelAnchor: new google.maps.Point(0, 0)
@@ -430,22 +434,43 @@ export default {
       this.polylineOver(flightPath) // 鼠标滑过事件
     },
     /**
+     * 缩放地图时，缩放比例zoom 从min开始逐级递增，城市等级逐渐递增，如果zoom最大间隔值小于城市等级最大间隔值
+     */
+    changeCityLabelShow (markers) {
+      return () => {
+        let that = this
+        let city = markers.cityCoord
+        let map = that.map
+        let zoomVal = map.getZoom()
+        let minZoom = map.minZoom
+        let maxZoom = map.maxZoom
+        let level = Number(cityCoord.level(markers.cityCode))
+        // level
+        if (zoomVal - minZoom + 2 >= level && level) {
+          markers.set('visible', true)
+        } else {
+          markers.set('visible', false)
+        }
+        if (zoomVal === maxZoom) {
+          markers.set('visible', true)
+        }
+        if (zoomVal <= 6 && markers.labelIndex === 0) {
+          markers.set('labelContent', city)
+        } else if (zoomVal <= 6 && markers.labelIndex > 0) {
+          markers.set('visible', false)
+        } else {
+          markers.set('labelContent', markers.codeInfo) // 显示标注
+        }
+      }
+    },
+    /**
          * 地图缩放事件
          */
     mapZoomChanged (markers) {
       var listener = google.maps.event.addListener(
         this.map,
         'zoom_changed',
-        (event) => {
-          let city = markers.cityCoord
-          if (this.map.getZoom() <= 5 && markers.labelIndex == 0) {
-            markers.set('labelContent', city)
-          } else if (this.map.getZoom() <= 5 && markers.labelIndex > 0) {
-            markers.set('labelContent', '')
-          } else {
-            markers.set('labelContent', markers.codeInfo) // 显示标注
-          }
-        }
+        this.changeCityLabelShow(markers)
       )
       return listener
     },
@@ -464,7 +489,7 @@ export default {
         }
         var tipX = Math.round(position.x + 10) + 'px'
         var tipY = Math.round(position.y - yOffset + 10) + 'px'
-        this.$refs.tipBox.innerText = Polyline['from'] + '-' + Polyline['to']
+        this.$refs.tipBox.innerText = Polyline['from'].replace('国际机场', '') + '-' + Polyline['to'].replace('国际机场', '')
         overlay, position = null
         this.$refs.tipBox.style.left = tipX
         this.$refs.tipBox.style.top = tipY
