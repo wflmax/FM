@@ -81,7 +81,7 @@ export default {
       },
       bounds: null,
       labelPosition: ['_left', '_top', '_right', '_bottom'],
-      citysLevel: {}// 设置同一城市站点的排序 优化label堆叠
+      cityLevel: {}// 设置同一城市站点的排序 优化label堆叠
     }
   },
   mounted () {
@@ -366,7 +366,7 @@ export default {
       )
       // console.log('<<<<<', latLng.lat(), latLng.lng())
       let citys = stationCoord.city(type, code)
-      if (this.cityLevel[cityCode] !== undefined) {
+      if (this.cityLevel[cityCode]) {
         this.cityLevel[cityCode]++
       } else {
         this.cityLevel[cityCode] = 0
