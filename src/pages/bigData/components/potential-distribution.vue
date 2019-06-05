@@ -1,7 +1,7 @@
 <template>
     <!-- 潜力分布值 -->
     <div class="potential-warp">
-        <h4 class="title">空铁联运实力值情况</h4>
+        <h4 class="title">广西空铁联运实力值情况</h4>
         <div class="potential-info flex flex-yc">
           <div class="potential-item" v-for="(item,index) in data"
           :class="{'left-curr': (index + 1) % 4 === 1, 'right-curr': (index + 1) % 4 === 0}"
