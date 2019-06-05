@@ -6,18 +6,18 @@
            <p class="sub-title">进出港航班数量（架次）</p>
             <v-chart :options="optionflight" class="flight-chart"/>
             <div class="lengs flex">
-              <p>计划进/出港航班数量（架次）</p>
-              <p>实际进港航班数量（架次）</p>
-              <p>实际出港航班数量（架次）</p>
+              <p>计划进/出港航班数量</p>
+              <p>实际进港航班数量</p>
+              <p>实际出港航班数量</p>
             </div>
         </div>
          <div class="subway">
            <p class="sub-title train">进出站列车数量（车次）</p>
             <v-chart :options="optionTrain" class="flight-chart"/>
             <div class="lengs flex train">
-              <p>计划进/出站列车数量（车次）</p>
-              <p>实际进站列车数量（车次）</p>
-              <p>实际出站列车数量（车次）</p>
+              <p>计划进/出站列车数量</p>
+              <p>实际进站列车数量</p>
+              <p>实际出站列车数量</p>
             </div>
         </div>
     </div>
