@@ -63,7 +63,8 @@ export default {
       mapOption: {
         backgroundColor: '#fefefe',
         minZoom: 4,
-        maxZoom: 9,
+        maxZoom: 6,
+        zoom: 4,
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: true
@@ -454,9 +455,9 @@ export default {
         if (zoomVal === maxZoom) {
           markers.set('visible', true)
         }
-        if (zoomVal <= 6 && markers.labelIndex === 0) {
+        if (zoomVal <= 5 && markers.labelIndex === 0) {
           markers.set('labelContent', city)
-        } else if (zoomVal <= 6 && markers.labelIndex > 0) {
+        } else if (zoomVal <= 5 && markers.labelIndex > 0) {
           markers.set('visible', false)
         } else {
           markers.set('labelContent', markers.codeInfo) // 显示标注

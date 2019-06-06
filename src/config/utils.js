@@ -8,6 +8,11 @@ import stationGps
   from '@/service/stationDict'
 
 /**
+ * 热门城市and城市字母表数据
+ * 数据格式：对象包含hot,A-Z,每个对象都是数组，长度3，012分别对应：城市三字码-城市中文名-国家二字码
+ */
+import cityLetterTable from '../service/hot-city'
+/**
  * 存储localStorage
  */
 export const setStore = (name, content) => {
@@ -187,5 +192,29 @@ export const stationCoord = {
   },
   city: function (type, code) {
     return cityCoord.name(this.coord(type, code)[3])
+  }
+}
+
+/**
+ * 热门城市and城市字母表数据
+ * 数据格式：对象包含hot,A-Z,每个对象都是数组，长度3，012分别对应：城市三字码-城市中文名-国家二字码
+ */
+export const hotCityInterface = {
+  // 获取热门城市列表
+  getHotCityList: () => {
+    return cityLetterTable.hot || []
+  },
+  /**
+   * 获取指定字母的城市列表
+   * @param {String} letterCode 字母：A-Z
+   */
+  getLetterCity: letterCode => {
+    return cityLetterTable[letterCode.toUpperCase()] || []
+  },
+  /**
+   * 获取全部key
+   */
+  getLetterKeys: () => {
+    return Object.keys(cityLetterTable)
   }
 }

@@ -165,7 +165,7 @@ html, body {
   text-shadow: 0 0 4px #150707, 0 0 3px #151010, 0 0 2px #a08d8d, 0 0 2px #131111;
   max-width: 125px;
   font-size:12px;
-  width: 85px;
+  /* width: 85px; */
   overflow: hidden;
 }
 .markerlabels_top{

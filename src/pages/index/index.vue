@@ -24,23 +24,37 @@
           <div class="item flex flex-yc">
             <label>出发地</label>
             <div class="item-input">
-              <el-select v-model="depInfo.name"
+              <el-select
+                v-model="depInfo.name"
                 filterable
                 :filter-method="depSearch"
                 placeholder="请选择出发城市">
                 <div v-if="depInfo.optionType">
-                  <el-option v-for="(item, index) in depSearchResult" :key="index" :label="item[0]" :value="item[0]">
+                  <el-option v-for="(item, index) in depSearchResult"
+                    @click="depInfo.code = item[1]"
+                    :key="index" :label="item[0]" :value="item[0]">
                       <span style="color: blue" v-text="item[0]"></span>
                       <span v-text="item[1]"></span>
                       <span v-text="'englishName'"></span>
                   </el-option>
                 </div>
-                <div v-else>
-                  <div>热门城市</div>
-                  <el-option v-for="item in [4,5,6]" :key="item" :label="item" :value="item">
-                    <span v-text="item"></span>
-                    <span v-text="'PEK'"></span>
-                  </el-option>
+                <div v-else >
+                  <div class="letter-container">
+                    <span v-for="(item, index) in hotAndLetterKey"
+                      @click="letterCityCode = item"
+                      :key="index"
+                      :class="{'current': letterCityCode === item}"
+                      v-text="item.replace('hot', '热门城市')">
+                    </span>
+                  </div>
+                  <div class="letter-city-con">
+                    <el-option
+                      @click="depInfo.code = item[0]"
+                      class="letter-city-item"
+                      v-for="(item, index) in cityList" :key="index" :label="item[1]" :value="item[1]">
+                      <span v-text="item[1]"></span>
+                    </el-option>
+                  </div>
                 </div>
               </el-select>
             </div>
@@ -60,11 +74,21 @@
                   </el-option>
                 </div>
                 <div v-else>
-                  <div>热门城市</div>
-                  <el-option v-for="item in [4,5,6]" :key="item" :label="item" :value="item">
-                    <span v-text="item"></span>
-                    <span v-text="'PEK'"></span>
-                  </el-option>
+                  <div class="letter-container">
+                    <span v-for="(item, index) in hotAndLetterKey"
+                      @click="letterCityCode = item"
+                      :key="index"
+                      :class="{'current': letterCityCode === item}"
+                      v-text="item.replace('hot', '热门城市')">
+                    </span>
+                  </div>
+                  <div class="letter-city-con">
+                    <el-option
+                      class="letter-city-item"
+                      v-for="(item, index) in cityList" :key="index" :label="item[1]" :value="item[1]">
+                      <span v-text="item[1]"></span>
+                    </el-option>
+                  </div>
                 </div>
               </el-select>
             </div>
@@ -140,6 +164,8 @@ import 'vue-happy-scroll/docs/happy-scroll.css'
 import { getIndexData } from '@/service/getData'
 import { Loading } from 'element-ui'
 import FeedBack from './components/feed-back/feed-back'
+import {hotCityInterface} from '../../config/utils'
+import DATA_CONFIG from './data-config'
 
 export default {
   components: {
@@ -152,6 +178,10 @@ export default {
   },
   data () {
     return {
+      // 索引
+      letterCityCode: 'hot',
+      // 配置数据
+      dataConfig: DATA_CONFIG,
       // 结果面板展示标志位
       routesPanelFlag: false,
       // 被搜索的数据的索引集合
@@ -165,12 +195,14 @@ export default {
       date: '',
       // 出发站
       depInfo: {
+        depCode: '',
         name: '',
         // 0 - 热门+拼音排序   1 - 搜索后的界面
         optionType: 0
       },
       // 目的地
       tarInfo: {
+        tarCode: '',
         name: '',
         // 0 - 热门+拼音排序   1 - 搜索后的界面
         optionType: 0
@@ -187,6 +219,20 @@ export default {
   watch: {
   },
   computed: {
+    // hotAndLetterKey
+    hotAndLetterKey: function () {
+      return hotCityInterface.getLetterKeys()
+    },
+    // 城市选项
+    cityList: function () {
+      let that = this
+      let code = that.letterCityCode
+      if (code === 'hot') {
+        return hotCityInterface.getHotCityList()
+      } else {
+        return hotCityInterface.getLetterCity(code)
+      }
+    },
     // 目的地搜索结果集合
     tarSearchResult: function () {
       let that = this
@@ -540,5 +586,35 @@ export default {
   padding-bottom: 90px;
   height: 80vh;
   overflow: hidden;
+}
+.letter-container {
+  background: #57A0F9;
+  width: 440px;
+  margin: -4px 0 0 0;
+  padding: 3px 0;
+  > span {
+    font-size: 14px;
+    height: 30px;
+    line-height: 15px;
+    display: inline-block;
+    padding: 5px;
+    margin: 2px;
+    color: #fff;
+    cursor: pointer;
+    box-sizing: border-box;
+    &.current {
+      border-bottom: 2px solid #000;
+    }
+    &:hover {
+      border-bottom: 2px solid #000;
+    }
+  }
+}
+.letter-city-item {
+  display: inline-block;
+}
+.letter-city-con {
+  width: 450px;
+  text-align: center;
 }
 </style>
