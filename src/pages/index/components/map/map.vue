@@ -369,12 +369,10 @@ export default {
       let citys = stationCoord.city(type, code)
       if (this.cityLevel[cityCode] !== undefined) {
         this.cityLevel[cityCode]++
-        console.log(1)
       } else {
         this.cityLevel[cityCode] = 0
       }
       let labelIndex = this.cityLevel[cityCode]
-      console.log(cityCode, this.cityLevel)
       this.bounds.extend(latLng)
       let iconOpt = {
         path: self.mapConstant.uSymbol,

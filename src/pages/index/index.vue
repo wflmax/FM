@@ -2,7 +2,7 @@
 <template>
   <div class="pages">
     <Header></Header>
-    <Map :data="dataRoute.datas" v-if="dataRoute"></Map>
+    <!-- <Map :data="dataRoute.datas" v-if="dataRoute"></Map> -->
     <!-- 搜索面板 -->
     <div class="search-panel" :class="{'hide':showSearch}">
       <div class="panel-contorl abs" @click="showSearch=!showSearch">
@@ -27,6 +27,7 @@
               <el-select
                 v-model="depInfo.name"
                 filterable
+                @change="depAndTarChange('dep')"
                 :filter-method="depSearch"
                 placeholder="请选择出发城市">
                 <div v-if="depInfo.optionType">
@@ -41,7 +42,7 @@
                 <div v-else >
                   <div class="letter-container">
                     <span v-for="(item, index) in hotAndLetterKey"
-                      @click="letterCityCode = item"
+                      @click="changeCityLetter(item)"
                       :key="index"
                       :class="{'current': letterCityCode === item}"
                       v-text="item.replace('hot', '热门城市')">
@@ -64,6 +65,7 @@
             <div class="item-input">
               <el-select v-model="tarInfo.name"
                 filterable
+                @change="depAndTarChange('tar')"
                 :filter-method="tarSearch"
                 placeholder="请选择">
                 <div v-if="tarInfo.optionType">
@@ -164,7 +166,7 @@ import 'vue-happy-scroll/docs/happy-scroll.css'
 import { getIndexData } from '@/service/getData'
 import { Loading } from 'element-ui'
 import FeedBack from './components/feed-back/feed-back'
-import {hotCityInterface} from '../../config/utils'
+import {hotCityInterface, cityCoord} from '../../config/utils'
 import DATA_CONFIG from './data-config'
 
 export default {
@@ -211,8 +213,11 @@ export default {
       loading: null
     }
   },
+  beforeUpdate () {
+    console.time('abc')
+  },
   updated () {
-    console.timeEnd('渲染花费')
+    console.timeEnd('abc')
   },
   created () {
   },
@@ -271,14 +276,40 @@ export default {
     }
   },
   mounted () {
-    this.loading = Loading.service({
-      lock: true,
-      text: '正在加载数据...',
-      background: 'rgba(0, 0, 0, 0.5)'
-    })
-    this.getData()
+    // this.loading = Loading.service({
+    //   lock: true,
+    //   text: '正在加载数据...',
+    //   background: 'rgba(0, 0, 0, 0.5)'
+    // })
+    // this.getData()
   },
   methods: {
+    /**
+     * 根据城市中文名称获取城市三字码
+     * @param {string} name 城市名称
+     */
+    getCityThreeCodeFromName (name) {
+      return cityCoord.getCodeFromName(name)
+    },
+    /**
+     * 出发地or目的地 值 变化
+     * @param {string} type 类型--dep/tar
+     */
+    depAndTarChange (type) {
+      let that = this
+      if (type === 'dep') {
+        that.depInfo.depCode = that.getCityThreeCodeFromName(that.depInfo.name) || ''
+      } else {
+        that.tarInfo.tarCode = that.getCityThreeCodeFromName(that.tarInfo.name) || ''
+      }
+    },
+    /**
+     * 切换城市（hot,a-z）
+     */
+    changeCityLetter (code) {
+      let that = this
+      that.letterCityCode = code
+    },
     /**
      * xx
      */
@@ -326,12 +357,14 @@ export default {
       that.depInfo.name = searchText
       that.depInfo.optionType = searchText ? 1 : 0
       that.depSearchIndex = that.searchChange(searchText)
+      that.depAndTarChange('dep')
     },
     tarSearch (searchText) {
       let that = this
       that.tarInfo.name = searchText
       that.tarInfo.optionType = searchText ? 1 : 0
       that.tarSearchIndex = that.searchChange(searchText)
+      that.depAndTarChange('tar')
     },
     /**
      * 改变出发站选择框条件值

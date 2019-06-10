@@ -1,12 +1,6 @@
-import
-airlineGps
-  from '@/service/airlineDict'
-import
-cityGps
-  from '@/service/cityDict'
-import stationGps
-  from '@/service/stationDict'
-
+import airlineGps from '@/service/airlineDict'
+import cityGps from '@/service/cityDict'
+import stationGps from '@/service/stationDict'
 /**
  * 热门城市and城市字母表数据
  * 数据格式：对象包含hot,A-Z,每个对象都是数组，长度3，012分别对应：城市三字码-城市中文名-国家二字码
@@ -163,6 +157,14 @@ export const cityCoord = {
   },
   level: function (code) {
     return (this.coord(code) && this.coord(code)[1]) || 999
+  },
+  getCodeFromName: (name) => {
+    let keys = Object.keys(cityGps)
+    for (let key of keys) {
+      if (cityGps[key][0] === name) {
+        return key
+      }
+    }
   }
 }
 
@@ -205,15 +207,15 @@ export const hotCityInterface = {
     return cityLetterTable.hot || []
   },
   /**
-   * 获取指定字母的城市列表
-   * @param {String} letterCode 字母：A-Z
-   */
+     * 获取指定字母的城市列表
+     * @param {String} letterCode 字母：A-Z
+     */
   getLetterCity: letterCode => {
     return cityLetterTable[letterCode.toUpperCase()] || []
   },
   /**
-   * 获取全部key
-   */
+     * 获取全部key
+     */
   getLetterKeys: () => {
     return Object.keys(cityLetterTable)
   }
