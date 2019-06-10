@@ -214,10 +214,10 @@ export default {
     }
   },
   beforeUpdate () {
-    console.time('abc')
+    console.time('渲染时间')
   },
   updated () {
-    console.timeEnd('abc')
+    console.timeEnd('渲染时间')
   },
   created () {
   },
@@ -241,13 +241,11 @@ export default {
     // 目的地搜索结果集合
     tarSearchResult: function () {
       let that = this
-      console.time('渲染花费')
       return that.getSearchResult(that.tarSearchIndex)
     },
     // 出发站搜索结果集合
     depSearchResult: function () {
       let that = this
-      console.time('渲染花费')
       return that.getSearchResult(that.depSearchIndex)
     },
     // 所有站点（包括飞机火车）
@@ -374,7 +372,6 @@ export default {
       let that = this
       let strList = that.allSiteInfoStrList
       let list = []
-      console.time('搜索花费')
       for (let i = 0; i < strList.length; i++) {
         let cityStr = strList[i]
         if (cityStr.indexOf(searchText) > -1) {
@@ -400,7 +397,6 @@ export default {
           }
         }
       }
-      console.timeEnd('搜索花费')
       return list
     },
     /**

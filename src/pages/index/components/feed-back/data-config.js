@@ -2,7 +2,7 @@
  * @Author: mikey.yuqb
  * @Date: 2019-06-03 14:49:32
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-06-03 17:30:04
+ * @Last Modified time: 2019-06-10 14:47:47
  */
 export default {
   // 反馈表单所需项目
@@ -35,7 +35,7 @@ export default {
       label: '意见反馈：',
       must: true,
       type: 'opinion',
-      placeholder: '请输入您的意见反馈（200个字符以内）'
+      placeholder: '请输入您的意见反馈（1000个字符以内）'
     }
   ]
 }
