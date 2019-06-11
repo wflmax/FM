@@ -8,12 +8,12 @@ const bigData = r => require.ensure([], () => r(require('@/pages/bigData/index')
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'index',
       component: index,
       // meta: { keepAlive: true }
     },{
-      path: '/bigdata',
+      path: '/',
       name: 'bigdata',
       component: bigData,
       // meta: { keepAlive: true }

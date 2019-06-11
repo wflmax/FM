@@ -2,7 +2,7 @@
     <!-- 总体信息 -->
     <div class="total-warp">
         <h4 class="title">
-            贵阳空铁联运总信息
+            北京市空铁联运总信息
             <span class="sub">空铁联运可达城市</span>
             <span class="num font-nun">{{data.citysCount}}</span>
             <i class="iconfont iconqushi"></i>
