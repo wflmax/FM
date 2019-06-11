@@ -2,7 +2,7 @@
 <template>
   <div class="pages">
     <Header></Header>
-    <!-- <Map :data="dataRoute.datas" v-if="dataRoute"></Map> -->
+    <Map :data="dataRoute.datas" v-if="dataRoute"></Map>
     <!-- 搜索面板 -->
     <div class="search-panel" :class="{'hide':showSearch}">
       <div class="panel-contorl abs" @click="showSearch=!showSearch">
@@ -274,12 +274,12 @@ export default {
     }
   },
   mounted () {
-    // this.loading = Loading.service({
-    //   lock: true,
-    //   text: '正在加载数据...',
-    //   background: 'rgba(0, 0, 0, 0.5)'
-    // })
-    // this.getData()
+    this.loading = Loading.service({
+      lock: true,
+      text: '正在加载数据...',
+      background: 'rgba(0, 0, 0, 0.5)'
+    })
+    this.getData()
   },
   methods: {
     /**
