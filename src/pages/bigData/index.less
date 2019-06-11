@@ -530,18 +530,20 @@ body {
     }
 
     .lengs {
+        .height(40);
+        .line-height(40);
         width: 100%;
-
+        text-align: center;
         p {
+            width: 33.3%;
             position: relative;
-            padding-left: 3rem;
+            .padding(0,0,0,25);
             font-size: 1rem;
             margin: 0 1vh 0 1vh;
-            text-align: center;
 
             &:before {
                 content: '';
-                width: 2.6rem;
+                .width(20);
                 height: 0.2rem;
                 background: #fff;
                 border-radius: 1rem;
