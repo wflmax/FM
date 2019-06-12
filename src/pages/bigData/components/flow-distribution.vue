@@ -131,7 +131,7 @@ export default {
                 color: '#FF38C6' // 线条颜色
               }
             },
-            data: flihtArrAct,
+            data: flihtDepAct,
             areaStyle: {
               // 区域填充样式
               normal: {
@@ -142,11 +142,11 @@ export default {
                   1,
                   [
                     {
-                      offset: 1,
+                      offset: 0,
                       color: '#FF38C6'
                     },
                     {
-                      offset: 0,
+                      offset: 1,
                       color: 'transparent'
                     }
                   ],
@@ -160,7 +160,7 @@ export default {
             type: 'line',
             stack: 'one',
             smooth: true,
-            data: flihtDepAct,
+            data: flihtArrAct,
             showSymbol: false,
             lineStyle: {
               normal: {
@@ -177,11 +177,11 @@ export default {
                   1,
                   [
                     {
-                      offset: 0,
+                      offset: 1,
                       color: '#FF3C59'
                     },
                     {
-                      offset: 1,
+                      offset: 0,
                       color: 'transparent'
                     }
                   ],
