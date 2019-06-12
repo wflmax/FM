@@ -6,18 +6,18 @@
            <p class="sub-title">进出港航班数量（架次）</p>
             <v-chart :options="optionflight" class="flight-chart"/>
             <div class="lengs flex">
-              <p>计划进/出港航班数量（架次）</p>
-              <p>实际进港航班数量（架次）</p>
-              <p>实际出港航班数量（架次）</p>
+              <p>计划进/出港航班数量</p>
+              <p>实际进港航班数量</p>
+              <p>实际出港航班数量</p>
             </div>
         </div>
          <div class="subway">
            <p class="sub-title train">进出站列车数量（车次）</p>
             <v-chart :options="optionTrain" class="flight-chart"/>
             <div class="lengs flex train">
-              <p>计划进/出站列车数量（车次）</p>
-              <p>实际进站列车数量（车次）</p>
-              <p>实际出站列车数量（车次）</p>
+              <p>计划进/出站列车数量</p>
+              <p>实际进站列车数量</p>
+              <p>实际出站列车数量</p>
             </div>
         </div>
     </div>
@@ -129,7 +129,7 @@ export default {
                                 color: "#FF38C6" // 线条颜色
                             }
                         },
-                        data: flihtArrAct,
+                        data: flihtDepAct,
                         areaStyle: {
                             //区域填充样式
                             normal: {
@@ -140,11 +140,11 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "#FF38C6"
                                         },
                                         {
-                                            offset: 0,
+                                            offset: 1,
                                             color: "transparent"
                                         }
                                     ],
@@ -158,7 +158,7 @@ export default {
                         type: "line",
                         stack: "one",
                         smooth:true,
-                        data: flihtDepAct,
+                        data: flihtArrAct,
                          showSymbol:false,
                           lineStyle: {
                             normal: {
@@ -175,11 +175,11 @@ export default {
                                     1,
                                     [
                                         {
-                                            offset:0,
+                                            offset:1,
                                             color: "#FF3C59"
                                         },
                                         {
-                                            offset: 1,
+                                            offset: 0,
                                             color: "transparent"
                                         }
                                     ],
