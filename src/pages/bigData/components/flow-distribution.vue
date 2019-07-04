@@ -4,7 +4,7 @@
         <h4 class="title"><span class="font-nun">0-24</span>点航班/列车流量分布</h4>
         <div class="flight">
            <p class="sub-title">进出港航班数量（架次）</p>
-            <v-chart :options="optionflight" class="flight-chart"/>
+            <v-chart :options="optionflight" v-if="dataFlag" class="flight-chart"/>
             <div class="lengs flex">
               <p>计划进/出港航班数量</p>
               <p>实际进港航班数量</p>
@@ -13,7 +13,7 @@
         </div>
          <div class="subway">
            <p class="sub-title train">进出站列车数量（车次）</p>
-            <v-chart :options="optionTrain" class="flight-chart"/>
+            <v-chart :options="optionTrain" v-if="dataFlag" class="flight-chart"/>
             <div class="lengs flex train">
               <p>计划进/出站列车数量</p>
               <p>实际进站列车数量</p>
@@ -28,7 +28,7 @@ import Vue from 'vue'
 import echarts from 'vue-echarts'
 import 'echarts/lib/chart/line'
 import data from './../data'
-import {getTotalData} from '../server/server'
+import {getFlow} from '../server/server'
 var xAxisData = []
 for (let i = 0; i < 24; i++) {
   xAxisData.push(i)
@@ -47,9 +47,9 @@ export default {
   components: {
     'v-chart': echarts
   },
-  data () {
-    return {
-      optionflight: {
+  computed: {
+    optionflight: function () {
+      return {
         grid: {
           left: '0',
           right: '0',
@@ -98,7 +98,7 @@ export default {
             type: 'line',
             stack: 'two',
             smooth: true,
-            data: flihtArrplan,
+            data: this.flihtArrplan,
             showSymbol: false,
             lineStyle: {
               normal: {
@@ -112,7 +112,7 @@ export default {
             stack: 'two',
             smooth: true,
             showSymbol: false,
-            data: flihtDepplan,
+            data: this.flihtDepplan,
             lineStyle: {
               normal: {
                 color: '#fff' // 线条颜色
@@ -130,7 +130,7 @@ export default {
                 color: '#FF38C6' // 线条颜色
               }
             },
-            data: flihtDepAct,
+            data: this.flihtDepAct,
             areaStyle: {
               // 区域填充样式
               normal: {
@@ -159,7 +159,7 @@ export default {
             type: 'line',
             stack: 'one',
             smooth: true,
-            data: flihtArrAct,
+            data: this.flihtArrAct,
             showSymbol: false,
             lineStyle: {
               normal: {
@@ -191,8 +191,10 @@ export default {
           }
 
         ]
-      },
-      optionTrain: {
+      }
+    },
+    optionTrain: function () {
+      return {
         grid: {
           left: '0',
           right: '0',
@@ -241,7 +243,7 @@ export default {
             name: 'bar3',
             type: 'line',
             stack: 'two',
-            data: trainArrplan,
+            data: this.trainArrplan,
             smooth: true,
             showSymbol: false,
             lineStyle: {
@@ -256,7 +258,7 @@ export default {
             stack: 'two',
             smooth: true,
             showSymbol: false,
-            data: trainDepplan,
+            data: this.trainDepplan,
             lineStyle: {
               normal: {
                 color: '#fff' // 线条颜色
@@ -274,7 +276,7 @@ export default {
                 color: '#40D1BD' // 线条颜色
               }
             },
-            data: trainArrAct,
+            data: this.trainArrAct,
             areaStyle: {
               // 区域填充样式
               normal: {
@@ -304,7 +306,7 @@ export default {
             type: 'line',
             stack: 'one',
             smooth: true,
-            data: trainDepAct,
+            data: this.trainDepAct,
             showSymbol: false,
             lineStyle: {
               normal: {
@@ -340,15 +342,41 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      flihtDepplan: flihtDepplan,
+      flihtArrplan: flihtArrplan,
+      flihtDepAct: flihtDepAct,
+      flihtArrAct: flihtArrAct,
+      trainDepplan: trainDepplan,
+      trainArrplan: trainArrplan,
+      trainDepAct: trainDepAct,
+      trainArrAct: trainArrAct,
+      dataFlag: false
+    }
+  },
   props: {},
   mounted () {},
   created () {
-    this.getTotal()
+    let that = this
+    that.getTotal()
+    setInterval(() => {
+      that.getTotal()
+    }, 1000 * 60 * 30)
   },
   methods: {
     getTotal () {
-      getTotalData().then(res => {
-        console.log(res)
+      let that = this
+      getFlow().then(res => {
+        that.flihtDepplan = res.flight.depPlan
+        that.flihtArrplan = res.flight.arrPlan
+        that.flihtDepAct = res.flight.depAct
+        that.flihtArrAct = res.flight.arrAct
+        that.trainDepplan = res.train.depPlan
+        that.trainArrplan = res.train.arrPlan
+        that.trainDepAct = res.train.depAct
+        that.trainArrAct = res.train.arrAct
+        that.dataFlag = true
       })
     }
   }

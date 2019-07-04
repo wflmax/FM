@@ -15,17 +15,30 @@
 </template>
 
 <script>
-import data from "./../data";
+import data from './../data'
+import {getScore} from '../server/server'
 export default {
- data() {
-        return {
-            data: data.potential,
-        };
-    },
-    props: {},
-    mounted() {},
-    methods: {
+  data () {
+    return {
+      data: data.potential
     }
-};
+  },
+  props: {},
+  created () {
+    let that = this
+    that.getTotal()
+    setInterval(() => {
+      that.getTotal()
+    }, 1000 * 60 * 30)
+  },
+  methods: {
+    // 获取接口数据
+    getTotal () {
+      let that = this
+      getScore().then(res => {
+        that.data = res
+      })
+    }
+  }
+}
 </script>
-

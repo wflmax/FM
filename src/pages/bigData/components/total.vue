@@ -73,6 +73,7 @@ import data from './../data'
 // import Vue from 'vue'
 import echarts from 'vue-echarts'
 import 'echarts/lib/chart/radar'
+import {getTotalData} from '../server/server'
 let total = data.total
 export default {
   components: {
@@ -452,9 +453,16 @@ export default {
   },
   props: {},
   mounted () {
-    this.init()
+    this.getTotal()
   },
   methods: {
+    getTotal () {
+      let that = this
+      getTotalData().then(res => {
+        that.data = res
+        that.init()
+      })
+    },
     // 初始化
     init () {
       var chartW = document.getElementById('chartDom').offsetWidth

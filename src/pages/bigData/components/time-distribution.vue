@@ -39,209 +39,229 @@
 </template>
 
 <script>
-import Vue from "vue";
-import echarts from "vue-echarts";
-import "echarts/lib/chart/bar";
-import data from "./../data";
-function timeX(){
-  let arr=[];
-  for(let i=0;i<24;i++){
+import Vue from 'vue'
+import echarts from 'vue-echarts'
+import 'echarts/lib/chart/bar'
+import data from './../data'
+import {getSchedule} from '../server/server'
+function timeX () {
+  let arr = []
+  for (let i = 0; i < 24; i++) {
     arr.push(i)
   }
-  return arr;
+  return arr
 }
-let flightData=data.time.flight;
-let trainData=data.time.train;
-let a=Math.max.apply(null, flightData.times);
-let b=Math.max.apply(null, trainData.times);
-let maxN=a>b?a:b;
-let dataMax=new Array(24).fill(maxN);
+let flightData = data.time.flight
+let trainData = data.time.train
+let a = Math.max.apply(null, flightData.times)
+let b = Math.max.apply(null, trainData.times)
+let maxN = a > b ? a : b
+// let dataMax = new Array(24).fill(maxN)
 export default {
-    components: {
-        "v-chart": echarts
-    },
-    data() {
-        return {
-          flightData:flightData,
-          trainData:trainData,
-            option: {
-                grid: {
-                    left: "0",
-                    right: "0",
-                    top:'5%',
-                    bottom: "8%",
-                    containLabel: true
-                },
-
-                yAxis: {
-                    type: "value",
-                    axisTick: {
-                        show: false
-                    },
-                    axisLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "transparent"
-                        }
-                    },
-                    splitLine: {
-                        show: false,
-                        lineStyle: {
-                            color: "#363e83 "
-                        }
-                    },
-                     axisLabel: {
-                            inside: false,
-                            textStyle: {
-                                color: "#fff",
-                                fontWeight: "normal",
-                                fontSize: "12"
-                            }
-                        },
-                },
-                xAxis: [
-                    {
-                        type: "category",
-                        axisTick: {
-                            show: false
-                        },
-                        axisLine: {
-                            show: true,
-                            lineStyle: {
-                                color: "transparent"
-                            }
-                        },
-                        axisLabel: {
-                            inside: false,
-                            textStyle: {
-                                color: "#fff",
-                                fontWeight: "normal",
-                                fontSize: "12"
-                            }
-                        },
-                        data:timeX()
-
-                    },
-                    {
-                        type: "category",
-                        axisLine: {
-                            show: false
-                        },
-                        axisTick: {
-                            show: false
-                        },
-                        axisLabel: {
-                            show: false
-                        },
-                        splitArea: {
-                            show: false
-                        },
-                        splitLine: {
-                            show: false
-                        },
-                        data:timeX()
-                    }
-                ],
-                series: [
-                    {
-                        type: "bar",
-                        xAxisIndex: 1,
-                        zlevel: 1,
-                        itemStyle: {
-                            normal: {
-                                color: "rgba(255,255,255,0.31)",
-                                borderWidth: 0,
-                                barBorderRadius: 50,
-                            }
-                        },
-                        barWidth: "8%",
-                        data:dataMax
-                    },
-                    {
-                        type: "bar",
-                        xAxisIndex: 1,
-                        barGap: "100%",
-                       data:dataMax,
-                        zlevel: 1,
-                        barWidth: "8%",
-                        itemStyle: {
-                            normal: {
-                                 color: "rgba(255,255,255,0.31)",
-                                borderWidth: 0,
-                                barBorderRadius: 50,
-                            }
-                        }
-                    },
-                    {
-                        name: "男",
-                        type: "bar",
-                        itemStyle: {
-                            normal: {
-                                show: true,
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
-                                    1,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#40C3D1"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#1767F2"
-                                        }
-                                    ]
-                                ),
-                                barBorderRadius: 50,
-                                borderWidth: 0
-                            }
-                        },
-                        zlevel: 2,
-                        barWidth: "8%",
-                        data:trainData.times
-                    },
-                    {
-                        name: "女",
-                        type: "bar",
-                        barWidth: "8%",
-                        itemStyle: {
-                            normal: {
-                                show: true,
-                                color: new echarts.graphic.LinearGradient(
-                                    0,
-                                    0,
-                                    0,
-                                    1,
-                                    [
-                                        {
-                                            offset: 0,
-                                            color: "#F94A6F"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#CE4CE5"
-                                        }
-                                    ]
-                                ),
-                                barBorderRadius: 50,
-                                borderWidth: 0
-                            }
-                        },
-                        zlevel: 2,
-                        barGap: "100%",
-                        data:flightData.times
-                    }
-                ]
-            }
-        };
-    },
-    props: {},
-    mounted() {},
-    methods: {
-        init() {}
+  components: {
+    'v-chart': echarts
+  },
+  computed: {
+    dataMax: function (params) {
+      return new Array(24).fill(maxN)
     }
-};
-</script>
+  },
+  data () {
+    return {
+      flightData: flightData,
+      trainData: trainData,
+      option: {
+        grid: {
+          left: '0',
+          right: '0',
+          top: '5%',
+          bottom: '8%',
+          containLabel: true
+        },
 
+        yAxis: {
+          type: 'value',
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: 'transparent'
+            }
+          },
+          splitLine: {
+            show: false,
+            lineStyle: {
+              color: '#363e83 '
+            }
+          },
+          axisLabel: {
+            inside: false,
+            textStyle: {
+              color: '#fff',
+              fontWeight: 'normal',
+              fontSize: '12'
+            }
+          }
+        },
+        xAxis: [
+          {
+            type: 'category',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: 'transparent'
+              }
+            },
+            axisLabel: {
+              inside: false,
+              textStyle: {
+                color: '#fff',
+                fontWeight: 'normal',
+                fontSize: '12'
+              }
+            },
+            data: timeX()
+
+          },
+          {
+            type: 'category',
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
+            splitArea: {
+              show: false
+            },
+            splitLine: {
+              show: false
+            },
+            data: timeX()
+          }
+        ],
+        series: [
+          {
+            type: 'bar',
+            xAxisIndex: 1,
+            zlevel: 1,
+            itemStyle: {
+              normal: {
+                color: 'rgba(255,255,255,0.31)',
+                borderWidth: 0,
+                barBorderRadius: 50
+              }
+            },
+            barWidth: '8%',
+            data: this.dataMax
+          },
+          {
+            type: 'bar',
+            xAxisIndex: 1,
+            barGap: '100%',
+            data: this.dataMax,
+            zlevel: 1,
+            barWidth: '8%',
+            itemStyle: {
+              normal: {
+                color: 'rgba(255,255,255,0.31)',
+                borderWidth: 0,
+                barBorderRadius: 50
+              }
+            }
+          },
+          {
+            name: '男',
+            type: 'bar',
+            itemStyle: {
+              normal: {
+                show: true,
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: '#40C3D1'
+                    },
+                    {
+                      offset: 1,
+                      color: '#1767F2'
+                    }
+                  ]
+                ),
+                barBorderRadius: 50,
+                borderWidth: 0
+              }
+            },
+            zlevel: 2,
+            barWidth: '8%',
+            data: trainData.times
+          },
+          {
+            name: '女',
+            type: 'bar',
+            barWidth: '8%',
+            itemStyle: {
+              normal: {
+                show: true,
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: '#F94A6F'
+                    },
+                    {
+                      offset: 1,
+                      color: '#CE4CE5'
+                    }
+                  ]
+                ),
+                barBorderRadius: 50,
+                borderWidth: 0
+              }
+            },
+            zlevel: 2,
+            barGap: '100%',
+            data: flightData.times
+          }
+        ]
+      }
+    }
+  },
+  props: {},
+  created () {
+    let that = this
+    that.getTotal()
+    setInterval(() => {
+      that.getTotal()
+    }, 1000 * 60 * 30)
+  },
+  methods: {
+    // 获取接口数据
+    getTotal () {
+      let that = this
+      getSchedule().then(res => {
+        flightData = res.flight
+        trainData = res.train
+        that.flightData = res.flight
+        that.trainData = res.train
+      })
+    }
+  }
+}
+</script>

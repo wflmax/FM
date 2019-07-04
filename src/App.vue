@@ -9,15 +9,26 @@
 </template>
 <script>
 export default {
-  name: "App"
-};
+  name: 'App',
+  mounted () {
+    // let flag = true
+    // setInterval(() => {
+    //   if (flag) {
+    //     window.location.hash = '#/'
+    //     flag = !flag
+    //   } else {
+    //     window.location.hash = '#/other-page'
+    //     flag = !flag
+    //   }
+    // }, 10000)
+  }
+}
 </script>
 <style lang="less">
 @import './assets/css/base.css';
 @import './assets/css/func.less';
 @import './assets/css/iconfont.css';
 // @import 'http://at.alicdn.com/t/font_1141052_4pjcab4gyp.css';
-
 
 body {
 	font-family: PingFangSC-Regular, SFNSDisplay-Regular, Segoe UI, HelveticaNeue-Light, sans-serif;
