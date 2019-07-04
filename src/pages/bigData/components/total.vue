@@ -453,7 +453,11 @@ export default {
   },
   props: {},
   mounted () {
-    this.getTotal()
+    let that = this
+    that.getTotal()
+    setInterval(() => {
+      that.getTotal()
+    }, 1000 * 60 * 30)
   },
   methods: {
     getTotal () {
