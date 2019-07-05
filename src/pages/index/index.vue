@@ -2,7 +2,7 @@
 <template>
   <div class="pages">
     <Header></Header>
-    <Map :data="dataRoute.datas" v-if="dataRoute"></Map>
+    <Map :mapData="dataRoute.datas" v-if="dataRoute"></Map>
     <!-- 搜索面板 -->
     <div class="search-panel" :class="{'hide':showSearch}">
       <div class="panel-contorl abs" @click="showSearch=!showSearch">
@@ -143,7 +143,7 @@
       </div>
       <div class="intro flex flex-between" @click="showAll=true">
         <p>共涉及{{dataRoute.lines.length}}种行程路线、{{dataRoute.datas.length}}种出行方案</p>
-        <p>
+        <p class="look-all-idea-btn">
           查看所有方案
           <i class="iconfont iconright"></i>
         </p>
@@ -163,10 +163,10 @@ import cityGps from '@/service/cityDict'
 import stationDict from '@/service/stationDict'
 import { HappyScroll } from 'vue-happy-scroll'
 import 'vue-happy-scroll/docs/happy-scroll.css'
-import { getIndexData } from '@/service/getData'
+import dataServer from 'api/air-rail-map-server'
 import { Loading } from 'element-ui'
 import FeedBack from './components/feed-back/feed-back'
-import {hotCityInterface, cityCoord} from '../../config/utils'
+import {hotCityInterface, cityCoord, formatDate} from '../../config/utils'
 import DATA_CONFIG from './data-config'
 
 export default {
@@ -190,7 +190,7 @@ export default {
       depSearchIndex: [],
       tarSearchIndex: [],
       showSearch: true,
-      dataRoute: null,
+      dataRoute: dataRoute,
       showAll: false,
       searchType: 1,
       searchTypeOption: [[1, 'Air-Rail'], [2, 'Air'], [3, 'Rail']],
@@ -212,12 +212,6 @@ export default {
       cityGps: cityGps,
       loading: null
     }
-  },
-  beforeUpdate () {
-    console.time('渲染时间')
-  },
-  updated () {
-    console.timeEnd('渲染时间')
   },
   created () {
   },
@@ -274,14 +268,19 @@ export default {
     }
   },
   mounted () {
-    this.loading = Loading.service({
-      lock: true,
-      text: '正在加载数据...',
-      background: 'rgba(0, 0, 0, 0.5)'
-    })
-    this.getData()
+    // this.dataRoute = dataRoute
   },
   methods: {
+    loadingShow () {
+      this.loading = Loading.service({
+        lock: true,
+        text: '正在加载数据...',
+        background: 'rgba(0, 0, 0, 0.5)'
+      })
+    },
+    loadingHide () {
+      this.loading.close()
+    },
     /**
      * 根据城市中文名称获取城市三字码
      * @param {string} name 城市名称
@@ -404,17 +403,16 @@ export default {
      */
     getData () {
       let that = this
-      that.dataRoute = dataRoute
-      setTimeout(() => {
-        that.loading.close()
-      }, 4000)
-      return getIndexData({
-        type: that.type,
-        dep: that.depInfo.name,
-        arr: that.tarInfo.name,
-        date: that.date
+      that.loadingShow()
+      return dataServer.getAirRailData({
+        type: that.searchType,
+        depcode: that.depInfo.depCode,
+        arrcode: that.tarInfo.tarCode,
+        date: formatDate(new Date(), 'yyyy-MM-dd')
       }).then(res => {
-        that.dataRoute = dataRoute
+        that.loadingHide()
+        that.dataRoute = res
+        that.routesPanelFlag = true
       })
     }
   }
@@ -552,6 +550,7 @@ export default {
       border-radius: 5px;
       font-size: 16px;
       font-weight: 400px;
+      cursor: pointer;
     }
   }
 }
@@ -609,8 +608,14 @@ export default {
     padding: 0 4%;
     color: #fff;
     z-index: 9;
+
   }
 }
+
+.look-all-idea-btn {
+  cursor: pointer;
+}
+
 .routes-warp {
   padding-bottom: 90px;
   height: 80vh;

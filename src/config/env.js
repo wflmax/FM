@@ -6,11 +6,11 @@
  *
  */
 
-let webUrl = ''
+let webUrl = 'http://map.133.cn'
 let routerMode = 'hash'
 let mapKey = 'AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y'
 if (process.env.NODE_ENV == 'development') { // 本地开发
-  webUrl = ''
+  webUrl = 'http://map.133.cn'
 } else if (process.env.NODE_ENV == 'testing') { // 现场测试环境
 } else if (process.env.NODE_ENV == 'devtesting') { // 公司开发测试发环境
 } else if (process.env.NODE_ENV == 'production') { // 生产环境

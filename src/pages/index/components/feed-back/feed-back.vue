@@ -21,13 +21,13 @@
               v-if="item.type !== 'opinion'"
               class="feed-input"
               v-model="feedForm[item.type]"
-              @blur="checkFormValue(item.type)"
+              @keyup="checkFormValue(item.type)"
               type="text"
               :placeholder="item.placeholder"
             >
             <textarea
               v-else
-              @blur="checkFormValue(item.type)"
+              @keyup="checkFormValue(item.type)"
               cols="30"
               v-model="feedForm[item.type]"
               :placeholder="item.placeholder"
@@ -54,6 +54,7 @@
 import Bus from '@/components/bus/bus'
 import { Dialog } from 'element-ui'
 import FeedData from './data-config'
+import Server from 'api/air-rail-map-server'
 export default {
   data () {
     return {
@@ -142,6 +143,7 @@ export default {
     // 检测姓名
     checkUserName () {
       let val = this.feedForm.name
+      console.log(val)
       return val.length > 0 && val.length < 20
     },
     // 检测验证码
@@ -161,6 +163,16 @@ export default {
        意见反馈，1000字符以内
      */
     feedFormSubmit () {
+      let fdF = this.feedForm
+      Server.setFeedBack({
+        name: fdF.name,
+        tel: fdF.tel,
+        content: fdF.opinion,
+        mail: fdF.email,
+        captcha: fdF.code
+      }).then(res => {
+        console.log(res)
+      })
       // TODO
       // let that = this
       // let data = that.feedForm

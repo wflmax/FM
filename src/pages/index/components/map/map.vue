@@ -28,7 +28,7 @@ Vue.use(VueGoogleMaps, {
 
 export default {
   props: {
-    data: {
+    mapData: {
       type: Array
     }
   },
@@ -96,12 +96,25 @@ export default {
           this.settingConfig.boundaryColor
         )
       })
+      this.updateMapMarker()
+    })
+  },
+  watch: {
+    mapData: {
+      handler: function () {
+        this.updateMapMarker()
+      },
+      deep: true
+    }
+  },
+  methods: {
+    // 切换数据
+    updateMapMarker () {
+      // eslint-disable-next-line no-undef
       this.bounds = new google.maps.LatLngBounds()
       this.convertData()
       this.map.fitBounds(this.bounds)
-    })
-  },
-  methods: {
+    },
     /**
          * 地图自定义样式
          */
@@ -314,8 +327,8 @@ export default {
       //   t_line = []
       let [flightMakers, trainMakers, trainArr, flightArr, flightlines, trainlines, fLine, tLine] = [[], [], [], [], [], [], [], []]
 
-      for (let r in this.data) {
-        let route = this.data[r].routes
+      for (let r in this.mapData) {
+        let route = this.mapData[r].routes
         for (let i in route) {
           let item = route[i]
           let line = item.depCode + '' + item.arrCode

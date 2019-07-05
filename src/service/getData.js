@@ -13,4 +13,4 @@ export const clearToken = (param) => fetch('/api/token/clear', {data: param})
 
 // 首页
 // 获取全部数据
-export const getIndexData = (param) => fetch('/api/data', {data: param})
+export const getIndexData = (param) => fetch('/AiRail/search/data', {data: param})

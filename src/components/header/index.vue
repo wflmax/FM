@@ -72,6 +72,9 @@ export default {
     width: 50%;
     padding-left: 3 00px;
     i{display: inline-block;font-size:24px;margin-bottom:5px;}
+    > p {
+      cursor: pointer;
+    }
   }
 }
 </style>

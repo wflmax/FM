@@ -91,56 +91,59 @@
 
 <script>
 import {
-    stationCoord,
-    coverMin,
-    formatDay_zh,
-    formatWeekday,
-    routeTime
-} from "@/config/utils";
+  stationCoord,
+  coverMin,
+  formatDay_zh,
+  formatWeekday,
+  routeTime
+} from '@/config/utils'
 export default {
-    data() {
-        return {
-            stationCoord: stationCoord,
-            coverMin: coverMin,
-            formatDay_zh: formatDay_zh,
-            formatWeekday: formatWeekday,
-            routeTime: routeTime,
-            routeCN: {
-                0: "一",
-                1: "二"
-            },
-            list:[],
-            hiddenData:1
-        };
-    },
-    props: {
-        title: {
-            type: String,
-            default: ""
-        },
-        data: {
-            type: Array
-        }
-    },
-    mounted() {
-        this.initData();
-    },
-    methods: {
-        initData(){
-            let data=this.data;
-           for (let i=0,row; row=data[i]; i++) {
-					row.show = false;
-				}
-            this.list=data;
-
-
-        },
-        showSub(item){
-            item.show=!item.show;
-            this.hiddenData=!this.hiddenData;
-        }
+  data () {
+    return {
+      stationCoord: stationCoord,
+      coverMin: coverMin,
+      formatDay_zh: formatDay_zh,
+      formatWeekday: formatWeekday,
+      routeTime: routeTime,
+      routeCN: {
+        0: '一',
+        1: '二'
+      },
+      list: [],
+      hiddenData: 1
     }
-};
+  },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    data: {
+      type: Array
+    }
+  },
+  watch: {
+    data: function () {
+      this.initData()
+    }
+  },
+  mounted () {
+    this.initData()
+  },
+  methods: {
+    initData () {
+      let data = this.data
+      for (let i = 0, row; row = data[i]; i++) {
+        row.show = false
+      }
+      this.list = data
+    },
+    showSub (item) {
+      item.show = !item.show
+      this.hiddenData = !this.hiddenData
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 .top-routes {
@@ -236,4 +239,3 @@ export default {
     }
 }
 </style>
-

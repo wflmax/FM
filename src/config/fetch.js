@@ -6,6 +6,8 @@ import {
   sysErrorCode
 } from '@/service/getData'
 
+import {getStore} from './utils'
+
 export default async (url = '', option = {}, type = 'POST', method = 'fetch') => {
   type = type.toUpperCase()
   url = baseUrl + url
