@@ -5,6 +5,7 @@
       :visible.sync="panelFlag"
       :width="'60%'"
       >
+      <!-- 表单 -->
       <el-form :model="feedForm">
         <div
           v-for="(item, index) in formConfig"
@@ -38,6 +39,16 @@
           </div>
         </div>
       </el-form>
+      <!-- 提交成功 -->
+      <div class="submit">
+        <span class=""></span>
+        <p>提交成功，感谢您的宝贵意见~</p>
+      </div>
+      <!-- 提交失败 -->
+      <div class="submit">
+        <span class=""></span>
+        <p>提交失败，请刷新网络试试~</p>
+      </div>
       <div slot="footer" class="dialog-footer">
         <span v-show="userInputErrorInfo.flag"
           v-text="userInputErrorInfo.tips"
@@ -143,7 +154,6 @@ export default {
     // 检测姓名
     checkUserName () {
       let val = this.feedForm.name
-      console.log(val)
       return val.length > 0 && val.length < 20
     },
     // 检测验证码
@@ -163,7 +173,15 @@ export default {
        意见反馈，1000字符以内
      */
     feedFormSubmit () {
-      let fdF = this.feedForm
+      let that = this
+      for (let f of FeedData.formConfig) {
+        if (!that.checkFormValue(f.type)) {
+          that.userInputErrorInfo.flag = true
+          that.userInputErrorInfo.tips = that.errorMap[f.type].text
+          return
+        }
+      }
+      let fdF = that.feedForm
       Server.setFeedBack({
         name: fdF.name,
         tel: fdF.tel,
@@ -178,7 +196,7 @@ export default {
       // let data = that.feedForm
     },
     /**
-     * xx
+     * 校验全部数据
      * @param {string}
      */
     checkFormValue (type) {
@@ -189,14 +207,14 @@ export default {
       }
       let map = that.errorMap
       for (let key of list) {
-        console.log(key, map[key])
         if (!map[key].flag) {
           that.userInputErrorInfo.flag = true
           that.userInputErrorInfo.tips = map[key].text
-          return
+          return false
         }
       }
       that.userInputErrorInfo.flag = false
+      return true
     },
     /**
      * 检测反馈项类型（验证码and意见反馈较特殊）添加class标记
