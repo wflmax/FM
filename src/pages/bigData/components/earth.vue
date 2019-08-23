@@ -165,6 +165,7 @@ export default {
       option: {
         backgroundColor: 'transparent',
         globe: {
+          globeRadius: 70,
           baseTexture: require('./gl/bathymetry_bw_composite_4k.jpg'),
 
           displacementScale: 0.05,
