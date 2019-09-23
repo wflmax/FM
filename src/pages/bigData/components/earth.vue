@@ -12,7 +12,6 @@ import { stationCoord } from '@/config/utils'
 import Vue from 'vue'
 import echarts from 'vue-echarts'
 import 'echarts-gl'
-import { debuglog } from 'util'
 let flightPoints = [],
   trainPoints = [],
   flightRoutes = [],
