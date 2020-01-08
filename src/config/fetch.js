@@ -12,8 +12,6 @@ export default async (url = '', option = {}, type = 'POST', method = 'fetch') =>
   url = baseUrl + url;
   let data = option.data;
   let timeOut=option.timeOut || 45
-  let timeDiff = Number(getStore('tv_timediff'));
-  data['timestamp'] = Date.parse(new Date()) / 1000 - timeDiff;
 
   if (type == 'GET') {
     let dataStr = ''; //数据拼接字符串
@@ -34,7 +32,7 @@ export default async (url = '', option = {}, type = 'POST', method = 'fetch') =>
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       },
       mode: "cors",
       cache: "no-cache"

@@ -5,6 +5,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+Vue.prototype.mainColorA='#FA4B4D';Vue.prototype.mainColorB = '#F1DB8B' ;
+
+
 new Vue({
   el: '#app',
   router,

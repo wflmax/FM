@@ -1,0 +1,126 @@
+html {
+    font-size: 0.625vw;
+}
+body {
+    background: #000 url(../../assets/img/airlineSeasonal/bg.jpg) no-repeat
+        center;
+    background-size: cover;
+    color: #fff;
+    overflow: hidden;
+}
+.warp {
+    width: 100vw;
+    height: 100vh;
+}
+.airlineSeasonal {
+    position: relative;
+    padding:1.5vh  1.5vw;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+@mainColor: #B8252B;
+@colorA: #FA4B4D;
+@colorB: #DBC472;
+
+.model-box{
+    width: 40rem;
+     position: fixed;
+     top:2.5rem;
+     left: 1.66rem;
+     z-index: 4;
+     &.right-model{
+         left: auto;
+         right: 1.5vw;
+     }
+     .model-item{
+         width: 100%;
+         position: relative;
+         margin-bottom: 1rem;
+         border: 1px solid rgba(255, 255, 255, .2);
+         color: #fff;
+
+         font-size: 1vw;
+        //  overflow: hidden;
+         .model-title{
+             color: #fff;
+             font-size:1.333rem ;
+             padding: 0 1.66rem;
+             height: 3.333rem;
+             background: @mainColor;
+             font-weight: normal;
+         }
+         .sub-title{
+             p{
+                 margin-left: 1rem;
+                 position: relative;
+                 padding-left: 1.5rem;
+                 font-size: 1.16rem;
+                 &::before{
+                     content: '';
+                     position: absolute;
+                     height: 0.8rem;
+                     width: 0.8rem;
+                     background: @colorA;
+                     left: 0;
+                     top:50%;
+                     margin-top: -.4rem;
+                     border-radius: 100%;
+                 }
+                 &:nth-child(2){
+                    &::before{
+                        background: @colorB;
+                    }
+                 }
+             }
+         }
+     }
+     .flight-cover-item{
+         width: 7.3vw;
+         height: 7.3vw;
+         border: 2px solid rgba(15, 235, 255, .4);
+         border-radius: 100%;
+         color: #0FEBFF;
+     }
+
+}
+
+
+.bottom {
+    position: fixed;
+    bottom: 2vh;
+    left: 42rem;
+    right: 1.5vw;
+    height: 8rem;
+    width: 76rem;
+    background: url(../../assets/img/airlineSeasonal/title.png) no-repeat
+        center;
+    background-size: cover;
+    text-align: center;
+
+}
+.map-warp {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index:2;
+    top: 0;
+    .map {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+}
+.earth-s
+{
+    height:62vh;
+    width: 62vh;
+    background: none;
+    border-radius: 100%;
+    left: 50%;
+    top:50%;
+    position: fixed;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.68);
+    margin: -30.5vh 0 0 -28vh;
+}

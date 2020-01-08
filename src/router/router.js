@@ -2,22 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import {routerMode} from '../config/env'
 Vue.use(Router)
-
-const index = r => require.ensure([], () => r(require('@/pages/index/index')), 'index')
-const bigData = r => require.ensure([], () => r(require('@/pages/bigData/index')), 'index')
+const airlineSeasonal = r => require.ensure([], () => r(require('@/pages/airlineSeasonal/index')), 'index')
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'index',
-      component: index,
-      // meta: { keepAlive: true }
-    },{
-      path: '/bigdata',
-      name: 'bigdata',
-      component: bigData,
+      component: airlineSeasonal,
       // meta: { keepAlive: true }
     }
+
   ],
   mode: routerMode,
   strict: process.env.NODE_ENV !== 'production',

@@ -180,7 +180,10 @@ export const stationCoord = {
   },
   coords: function (type, code) {
     let cood=this.coord(type, code);
-    return [cood[1],cood[2]];
+    if (stationGps[type][code]) {
+        return [cood[1],cood[2]];
+      }
+
   },
   lng: function (type, code) {
     return this.coord(type, code)[1];
@@ -189,7 +192,11 @@ export const stationCoord = {
     return this.coord(type, code)[2];
   },
   name: function (type, code) {
-    return this.coord(type, code)[0];
+    if (stationGps[type][code]) {
+        return this.coord(type, code)[0];
+      }
+
+
   },
   city: function (type, code) {
     return cityCoord.name(this.coord(type, code)[3]);

@@ -10,10 +10,11 @@ let webUrl =''
 let routerMode = 'hash';
 let mapKey= "AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y1"
 if (process.env.NODE_ENV == 'development') {//本地开发
-    webUrl = '';
+    webUrl = 'http://map.133.cn/';
 }else if(process.env.NODE_ENV == 'testing'){//现场测试环境
 }else if(process.env.NODE_ENV == 'devtesting'){//公司开发测试发环境
 }else if(process.env.NODE_ENV == 'production'){//生产环境
+    webUrl = 'http://map.133.cn/';
     mapKey= "AIzaSyDDIIuCrxy3qThI7OQ6UfhGNSBIq9mo05Y"
 }
 let baseUrl = webUrl;//可能拼接

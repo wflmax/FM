@@ -17,3 +17,5 @@ export const clearToken = (param) => fetch('/api/token/clear',{data:param});
 //获取全部数据
 export const getIndexData = (param) => fetch('/api/data',{data:param});
 
+export const getsSeasonData = (param) => fetch('airline/season',{data:param},'GET');
+export const getEasyData = (param) => fetch('airline/easy',{data:param},'GET');
