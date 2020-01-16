@@ -111,7 +111,6 @@ export default {
 
                     {
                         type: "bar",
-
                         data: that.schedules.map(function(dataItem) {
                             return dataItem[1];
                         }),
@@ -159,7 +158,7 @@ export default {
 .area-chart {
     position: relative;
     width: 100%;
-     height: 14vh;
+     height: 15vh;
 }
 
 

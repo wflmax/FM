@@ -6,10 +6,10 @@
             </div>
             <div class="model-box left-model" >
                 <flightsCover :flights="statistics.flights"></flightsCover>
-                <routesCover :routes="statistics.routes"></routesCover>
-                <passagerCover :passagers="statistics.passagers"></passagerCover>
+                <routeInfo></routeInfo>
+                <passagerCover :passagers="statistics.passagers" :routes="statistics.routes"></passagerCover>
+                <routeInfo type="1"></routeInfo>
                 <timeDistribution :schedules="statistics.schedules"></timeDistribution>
-                <capacityIn :capacity="statistics.capacity"></capacityIn>
             </div>
             <div class="model-box right-model">
                 <airplaneMaker :models="statistics.models" :markers="statistics.markers"></airplaneMaker>
@@ -22,10 +22,9 @@
 <script>
 import earth from "./components/earth";
 import airplaneMaker from "./components/airplane-maker";
-import routesCover from "./components/routes-cover";
 import flightsCover from "./components/flights-cover";
 import passagerCover from "./components/passager-cover";
-import capacityIn from "./components/capacity-in";
+import routeInfo from "./components/route-info";
 import timeDistribution from "./components/time-distribution";
 const axios = require("axios");
 export default {
@@ -33,11 +32,10 @@ export default {
     components: {
         earth,
         airplaneMaker,
-        routesCover,
-        capacityIn,
         timeDistribution,
         flightsCover,
         passagerCover,
+        routeInfo
     },
     data() {
         return {

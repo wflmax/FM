@@ -3,7 +3,7 @@
     <div class="model-item" v-if="routes">
         <boxDecorate></boxDecorate>
         <div class="model-title flex flex-yc flex-between">
-            航线覆盖情况
+            春运热门航线
               <div class="flex flex-yc flex-between sub-title">
                 <p>首航国内航线</p>
                 <p>首航国际及港澳台航线</p>
@@ -13,28 +13,28 @@
             <div class="item item-dom">
                 <rateCircle class="area-chart" :color="mainColorA" :rate="[routes.domRoutesAllRate]"></rateCircle>
                 <div class="text">
-                    {{routes.domRoutesAllRate}}%
+                    {{routes.domRoutesHistoryRate}}%
                     <span>理论占比</span>
                 </div>
             </div>
             <div class="item item-dom">
                  <rateCircle class="area-chart" :color="mainColorA" :rate="[routes.domRoutesHistoryRate]"></rateCircle/>
                 <div class="text">
-                    {{routes.domRoutesHistoryRate}}%
+                    {{routes.domRoutesAllRate}}%
                     <span>实际占比</span>
                 </div>
             </div>
             <div class="item item-dom">
                 <rateCircle class="area-chart" :color="mainColorB" :rate="[routes.intRoutesAllRate]"></rateCircle>
                 <div class="text">
-                    {{routes.intRoutesAllRate}}%
+                    {{routes.intRoutesHistoryRate}}%
                     <span>理论占比</span>
                 </div>
             </div>
             <div class="item item-dom">
                 <rateCircle class="area-chart" :color="mainColorB" :rate="[routes.intRoutesHistoryRate]"></rateCircle>
                 <div class="text">
-                    {{routes.intRoutesHistoryRate}}%
+                    {{routes.intRoutesAllRate }}%
                     <span>实际占比</span>
                 </div>
             </div>
@@ -60,7 +60,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .flight-cover {
-    height: 12vh;
+    height: 13vh;
     .item {
         height: 7rem;
         width: 7rem;
@@ -75,15 +75,15 @@ export default {
             width: 100%;
             text-align: center;
             color: #fff;
-            font-size: 1.165rem;
+            font-size: 1.333rem;
             top: 0;
             left: 0;
-             padding-top: 22%;
+             padding-top: 24%;
             vertical-align: middle;
             span {
 
                 display: block;
-                font-size: 1.166rem;
+                font-size: 1rem;
             }
         }
     }

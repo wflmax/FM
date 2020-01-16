@@ -2,8 +2,7 @@ html {
     font-size: 0.625vw;
 }
 body {
-    background: #000 url(../../assets/img/airlineSeasonal/bg.jpg) no-repeat
-        center;
+    background: #000 url(../../assets/img/airlineSeasonal/bg.jpg) no-repeat center;
     background-size: cover;
     color: #fff;
     overflow: hidden;
@@ -27,17 +26,17 @@ body {
 .model-box{
     width: 40rem;
      position: fixed;
-     top:2.5rem;
+     top:2vh;
      left: 1.66rem;
      z-index: 4;
      &.right-model{
          left: auto;
-         right: 1.5vw;
+         right: 1.66rem;
      }
      .model-item{
          width: 100%;
          position: relative;
-         margin-bottom: 1rem;
+         margin-bottom: .9vh;
          border: 1px solid rgba(255, 255, 255, .2);
          color: #fff;
 
@@ -46,7 +45,7 @@ body {
          .model-title{
              color: #fff;
              font-size:1.333rem ;
-             padding: 0 1.66rem;
+             padding: 0 1.36rem;
              height: 3.333rem;
              background: @mainColor;
              font-weight: normal;
@@ -86,14 +85,51 @@ body {
 
 }
 
+.route-info{
+    height: 13.5vh;
+    font-size: 1.1666rem;
+    padding: 1.66rem;
+
+    .text{
+        padding-left: 5rem;
+        position: relative;
+        line-height: 1.8rem;
+        span{
+            position: absolute;
+            padding-left: 1rem;
+            left: 0;
+            top:0;
+            &::before{
+                content: '';
+                width: .3333rem;
+                position: absolute;
+                height: 1.1666rem;
+                border-radius: .17rem;
+                background-color: @colorB;
+                left: 0;
+                top:.2rem;
+            }
+        }
+        &:nth-child(1){
+            padding-bottom:  1.66rem;
+            margin-bottom: 1.66rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            span{
+                &::before{
+                    background-color: @colorA;
+                }
+            }
+        }
+    }
+
+}
 
 .bottom {
     position: fixed;
     bottom: 2vh;
     left: 42rem;
-    right: 1.5vw;
-    height: 8rem;
-    width: 76rem;
+    height: 8.5rem;
+    width: 77rem;
     background: url(../../assets/img/airlineSeasonal/title.png) no-repeat
         center;
     background-size: cover;
@@ -102,6 +138,7 @@ body {
 }
 .map-warp {
     position: absolute;
+    margin: -4vh 0 0 -2vh;
     width: 100vw;
     height: 100vh;
     z-index:2;
@@ -122,5 +159,5 @@ body {
     top:50%;
     position: fixed;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.68);
-    margin: -30.5vh 0 0 -28vh;
+    margin: -34.5vh 0 0 -30.5vh;
 }

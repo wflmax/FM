@@ -1,5 +1,5 @@
 <template>
-     <v-chart  :autoresize="true" :options="planeBase" />
+    <v-chart :autoresize="true" :options="planeBase" />
 </template>
 <script>
 import Vue from "vue";
@@ -9,7 +9,7 @@ export default {
         index: {
             type: Array,
             default: () => []
-        },
+        }
     },
     watch: {
         index(val) {
@@ -22,25 +22,23 @@ export default {
     },
     data() {
         return {
-            planeBase:{}
+            planeBase: {}
         };
     },
     methods: {
-        setOption(){
-           this.planeBase = {
+        setOption() {
+            this.planeBase = {
                 color: ["#D0244C", "#fff"],
                 radar: {
                     name: {
                         textStyle: {
                             color: "#DBC472",
-                            fontSize: "50%",
+                            fontSize: "50%"
                         }
                     },
                     splitArea: {
                         areaStyle: {
-                            color: [
-                                "transparent",
-                            ],
+                            color: ["transparent"],
                             shadowColor: "rgba(0, 0, 0, 0.3)",
                             shadowBlur: 10
                         }
@@ -55,31 +53,30 @@ export default {
                             color: "#DBC472"
                         }
                     },
-                    radius: "60%",
+                    radius: "64%",
                     center: ["60%", "57%"],
-                    nameGap:'7',
+                    nameGap: "7",
                     indicator: [
                         {
-                            name: "间距:"+this.index[0],
+                            name: "座位间距",
                             max: 5
                         },
                         {
-                            name: "娱乐设施:"+this.index[1],
+                            name: "娱乐设施",
                             max: 5
                         },
                         {
-                            name: "电源:"+this.index[2],
+                            name: "电源",
                             max: 5
                         },
                         {
-                            name: "角度:"+this.index[3],
+                            name: "座椅角度",
                             max: 5
                         },
                         {
-                            name: "宽度:"+this.index[4],
+                            name: "座椅宽度",
                             max: 5
-                        },
-
+                        }
                     ]
                 },
                 series: [
@@ -97,7 +94,7 @@ export default {
                         ]
                     }
                 ]
-            }
+            };
         }
     },
     components: {

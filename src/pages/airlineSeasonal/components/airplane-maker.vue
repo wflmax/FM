@@ -19,16 +19,8 @@
                     </div>
                 </div>
                 <div class="chart">
-                    <v-chart class="flight-chart" :autoresize="true" :options="options" />
-                    <div class="info">
-                        <p
-                            class="flex flex-between flex-yc"
-                            v-for="(item,index) in cmarker"
-                            :key="index"
-                        >
-                            <span :style="{background:colors[index]}"></span>
-                            {{item.marker}}
-                        </p>
+                    <div class="cl flex flex-yc">
+                        <p class="t">空客占比<span>100%</span></p>
                     </div>
                 </div>
             </div>
@@ -42,7 +34,7 @@
                     </div>
                 </div>
                 <div class="des flex flex-yc flex-between">
-                    <p>飞机机型：319-100</p>
+                    <p>飞机机型：A319-100</p>
                     <p>平均机龄：11.1年</p>
                     <p>座位布局：3-3</p>
                 </div>
@@ -57,7 +49,7 @@
                     </div>
                 </div>
                 <div class="des flex flex-yc flex-between">
-                    <p>飞机机型：320-200</p>
+                    <p>飞机机型：A320-200</p>
                     <p>平均机龄：6.7年</p>
                     <p>座位布局：3-3</p>
                 </div>
@@ -72,8 +64,8 @@
                     </div>
                 </div>
                 <div class="des flex flex-yc flex-between">
-                    <p>飞机机型：320-NEO</p>
-                    <p>平均机龄：1.2年</p>
+                    <p>飞机机型：A320-NEO</p>
+                    <p>平均机龄：1.1年</p>
                     <p>座位布局：3-3</p>
                 </div>
             </div>
@@ -87,7 +79,7 @@
                     </div>
                 </div>
                 <div class="des flex flex-yc flex-between">
-                    <p>飞机机型：321-200</p>
+                    <p>飞机机型：A321-200</p>
                     <p>平均机龄：2.8年</p>
                     <p>座位布局：3-3</p>
                 </div>
@@ -102,8 +94,8 @@
                     </div>
                 </div>
                 <div class="des flex flex-yc flex-between">
-                    <p>飞机机型：330-200</p>
-                    <p>平均机龄：3.0年</p>
+                    <p>飞机机型：A330-200</p>
+                    <p>平均机龄：2.8年</p>
                     <p>座位布局：2-4-2</p>
                 </div>
             </div>
@@ -117,8 +109,8 @@
                     </div>
                 </div>
                 <div class="des flex flex-yc flex-between">
-                    <p>飞机机型：330-300</p>
-                    <p>平均机龄：3.0年</p>
+                    <p>飞机机型：A330-300</p>
+                    <p>平均机龄：2.3年</p>
                     <p>座位布局：2-4-2</p>
                 </div>
             </div>
@@ -128,8 +120,6 @@
 <script>
 import boxDecorate from "./box-decorate";
 import happyIndex from "./happy-index";
-import Vue from "vue";
-import echarts from "vue-echarts";
 let colors = ["#FA4B4D", "#F1DB8B", "#44D024", "#1CE3FF", "#3F86E5", "#FFAD05"];
 
 export default {
@@ -156,9 +146,9 @@ export default {
             options: {},
             index1: [3.5, 1.0, 1.0, 2.0, 3.0],
             index2: [3.5, 1.5, 1.0, 2.0, 3.0],
-            index3: [3.0, 1.0, 1.0, 2.0, 3.0],
-            index4: [4.0, 1.5, 1.5, 2.0, 3.0],
-            index5: [4.5, 5.0, 1.0, 3.0, 3.5],
+            index3: [3.0, 1.0, 5, 2.0, 3.0],
+            index4: [4.0, 1.5, 3, 2.0, 3.0],
+            index5: [4.5, 5.0, 3.5, 3.0, 3.5],
             index6: [4.5, 5.0, 5.0, 3.5, 4.0]
         };
     },
@@ -177,91 +167,48 @@ export default {
                     num = num - item.rate;
                 }
             }
-            if (num != 0) {
-                temp.push({
-                    model: "其它",
-                    rate: num.toFixed(2)
-                });
-            }
+            // console.log(num)
+            // if (num != 0) {
+            //     temp.push({
+            //         model: "其它",
+            //         rate: num.toFixed(2)
+            //     });
+            // }
 
             this.cmodels = temp;
         },
         covertMakerData() {
             let temp = [];
-            let num = 100;
-            for (var key in this.markers) {
-                let item = this.markers[key];
-                if (item.marker != "unknown") {
-                    temp.push({
-                        value: item.rate,
-                        name: item.rate + "%",
-                        marker: item.marker
-                    });
-                    num = num - item.rate;
-                }
-            }
-            if (num != 0.0) {
-                temp.push({
-                    value: num.toFixed(2),
-                    name: num.toFixed(2) + "%",
-                    marker: "其他"
-                });
-            }
+            temp.push({
+                value: "100",
+                name: "100%",
+                marker: "空客"
+            });
 
             this.cmarker = temp;
         },
         setOption() {
             this.covertModelData();
-            this.covertMakerData();
-            this.options = {
-                color: colors,
-                series: [
-                    {
-                        type: "pie",
-                        radius: [30, 50],
-                        center: ["50%", "50%"],
-                        roseType: "radius",
-                        label: {
-                            normal: {
-                                show: true,
-                                fontSize: "50%"
-                            },
-                            emphasis: {
-                                show: true
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                show: true,
-                                length: 2,
-                                length2: 5
-                            }
-                        },
-                        data: this.cmarker
-                    }
-                ]
-            };
+
         }
     },
     components: {
         boxDecorate,
         happyIndex,
-        "v-chart": echarts
     }
 };
 </script>
 <style lang="less" scoped>
 .airplane-maker {
     position: relative;
-    padding: 1rem;
+    padding: 1vh;
     .left {
         width: 55%;
         margin-right: 1vw;
-        margin-bottom: 1vh;
+        margin-left: 1vw;
         overflow: hidden;
         height: 15vh;
         flex-wrap: wrap;
-
     }
     .chart {
         position: absolute;
@@ -270,6 +217,17 @@ export default {
         right: 0;
         top: 0;
         text-align: center;
+        .cl{
+            width: 12vh;
+            height: 12vh;
+            border: 1rem solid#FA4B4D;
+            border-radius: 100%;
+            font-size: 1.133rem;
+            margin: 2rem 0 0 5rem;
+            text-align: center;
+            .t{width: 100%;}
+            span{font-size: 1.66rem;display: block;}
+        }
     }
     .flight-chart {
         width: 100%;
@@ -278,7 +236,8 @@ export default {
     }
     .item {
         position: relative;
-        font-size: 0.8vw;
+        font-size: 1.25rem;
+        width: 100%;
         .name {
             width: 20%;
         }
@@ -315,7 +274,7 @@ export default {
                 width: 0.5rem;
                 height: 0.5rem;
                 background: #fff;
-                margin: 0 .2rem 0 1.2rem;
+                margin: 0 0.2rem 0 1.2rem;
                 display: inline-block;
             }
         }
@@ -323,8 +282,8 @@ export default {
 }
 .plane-item {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem 1.66rem 0;
-    height: 12vh;
+    padding:2vh 5% 1vh;
+    height: 12.5vh;
     position: relative;
 
     .des {

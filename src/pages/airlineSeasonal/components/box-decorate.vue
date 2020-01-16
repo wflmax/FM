@@ -27,6 +27,7 @@
                 width: 2rem;
                 border: none;
                 left: -2px;
+                top:-2px;
             }
         }
 
@@ -40,6 +41,7 @@
                 width: 2rem;
                 border: none;
                 right: -2px;
+                top:-2px;
             }
         }
         &.b {

@@ -55,7 +55,7 @@ export default {
                 let r = Math.ceil(Math.random() * 10);
                 let dep = airports[item.depCode];
                 let arr = airports[item.arrCode];
-                if ((dep && arr && dep[5] == "CN") || arr[5] == "CN") {
+                // if ((dep && arr && dep[5] == "CN") || arr[5] == "CN") {
                     let depCoods = [dep[1], dep[2], item.depCode];
                     let arrCoods = [arr[1], arr[2], item.arrCode];
                     if (!f_points.includes(item.depCode)) {
@@ -73,23 +73,23 @@ export default {
                                 continue;
                             }
                             let stopCoods = [stop[1], stop[2]];
-                            if (dep[5] == "CN" || stop[5] == "CN") {
+                            // if (dep[5] == "CN" || stop[5] == "CN") {
                                 if (!s_points.includes(s)) {
                                     flightStopPoints.push(stopCoods);
                                     s_points.push(s);
                                 }
-                            }
+                            // }
 
                             if (i == 0) {
-                                if (dep[5] == "CN" || stop[5] == "CN") {
+                                // if (dep[5] == "CN" || stop[5] == "CN") {
                                     flightStopRoutes.push([
                                         depCoods,
                                         stopCoods
                                     ]);
-                                }
+                                // }
                             } else if (i > 0 && i < item.stops.length - 1) {
                                 let beforeStop = airports[item.stops[i - 1]];
-                                if (beforeStop[5] == "CN" || stop[5] == "CN") {
+                                // if (beforeStop[5] == "CN" || stop[5] == "CN") {
                                     let beforeStopCoods = [
                                         beforeStop[1],
                                         beforeStop[2]
@@ -98,14 +98,14 @@ export default {
                                         stopCoods,
                                         stopCoods
                                     ]);
-                                }
+                                // }
                             } else {
-                                if (arr[5] == "CN" || stop[5] == "CN") {
+                                // if (arr[5] == "CN" || stop[5] == "CN") {
                                     flightStopRoutes.push([
                                         stopCoods,
                                         arrCoods
                                     ]);
-                                }
+                                // }
                             }
                         }
                     } else {
@@ -116,7 +116,7 @@ export default {
                             f_line.push(line);
                         }
                     }
-                }
+                // }
             }
 
             series.push(
@@ -187,7 +187,7 @@ export default {
             this.option = {
                 backgroundColor: "transparent",
                 globe: {
-                    baseTexture: require("@/pages/components/gl/bg.png"),
+                    baseTexture: require("@/pages/components/gl/jd.jpg"),
                     displacementScale: 0.07,
 
                     shading: "realistic",
@@ -224,7 +224,7 @@ export default {
                     },
                     viewControl: {
                         autoRotate: true,
-                        zoomSensitivity: 1,
+                        zoomSensitivity: 0,
                         distance: 250,
                         autoRotateDirection:'ccw'
                     }

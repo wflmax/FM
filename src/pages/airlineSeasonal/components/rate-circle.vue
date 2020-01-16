@@ -20,7 +20,6 @@ export default {
             default: () => []
         },
         type: {
-            type: Number,
             default: 0
         },
         color: String
@@ -45,7 +44,8 @@ export default {
                                         show: false
                                     },
                                     itemStyle: {
-                                        color: this.color
+                                        color: this.color,
+                                        fontSize: "70%"
                                     }
                                 },
                                 {
@@ -151,7 +151,7 @@ export default {
                             hoverAnimation: false,
                             itemStyle: {
                                 normal: {
-                                    label: {},
+                                    label: { fontSize:'80%',color: "#fff",},
                                     labelLine: {}
                                 }
                             },

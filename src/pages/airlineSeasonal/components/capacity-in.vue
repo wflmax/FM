@@ -138,19 +138,15 @@ export default {
                 series: [
                     {
                         type: "bar",
-                        barMaxWidth: 15,
+                        barMaxWidth: '22%',
                         itemStyle: {
                             normal: {
                                 color: this.mainColorA,
                                 label: {
                                     show: true,
-                                    textStyle: {
-                                        color: "#fff",
-                                        textStyle: {
-                                            fontSize: "50%"
-                                        }
-                                    },
+                                    color: "#fff",
                                     position: "top",
+                                    fontSize: "50%",
                                     formatter: function(p) {
                                         return p.value;
                                     }
@@ -161,18 +157,16 @@ export default {
                     },
                     {
                         type: "bar",
-                        barMaxWidth: 15,
+                       barMaxWidth: '22%',
                         yAxisIndex: 1,
                         itemStyle: {
                             normal: {
                                 color: this.mainColorB,
                                 label: {
-                                    show: false,
                                     show: true,
-                                    textStyle: {
-                                        color: "#fff"
-                                    },
+                                    color: "#fff",
                                     position: "top",
+                                    fontSize: "50%",
                                     formatter: function(p) {
                                         return p.value;
                                     }
@@ -205,11 +199,11 @@ export default {
 .area-chart {
     position: relative;
     width: 100%;
-    height: 15vh;
+    height: 15.5vh;
 }
-.tip{
-    position:absolute;
-    font-size: .8rem;
+.tip {
+    position: absolute;
+    font-size: 0.8rem;
     left: 10%;
     margin-top: 1rem;
 }

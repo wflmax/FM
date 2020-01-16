@@ -51,7 +51,7 @@ export default {
         height: 14vh;
         width: 19vh;
         position: absolute;
-        left:12%;
+        left:8%;
         .area-chart {
             width: 100%;
             height: 100%;
@@ -62,19 +62,19 @@ export default {
             width: 100%;
             text-align: center;
             color: #fff;
-            font-size: 1.165rem;
+            font-size: 1.365rem;
             top: 10%;
             left: 0;
             padding-top: 20%;
             vertical-align: middle;
             span {
                 display: block;
-                font-size: 1.166rem;
+                font-size: 1rem;
             }
         }
         &:nth-child(2){
             left: auto;
-            right: 12%;
+            right: 8%;
         }
     }
 
